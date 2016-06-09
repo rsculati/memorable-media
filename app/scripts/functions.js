@@ -223,10 +223,11 @@ function getObjectsWithHourScore(obj,time,day) {
         if(obj[i].timeAlert === "Closing soon"){
           obj[i].timeAlert = "Closing soon";
         } else {
-          obj[i].timeAlert = "Open now";
+          obj[i].timeAlert = "Open";
         }
       } else {
           obj[i].scoreTime = 0;
+          obj[i].timeAlert = "Closed";
       }
     }
   }
@@ -245,13 +246,27 @@ function getObjectsFromCriteria(obj, criteria, value) {
   return objects;
 }
 
-//return an array of items match on a certain tag
-function getObjectsFromPriceRange(obj, price) {
-  // var objects = getObjectsFromCriteria(obj,"establishement_pricerange", price);
+//return price formated
+function getPriceFormated(price) {
 
-  return obj;
+  switch (price) {
+    case "$":
+      price = "$ - Inexpensive";
+      break;
+    case "$$":
+      price = "$$ - Moderate";
+      break;
+    case "$$$":
+      price = "$$$ - Pricey";
+      break;
+    case "$$$$":
+      price = "$$$$ - Ultra High-End";
+      break;
+  }
+  return price;
 }
 
+getPriceFormated
 // return an array with the score of the price range
 function getObjectWithPriceRangeScore(obj, price){
   for (var i = 0; i < obj.length; i++) {
