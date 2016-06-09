@@ -246,6 +246,106 @@ function getObjectsFromCriteria(obj, criteria, value) {
   return objects;
 }
 
+// get search formated
+function getSearchFormated(search){
+  var formated = "";
+  var tagArray = search.split(',');
+  var arrEat = [];
+  var arrDrink = [];
+  var arrShop = [];
+
+  var test = "";
+  switch (search) {
+    case "eat,":
+      test = "Eat";
+      break;
+    case "drink,":
+      test = "Drink";
+      break;
+    case "shop,":
+      test = "Shop";
+      break;
+  }
+  if(test != "")
+    return test;
+
+  for(var i = 0 ; i < tagArray.length; i++){
+    switch (tagArray[i]) {
+      case "brunch":
+        arrEat.push(" Brunch");
+        break;
+      case "sweet":
+        arrEat.push(" something Sweet");
+        break;
+      case "quick":
+        arrEat.push(' Quickly');
+        break;
+      case "veg":
+        arrEat.push(" Vegan");
+        break;
+      case "heal":
+        arrEat.push(" Healthy");
+        break;
+      case "cafe":
+        arrDrink.push(" Coffee");
+        break;
+      case "tea":
+        arrDrink.push(" Tea");
+        break;
+      case "cocktail":
+        arrDrink.push(" Cocktail");
+        break;
+      case "wine":
+        arrDrink.push(" Wine");
+        break;
+      case "beer":
+        arrDrink.push(" Beer");
+        break;
+      case "terrace":
+        formated = formated + ", on a terrace";
+        break;
+      case "dance":
+        formated = formated + ", go dancing";
+        break;
+      case "special":
+        formated = formated + ", try something Special";
+        break;
+      case "clotheshop":
+        arrShop.push(" Clothes shop");
+        break;
+      case "foodshop":
+        arrShop.push(" Food shop");
+        break;
+      case "specialshop":
+        arrShop.push(" Special shop");
+        break;
+    }
+  }
+  var str = "";
+  if(arrEat.length > 0){
+    str = " Eat ";
+    for(var i = 0 ; i < arrEat.length; i++){
+      str = str + arrEat[i] + ",";
+    }
+  }
+  if(arrDrink.length > 0){
+    str = str + " Drink ";
+    for(var i = 0 ; i < arrDrink.length; i++){
+      str = str + arrDrink[i] + ",";
+    }
+  }
+  if(arrShop.length > 0){
+    str = str + " Shop in a ";
+    for(var i = 0 ; i < arrShop.length; i++){
+      str = str + arrShop[i] + ",";
+    }
+  }
+
+  formated = str + formated;
+
+    return formated.substring(0, formated.length);
+}
+
 //return price formated
 function getPriceFormated(price) {
 
