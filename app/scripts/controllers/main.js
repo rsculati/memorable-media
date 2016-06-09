@@ -31,6 +31,34 @@ angular.module('memorableAppApp')
       console.log("no session variable");
     }
 
+    $scope.getDayFormated = function (day) {
+      if(day == "-"){
+        return "closed";
+      }
+      return day;
+    }
+
+    // ------------- DISPLAY DISTANCE ----------------
+    $scope.getDistance = function (distance, item){
+      if(isNaN(item.distance)){
+        var centerlat = 45.501724;
+        var centerlong = -73.567285;
+        var distanceCenter = getDistanceBetween(centerlat, centerlong, item.establishement_lat, item.establishement_long, 'K');
+        if(distanceCenter < 1){
+          distanceCenter = distanceCenter * 1000;
+          return distanceCenter + " m from city center";
+        } else {
+          return distanceCenter + " km from city center";
+        }
+      }
+      if(distance < 1){
+        distance = distance * 1000;
+        return distance + " m";
+      } else {
+        return distance + " km";
+      }
+    };
+
 
     $http.get('Row1data.json').success (function(data){
       // console.log(data);

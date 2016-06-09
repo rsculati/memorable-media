@@ -939,7 +939,7 @@ hr{
     /***FOOTER*****/
 
     footer {
-      padding: 50px 0 65px;
+      /*padding: 30px 0 30px;*/
       background-color:#0D0D0D;
     }
 
@@ -956,9 +956,25 @@ hr{
       width:40px;
       height:40px;
       /*padding-top:40px;*/
-
     }
 
+    #footer-social {
+      border-bottom: 1px solid;
+      border-color: #313131;
+      padding: 15px 0 15px;
+      font-size: 16px;
+    }
+
+    #footer-copyright {
+      padding: 15px 0 15px;
+    }
+
+    .copyright {
+      color: #888;
+      font-size: 12px;
+    }
+
+    /*button load more */
     .load-more{
       background-color: #0D0D0D;
       color: #fff;
