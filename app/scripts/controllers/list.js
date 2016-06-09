@@ -71,7 +71,7 @@ angular.module('memorableAppApp')
       if(typeof session[0] !== 'undefined'){
         updateList(session[0][0], $.searchquery,session[0][2],session[0][3],session[0][4]);
       } else {
-        updateList("any", $.searchquery,"around-me",$scope.hour,$scope.day);
+        updateList("any", $.searchquery,"you",$scope.hour,$scope.day);
       }
 
     });
@@ -89,7 +89,7 @@ angular.module('memorableAppApp')
       if(typeof session[0] !== 'undefined'){
         updateList($(this).attr("id"),session[0][1],session[0][2],session[0][3],session[0][4]);
       } else {
-        updateList($(this).attr("id"),"any","around-me",hour,day);
+        updateList($(this).attr("id"),"any","you",hour,day);
       }
     });
 
@@ -109,7 +109,7 @@ angular.module('memorableAppApp')
       if(typeof session[0] !== 'undefined'){
         updateList(session[0][0],session[0][1],session[0][2],hour,session[0][4]);
       } else {
-        updateList(session[0][0],"any","around-me",hour,day);
+        updateList(session[0][0],"any","you",hour,day);
       }
     });
 
@@ -150,7 +150,7 @@ angular.module('memorableAppApp')
     var d = new Date(); // for now
     var hour = d.getHours();
     var day = getday(d);
-      updateList("$$", $.searchquery,"around-me",hour,day);
+      updateList("$$", $.searchquery,"you",hour,day);
     $('html, body').animate({
         scrollTop: $( $.attr(this, 'href') ).delay(1000).offset().top
     }, 1000);
@@ -190,15 +190,19 @@ angular.module('memorableAppApp')
     // price, tag, location, time, day
 
   } else {
-    updateList("any","any","around-me",$scope.hour,$scope.day);
+    updateList("any","any","you",$scope.hour,$scope.day);
     // $("#any").addClass("active");
-    $("#around-me").addClass("active");
+    $("#you").addClass("active");
   }
 
 
     $scope.getHomeScreenImage = function () {
       var categorieImage = getCategorieFromTime($scope.hour) +".jpg";
       return categorieImage;
+    }
+
+    $scope.getPriceWithFormated = function (price) {
+      return getPriceFormated(price);
     }
 
     // ------------- DISPLAY DISTANCE ----------------
@@ -216,9 +220,11 @@ angular.module('memorableAppApp')
       }
       if(distance < 1){
         distance = distance * 1000;
-        return distance + " m";
+
+
+        return distance + " m  - from " + $scope.location;
       } else {
-        return distance + " km";
+        return distance + " km  - from "  + $scope.location;
       }
     };
 
@@ -228,6 +234,7 @@ angular.module('memorableAppApp')
     function updateList(price, tag, location, time, day) {
       $scope.loading = true;
       $scope.loaded = false;
+      $scope.location = location;
       var category;
       if(tag != "any"){
         category = getMainCategory(tag);
@@ -262,7 +269,7 @@ angular.module('memorableAppApp')
                   }
               }
 
-              console.log(category + " : " + testCategory + " : " + obj[x].establishement_name);
+              // console.log(category + " : " + testCategory + " : " + obj[x].establishement_name);
               if(testCategory){
                 obj[x].scoreTags = 25 * 3;
               } else {
@@ -351,7 +358,7 @@ angular.module('memorableAppApp')
         $scope.items = obj;
 
 
-        if(location == "around-me"){
+        if(location == "you"){
           var lats = getValues(obj ,'establishement_lat');
           var longs = getValues(obj ,'establishement_long');
           $scope.lats = lats;

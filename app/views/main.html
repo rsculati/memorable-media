@@ -240,11 +240,15 @@
             </div>
             <div class="info-ctn">
               <div class="info-p">
-                Price range : {{item.establishement_pricerange}}
+                {{getPriceWithFormated(item.establishement_pricerange)}}
               </div>
               <div class="info-p">
-                Distance : {{getDistance(item.distance, item)}}
-
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                {{getDistance(item.distance, item)}}
+              </div>
+              <div class="info-p">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                {{item.timeAlert}}
               </div>
             </div>
           </div>

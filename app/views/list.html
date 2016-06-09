@@ -61,7 +61,7 @@ setInterval(function(){
         <li class="filter-navbar navbar-item dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Location<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li class="filter-location" id="around-me"><a>Near Me</a></li>
+            <li class="filter-location" id="you"><a>Near Me</a></li>
             <!-- <li><a>Anywhere in Montreal</a></li> -->
             <li class="filter-location" id="mile-end"><a>Mile-End</a></li>
             <li class="filter-location" id="plateau"><a>Plateau</a></li>
@@ -248,12 +248,18 @@ setInterval(function(){
               	</div>
                 <div class="info-ctn">
                   <div class="info-p">
-                    Price range : {{item.establishement_pricerange}}
+                    {{getPriceWithFormated(item.establishement_pricerange)}}
                   </div>
                   <div class="info-p">
-                    Distance : {{getDistance(item.distance, item)}}
-
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    {{getDistance(item.distance, item)}}
                   </div>
+                  <div class="info-p">
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                    {{item.timeAlert}}
+                  </div>
+
+
                 </div>
               </div>
             </div>

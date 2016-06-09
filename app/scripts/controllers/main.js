@@ -14,6 +14,7 @@ angular.module('memorableAppApp')
     var haveSession = false;
     var session = srvShareData.getData();
     if(typeof session[0] !== 'undefined'){
+      $scope.location = session[0][2];
       var sessionTab = session[0][8];
       var related = [];
       var cpt = 0 ;
@@ -38,6 +39,10 @@ angular.module('memorableAppApp')
       return day;
     }
 
+    $scope.getPriceWithFormated = function (price) {
+      return getPriceFormated(price);
+    }
+
     // ------------- DISPLAY DISTANCE ----------------
     $scope.getDistance = function (distance, item){
       if(isNaN(item.distance)){
@@ -53,9 +58,9 @@ angular.module('memorableAppApp')
       }
       if(distance < 1){
         distance = distance * 1000;
-        return distance + " m";
+        return distance + " m  - from " + $scope.location;
       } else {
-        return distance + " km";
+        return distance + " km  - from "  + $scope.location;
       }
     };
 
