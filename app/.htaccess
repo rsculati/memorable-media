@@ -1,0 +1,19 @@
+<ifModule mod_rewrite.c>
+ RewriteEngine On
+
+# allow social media crawlers to work by redirecting them to a server-rendered static version on the page
+RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet)
+RewriteRule detail/(.*)$ http://memorable.io/static-page.php?id=$1 [P]
+
+
+# Required to allow direct-linking of pages so they can be processed by Angular
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !index
+RewriteRule (.*) index.html [L]
+
+
+RewriteCond %{HTTPS} !on
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+</ifModule>

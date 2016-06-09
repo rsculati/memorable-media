@@ -1,0 +1,266 @@
+<!-- <script>
+(function(){
+var words = ["chefs" , "fashionistas" , "baristas" , "journalists" , "bloggers" , "creatives"], i = 0;
+setInterval(function(){
+  $('#influencer-list').fadeOut(function(){
+      $(this).html(words[i=(i+1)%words.length]).fadeIn();
+  });
+}, 3000);
+})();
+</script> -->
+
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url(images/{{getHomeScreenImage()}})">
+<div class="intro-header-overlay-main">
+  <nav class="navbar navbar-default navbar-fixed-top navbar-memorable">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="icon-menu visible-filter">Menu</span>
+        <span class="icon-filter invisible-filter">Filters</span>
+        <!--<span class="icon-bar visible-filter"></span>
+        <span class="icon-bar visible-filter"></span>
+        <span class="icon-bar visible-filter"></span>-->
+        <!--<i class="fa fa-filter invisible-filter" aria-hidden="true"></i>-->
+      </button>
+      <a class="navbar-brand" href="#"><img class="logo-nav-brand"src="images/memorable-logo-white-cube.png" alt=""><span class="text-nav-brand navbar-item">memorable</span></a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-center">
+        <li class="filter-navbar navbar-item dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Things to Do<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="filter-todo" id="any" ><a>Any Recommendation</a></li>
+            <li></li>
+            <li class="filter-todo" id="brunch"><a><i class="fa fa-cutlery" aria-hidden="true"></i> Brunch</a></li>
+            <li class="filter-todo" id="sweet"><a><i class="fa fa-cutlery" aria-hidden="true"></i> Sweet</a></li>
+            <li class="filter-todo" id="quick"><a><i class="fa fa-cutlery" aria-hidden="true"></i> Quickly</a></li>
+            <li class="filter-todo" id="veg"><a><i class="fa fa-cutlery" aria-hidden="true"></i> Vegetarian or Vegan</a></li>
+            <li class="filter-todo" id="heal"><a><i class="fa fa-cutlery icon-exception" aria-hidden="true"></i> or <i class="fa fa-coffee" aria-hidden="true"></i> Healthy</a></li>
+            <li></li>
+            <li class="filter-todo" id="cafe"><a><i class="fa fa-coffee" aria-hidden="true"></i> Coffee</a></li>
+            <li class="filter-todo" id="tea"><a><i class="fa fa-coffee" aria-hidden="true"></i> Tea</a></li>
+            <li class="filter-todo" id="cocktail"><a><i class="fa fa-glass" aria-hidden="true"></i> Cocktail</a></li>
+            <li class="filter-todo" id="wine"><a><i class="fa fa-glass" aria-hidden="true"></i> Wine</a></li>
+            <li class="filter-todo" id="beer"><a><i class="fa fa-beer" aria-hidden="true"></i> beer</a></li>
+            <li class="filter-todo" id="terrace"><a><i class="fa fa-sun-o" aria-hidden="true"></i> Relax on a terasse</a></li>
+            <li class="filter-todo" id="dance"><a><i class="fa fa-moon-o" aria-hidden="true"></i> Go dancing</a></li>
+            <li></li>
+            <li class="filter-todo" id="special"><a><i class="fa fa-gift" aria-hidden="true"></i> Try something special</a></li>
+            <li class="filter-todo" id="clotheshop"><a><i class="fa fa-gift" aria-hidden="true"></i> Shop for clothes</a></li>
+            <li class="filter-todo" id="foodshop"><a><i class="fa fa-gift" aria-hidden="true"></i> Shop for speciality food & drink</a></li>
+            <li class="filter-todo" id="specialshop"><a><i class="fa fa-gift" aria-hidden="true"></i> Shop at a special store</a></li>
+          </ul>
+        </li>
+        <li class="filter-navbar navbar-item dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Location<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="filter-location" id="around-me"><a>Near Me</a></li>
+            <!-- <li><a>Anywhere in Montreal</a></li> -->
+            <li class="filter-location" id="mile-end"><a>Mile-End</a></li>
+            <li class="filter-location" id="plateau"><a>Plateau</a></li>
+            <li class="filter-location" id="downtown"><a>Downtown</a></li>
+            <li class="filter-location" id="village"><a>Quartier des Spectacles & Village</a></li>
+            <li class="filter-location" id="old-port"><a>Old Port</a></li>
+            <li class="filter-location" id="westmount"><a>Westmount & NDG</a></li>
+            <li class="filter-location" id="little-italy"><a>Little Italy</a></li>
+            <li class="filter-location" id="sud-ouest"><a>Sud-Ouest</a></li>
+          </ul>
+        </li>
+        <li class="filter-navbar dropdown navbar-item">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Price<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="filter-price" id="$" ><a>$ - inexpensive</a></li>
+            <li class="filter-price" id="$$"><a>$$ - moderate</a></li>
+            <li class="filter-price" id="$$$"><a>$$$ - pricey</a></li>
+            <li class="filter-price" id="$$$$"><a>$$$$ - ultra high-end</a></li>
+          </ul>
+        </li>
+        <li class="filter-navbar navbar-item dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opening Hours <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="filter-time" id="now"><a>Open Now</a></li>
+            <li class="filter-time" id="9.5"><a>Morning</a></li>
+            <li class="filter-time" id="12.5"><a>Lunch</a></li>
+            <li class="filter-time" id="15"><a>Afternoon</a></li>
+            <li class="filter-time" id="17.5"><a>5 à 7</a></li>
+            <li class="filter-time" id="19"><a>Dinner</a></li>
+            <li class="filter-time" id="23"><a>Late Night</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-item navbar-right">
+        <li class="active"><a href="http://m.me/memorablemtl" target="_blank"><img class="logo-nav-brand"src="images/messenger.png" alt=""> Get suggestions via chat</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+                <div class="site-heading">
+                    <h1>A MONTREAL Insider guide</h1>
+                    <span class="title-divider"></span>
+                    <h2 class="subheading">I want to
+                          <a data-toggle="modal" data-target="#modal-fullscreen-category" href="#modal-fullscreen">Eat Brunch & Drink Cocktails <i class="fa fa-angle-down"></i></a><br>
+                        <!--  & <a data-toggle="modal" data-target="#modal-fullscreen-category" href="#modal-fullscreen">Drink Cocktail <i class="fa fa-angle-down"></i></a><br>
+                          & <a data-toggle="modal" data-target="#modal-fullscreen-category" href="#modal-fullscreen">Shop in speciality stores <i class="fa fa-angle-down"></i></a><br>
+              -->  </div>
+                <div id="cta-hero"><a href="#recommendations-section"><span class="btn-cta-header">Search</span></a></div>
+            </div>
+      </div>
+</div>
+  </div>
+</header>
+<!-- Post Content -->
+<article>
+
+      <div class="container">
+          <div class="row" id="recommendations-section">
+            <h2 class="section-title text-center"><span class="section-heading-2 ">recommendations</span></h2>
+          </div>
+​
+      <!-- Modal fullscreen use case-->
+          <div class="modal modal-fullscreen fade" id="modal-fullscreen-category" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <nav class="navbar navbar-default navbar-fixed-top navbar-memorable">
+                  <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="icon-menu visible-filter">Menu</span>
+                        <span class="icon-filter invisible-filter">Filters</span>
+                        <!--<span class="icon-bar visible-filter"></span>
+                        <span class="icon-bar visible-filter"></span>
+                        <span class="icon-bar visible-filter"></span>-->
+                        <!--<i class="fa fa-filter invisible-filter" aria-hidden="true"></i>-->
+                     </button>
+                      <a class="navbar-brand"><img class="logo-nav-brand"src="images/memorable-logo-white-cube.png" alt=""><span class="text-nav-brand navbar-item">I want to eat brunch & drink cocktails.</span></a>
+                    </div>
+                      <ul class="nav navbar-nav navbar-item navbar-right">
+                        <li class="active"><a id="filter-category-validation-btn" href="#recommendation-feed" data-dismiss="modal">Search</a></li>
+                      </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+                        <ul id="feed-dropdown-menu" class="dropdown-content">
+                          <!-- <li><h1>I AM LOOKING FOR<h1></li> -->
+                          <li></li>
+                          <li><a class="filter" id="any" ><h3>Any Recommendation</h3></a></li><br>
+                          <li><a class="filter" id="brunch" ><h3><i class="fa fa-cutlery" aria-hidden="true"></i> Brunch</h3></a></li>
+                          <li><a class="filter" id="sweet" ><h3><i class="fa fa-cutlery" aria-hidden="true"></i> Sweet</h3></a></li>
+                          <li><a class="filter" id="quick" ><h3><i class="fa fa-cutlery" aria-hidden="true"></i> Quickly</h3></a></li>
+                          <li><a class="filter" id="veg" ><h3><i class="fa fa-cutlery" aria-hidden="true"></i> Vegetarian or Vegan</h3></a></li>
+                          <li><a class="filter" id="heal" ><h3><i class="fa fa-cutlery icon-exception" aria-hidden="true"></i> or <i class="fa fa-coffee" aria-hidden="true"></i> Healthy</h3></a></li><br>
+                          <li><a class="filter" id="cafe" ><h3><i class="fa fa-coffee" aria-hidden="true"></i> Coffee</h3></a></li>
+                          <li><a class="filter" id="tea" ><h3><i class="fa fa-coffee" aria-hidden="true"></i> Tea</h3></a></li>
+                          <li><a class="filter" id="cocktail" ><h3><i class="fa fa-glass" aria-hidden="true"></i> Cocktail</h3></a></li>
+                          <li><a class="filter" id="wine" ><h3><i class="fa fa-glass" aria-hidden="true"></i> Wine</h3></a></li>
+                          <li><a class="filter" id="beer" ><h3><i class="fa fa-beer" aria-hidden="true"></i> beer</h3></a></li>
+                          <li><a class="filter" id="terrace" ><h3><i class="fa fa-sun-o" aria-hidden="true"></i> Relax on a terasse</h3></a></li>
+                          <li><a class="filter" id="dance" ><h3><i class="fa fa-moon-o" aria-hidden="true"></i> Go dancing</h3></a></li><br>
+                          <li><a class="filter" id="special" ><h3><i class="fa fa-gift" aria-hidden="true"></i> Try something special</h3></a></li>
+                          <li><a class="filter" id="clotheshop" ><h3><i class="fa fa-gift" aria-hidden="true"></i> Shop for clothes</h3></a></li>
+                          <li><a class="filter" id="foodshop" ><h3><i class="fa fa-gift" aria-hidden="true"></i> Shop for speciality food & drink</h3></a></li>
+                          <li><a class="filter" id="specialshop" ><h3><i class="fa fa-gift" aria-hidden="true"></i> Shop at a special store</h3></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    <!-- Fin implémentation -->
+    <!-- Modal fullscreen location -->
+    <div class="modal modal-fullscreen fade" id="modal-fullscreen-location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <ul id="feed-dropdown-menu" class="dropdown-content">
+              <li><h1>Around...<h1></li>
+              <li></li>
+              <li><a class="filter" data-dismiss="modal" href="#recommendation-feed"><h3>Around me</h3></a></li>
+              <li><a class="filter" data-dismiss="modal" href="#recommendation-feed"><h3>Anywhere in Montreal</h3></a></li>
+              <li><a class="filter" data-dismiss="modal" href="#recommendation-feed"><h3>Mile-end</h3></a></li>
+              <li><a class="filter" data-dismiss="modal" href="#recommendation-feed"><h3>Plateau</h3></a></li>
+              <li><a class="filter" data-dismiss="modal" href="#recommendation-feed"><h3>Downtown</h3></a></li>
+              <li><a class="filter" data-dismiss="modal" href="#recommendation-feed"><h3>Old Montreal</h3></a></li>
+              <li><a class="filter" data-dismiss="modal" href="#recommendation-feed"><h3>Le Village</h3></a></li>
+              <li><a class="filter" data-dismiss="modal" href="#recommendation-feed"><h3>Verdun</h3></a></li>
+              <li><a class="filter" data-dismiss="modal" href="#recommendation-feed"><h3>Little Burgundy</h3></a></li>
+            </ul>
+          </div>
+          </div>
+        </div>
+      </div>
+    <!-- Fin implémentation -->
+    <!-- Modal fullscreen price -->
+    <div class="modal modal-fullscreen fade" id="modal-fullscreen-price" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <ul id="feed-dropdown-menu" class="dropdown-content">
+              <li><h1>Price Range<h1></li>
+              <li></li>
+              <li><a class="filter" data-dismiss="modal" href="#recommendation-feed"><h3>Any Price</h3></a></li>
+              <li><a class="filter" data-dismiss="modal" href="#recommendation-feed"><h3>$ - Inexpensive</h3></a></li>
+              <li><a class="filter" data-dismiss="modal" href="#recommendation-feed"><h3>$$ - Moderate</h3></a></li>
+              <li><a class="filter" data-dismiss="modal" href="#recommendation-feed"><h3>$$$ - Pricey</h3></a></li>
+              <li><a class="filter" data-dismiss="modal" href="#recommendation-feed"><h3>$$$$ - Ultra High-End</h3></a></li>
+            </ul>
+          </div>
+          </div>
+        </div>
+      </div>
+    <!-- Fin implémentation -->
+
+
+         <!-- <div id="loading" ng-show="loading" class="loading"><img src="http://www.nasa.gov/multimedia/videogallery/ajax-loader.gif"></div> -->
+
+        <!-- feed cards section -->
+        <div class="row" id="recommendation-feed">
+          <!-- card -->
+            <div ng-repeat="item in items | limitTo:limit" class="col-lg-4">
+              <div class="poi-card">
+                <a href="https://memorable.io/detail/{{item.establishement_name_id}}#TOP" ng-click="shareMyData()">
+                  <div class="img-ctn" style="background-image: url('images/{{item.establishement_name_id}}.jpg')">
+                    <div class="img-ptrn-">
+                      <div class="img-h1">
+                        <!-- {{item.establishement_name}} -->
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                <div class="post-header">
+              					<h4><a href="https://memorable.io/detail/{{item.establishement_name_id}}#TOP">{{item.establishement_name}}</a></h4>
+              		<span class="title-divider"></span>
+              	</div>
+                <div class="info-ctn">
+                  <div class="info-p">
+                    Price range : {{item.establishement_pricerange}}
+                  </div>
+                  <div class="info-p">
+                    Distance : {{getDistance(item.distance, item)}}
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+      </div>
+
+
+  <button id="btnload" class="btn btn-block load-more" ng-click='loadMore()'>
+          Load More <span class="caret"></span>
+  </button>
+<hr>
+</article>
+
+<hr>

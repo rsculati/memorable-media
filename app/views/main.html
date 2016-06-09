@@ -1,0 +1,244 @@
+
+<head>
+<link rel="shortcut icon" href="img/gt_favicon.png">
+
+    <title>Memorable: Montreal</title>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+  <!-- Page Header
+  <header class="intro-header intro-header-detail" id="TOP" style="background-image: url({{urlImage}})">
+    <div class="intro-header-overlay">
+      <div class="nav-menu">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-6 col-xs-6">
+              <a class="navbar-brand" href="/index.html">
+                <img class="logo-nav-brand"src="images/memorable-logo-white-cube.png" alt="">
+                <span class="text-nav-brand">memorable</span>
+              </a>
+            </div>
+            <div class="col-lg-6 col-xs-6 text-right menu-item">
+                <!-- <a href="http://memorable.io/about">about us</a> -->
+          <!--  </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+          <div class="row title-center">
+              <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <div class="post-heading text-center">
+                      <h1>{{item.establishement_name}}</h1>
+                      <h3 class="subheading">Recommended by <a href="{{item.influencer1_publisher_facebook_url}}" target="_blank">{{item.influencer1_publisher_name}}</a> and <a href="{{item.influencer2_publisher_facebook_url}}" target="_blank">{{item.influencer2_publisher_name}}</a>.</h3>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </header> -->
+  <header class="intro-header intro-header-detail" id="TOP" style="background-image: url({{urlImage}})">
+    <div class="intro-header-overlay">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-memorable">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="icon-menu visible-filter">Menu</span>
+          <span class="icon-filter invisible-filter">Filters</span>
+          <!--<span class="icon-bar visible-filter"></span>
+          <span class="icon-bar visible-filter"></span>
+          <span class="icon-bar visible-filter"></span>-->
+          <!--<i class="fa fa-filter invisible-filter" aria-hidden="true"></i>-->
+       </button>
+        <a class="navbar-brand" href="#"><img class="logo-nav-brand"src="images/memorable-logo-white-cube.png" alt=""><span class="text-nav-brand navbar-item">memorable</span></a>
+      </div>
+        <ul class="nav navbar-nav navbar-item navbar-right">
+          <li class="active"><a  href="{{item.establishement_gmap_url}}" target="_blank">Get Directions</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+  </nav>
+  <div class="container">
+      <div class="row title-center">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+              <div class="post-heading text-center">
+                  <h1>{{item.establishement_name}}</h1>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+  </header>
+  <!-- Post Content -->
+  <article>
+
+    <div class="section">
+      <div class="container">
+
+      <!--  <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+              <h2 class="section-title text-center"><span class="section-heading-2 ">PICTURES</span></h2>
+            </div>
+          </div> -->
+
+          <div class="row insta-cards">
+            <div class="col-lg-4 col-md-6 col-xs-12 white">
+              <div class="hide-before-insta"></div>
+              <iframe id="frm1" class="poi-card-insta" ng-src="{{trustSrc(item.establishement_instagram1)}}" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            </div>
+            <div class="col-lg-4 col-md-6 col-xs-12">
+              <div class="hide-before-insta"></div>
+              <iframe id="frm2" class="poi-card-insta" ng-src="{{trustSrc(item.establishement_instagram2)}}"  frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            </div>
+            <div class="col-lg-4 col-md-6 col-xs-12">
+              <div class="hide-before-insta"></div>
+              <iframe id="frm3" class="poi-card-insta" ng-src="{{trustSrc(item.establishement_instagram3)}}"  frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            </div>
+          </div>
+
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          <p class="photo-credit">Follow them @<a class="colored" href="{{item.establishement_facebook_url}}">{{item.establishement_name}}</a></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section  dark-section">
+      <div class="container">
+        <!--Establishement Section-->
+
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 class="section-title text-center"><span class="section-heading-2 section-heading-2-reverse ">{{item.establishement_name}}</span></h2>
+            </div>
+          </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-5">
+              <h4 class="text-center">Price</h4>
+                <span class="title-divider"></span>
+                <p class="text-center"><span class="colored">{{item.establishement_pricerange}}</span></p>
+            </div>
+            <div class="col-lg-4 col-md-5">
+                <h4 class="text-center">Location</h4>
+                <span class="title-divider"></span>
+                <p class="text-center"><a href="{{item.establishement_gmap_url}}"><span class="colored">{{item.establishement_address}}</span></a></p>
+            </div>
+
+            <div class="col-lg-4 col-md-5">
+                <h4 class="text-center">Website</h4>
+                <span class="title-divider"></span>
+                <p class="text-center"><a href="{{item.establishement_website_url}}"><span class="colored">{{item.establishement_website_url}}</span></a></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-md-5">
+                <h4 class="text-center">Opening Hours</h4>
+                <span class="title-divider"></span>
+                <p class="text-center"><span class="colored">test</span></p>
+            </div>
+            <div class="col-lg-4 col-md-5">
+                <h4 class="text-center">Menu</h4>
+                <span class="title-divider"></span>
+                <p class="text-center"><span class="colored">Menu</span></p>
+            </div>
+        </div>
+      </div>
+    </div>
+<hr>
+
+<!-- <iframe src="http://instagram.com/p/_FBIUCi5Pk/embed" width="400" height="400" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+ -->
+ <div class="section">
+      <div class="container">
+          <!-- Infuencers section -->
+          <div class="row">
+              <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 class="section-title text-center"><span class="section-heading-2 ">INFLUENCER OPINIONS</span></h2>
+              </div>
+            </div>
+          <div class="row">
+              <div class="col-lg-2 col-lg-offset-2 col-md-3 col-md-offset-1">
+                <div class="influencer-block">
+                  <p><strong>{{item.influencer1_name}}</strong></p>
+                  <p class="text-left">Read the <a class="colored" href="{{item.influencer1_article_url}}" target="_blank">full article</a> published by <a class="colored" href="{{item.influencer1_article_url}}" target="_blank">{{item.influencer1_publisher_name}}.</a></p>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-7">
+                <div class="influencer-block">
+                  <blockquote class="colored">{{item.influencer1_quote_text}}</blockquote>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-lg-2 col-lg-offset-2 col-md-3 col-md-offset-1">
+                <div class="influencer-block">
+                  <p><strong>{{item.influencer2_name}}</strong></p>
+                  <p class="text-left">Read the <a class="colored" href="{{item.influencer2_article_url}}" target="_blank">full article</a> published by <a class="colored" href="{{item.influencer2_article_url}}" target="_blank">{{item.influencer2_publisher_name}}.</a></p>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-7">
+                <div class="influencer-block">
+                  <blockquote class="colored">{{item.influencer2_quote_text}}</blockquote>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+      <!--  <div class="row">
+            <div class="col-lg-2 col-lg-offset-4 col-md-5 col-md-offset-1">
+              <h2 class="cta-agenda-title text-center"><a href="/#/detail/mtl-express#TOP" target="_blank" class=""><span class="cta-agenda-btn cta-agenda-title"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> ADD TO MY AGENDA</span></a></h2>
+            </div>
+            <div class="col-lg-2 col-md-5">
+              <h2 class="cta-directions-title text-center"><a href="http://maps.google.com/?q=express+montreal" target="_blank"><span class="cta-directions-btn cta-drections-title">DIRECTIONS</span></a></h2>
+            </div>
+        </div> -->
+
+    <div class="section dark-section">
+      <div class="container">
+        <!--More Establishement Section-->
+
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+              <h2 class="section-title text-center"><span class="section-heading-2 section-heading-2-reverse">YOU MIGHT ALSO LIKE</span></h2>
+            </div>
+        </div>
+      <div class="row">
+        <div ng-repeat="item in session" class="col-lg-4">
+          <div class="poi-card">
+            <a href="https://memorable.io/detail/{{item.establishement_name_id}}#TOP" ng-click="shareMyData()">
+              <div class="img-ctn" style="background-image: url('images/{{item.establishement_name_id}}.jpg')">
+                <div class="img-ptrn-">
+                  <div class="img-h1">
+                    <!-- {{item.establishement_name}} -->
+                  </div>
+                </div>
+              </div>
+            </a>
+            <div class="post-header">
+                    <h4><a href="https://memorable.io/detail/{{item.establishement_name_id}}#TOP">{{item.establishement_name}}</a></h4>
+              <span class="title-divider"></span>
+            </div>
+            <div class="info-ctn">
+              <div class="info-p">
+                Price range : {{item.establishement_pricerange}}
+              </div>
+              <div class="info-p">
+                Distance : {{getDistance(item.distance, item)}}
+
+              </div>
+            </div>
+          </div>
+      </div>
+
+      </div>
+    </div>
+    </div>
+
+
+  </article>
