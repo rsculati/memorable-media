@@ -120,32 +120,46 @@
         <div class="row">
             <div class="col-lg-4 col-md-5">
               <h4 class="text-center">Price</h4>
-                <span class="title-divider"></span>
+                <span class="title-divider" style="color: #fff"></span>
                 <p class="text-center"><span class="colored">{{item.establishement_pricerange}}</span></p>
             </div>
             <div class="col-lg-4 col-md-5">
                 <h4 class="text-center">Location</h4>
-                <span class="title-divider"></span>
+                <span class="title-divider" style="color: #fff"></span>
                 <p class="text-center"><a href="{{item.establishement_gmap_url}}"><span class="colored">{{item.establishement_address}}</span></a></p>
             </div>
 
             <div class="col-lg-4 col-md-5">
                 <h4 class="text-center">Website</h4>
-                <span class="title-divider"></span>
+                <span class="title-divider" style="color: #fff"></span>
                 <p class="text-center"><a href="{{item.establishement_website_url}}"><span class="colored">{{item.establishement_website_url}}</span></a></p>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-4 col-md-5">
                 <h4 class="text-center">Opening Hours</h4>
-                <span class="title-divider"></span>
-                <p class="text-center"><span class="colored">test</span></p>
+                <span class="title-divider" style="color: #fff"></span>
+                <div class="row">
+                  <div class="col-lg-6 col-md-5">
+                    <p class="text-center"><span class="colored">Monday : {{getDayFormated(item.monday)}}</span></p>
+                    <p class="text-center"><span class="colored">Tuesday : {{getDayFormated(item.tuesday)}}</span></p>
+                    <p class="text-center"><span class="colored">Wednesday : {{getDayFormated(item.wednesday)}}</span></p>
+                    <p class="text-center"><span class="colored">Thursday : {{getDayFormated(item.thursday)}}</span></p>
+                  </div>
+                  <div class="col-lg-6 col-md-5">
+                    <p class="text-center"><span class="colored">Friday : {{getDayFormated(item.friday)}}</span></p>
+                    <p class="text-center"><span class="colored">Saturday : {{getDayFormated(item.saturday)}}</span></p>
+                    <p class="text-center"><span class="colored">Sunday : {{getDayFormated(item.sunday)}}</span></p>
+                  </div>
+                </div>
+
+
             </div>
-            <div class="col-lg-4 col-md-5">
+            <!-- <div class="col-lg-4 col-md-5">
                 <h4 class="text-center">Menu</h4>
                 <span class="title-divider"></span>
                 <p class="text-center"><span class="colored">Menu</span></p>
-            </div>
+            </div> -->
         </div>
       </div>
     </div>

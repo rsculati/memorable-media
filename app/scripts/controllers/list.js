@@ -15,8 +15,8 @@ angular.module('memorableAppApp')
     // ------------- NAVIGATION MANAGEMENT ----------------
     // nav filter management
     $(window).scroll(function() {
-       var hT = $('#recommendations-section').offset().top,
-           hH = $('#recommendations-section').outerHeight(),
+       var hT = $('#cta-hero').offset().top,
+           hH = $('#cta-hero').outerHeight(),
            wH = $(window).height(),
            wS = $(this).scrollTop();
        if (wS > (hT+hH)){
@@ -247,36 +247,56 @@ angular.module('memorableAppApp')
         // TODO: add COFFEE to tag => min majuscule..
 
 
-
         // ------------- USE TAG SCORE ----------------
         // loop into array of obj
         for(var x = 0; x < obj.length; x++){
           // check if any
           if(tag != "any"){
-            // split usetag into array
-            var array = obj[x].usetags.split(',');
-            // loop into tag array to calculate score of usetag
-            for(var i = 0 ; i < tagArray.length; i++) {
-              for(var y = 0 ; y < array.length; y++) {
-                if(tagArray[i] == array[y]){
-                  cpt++;
+            if(tag === "eat," || tag === "drink," || tag === "shop,"){
+
+              // // check for multiple category
+              var arrayType = obj[x].establishement_type1.split(',');
+              for(var a = 0 ; a < arrayType.length; a++){
+                  if(arrayType[a] == category){
+                    testCategory = true;
+                  }
+              }
+
+              console.log(category + " : " + testCategory + " : " + obj[x].establishement_name);
+              if(testCategory){
+                obj[x].scoreTags = 25 * 3;
+              } else {
+                obj[x].scoreTags =  25 / 5;
+              }
+              testCategory = false;
+            }
+            else {
+              // split usetag into array
+              var array = obj[x].usetags.split(',');
+              // loop into tag array to calculate score of usetag
+              for(var i = 0 ; i < tagArray.length; i++) {
+                for(var y = 0 ; y < array.length; y++) {
+                  if(tagArray[i] == array[y]){
+                    cpt++;
+                  }
                 }
               }
+              // check for multiple category
+              var arrayType = obj[x].establishement_type1.split(',');
+              // console.log(arrayType);
+              for(var a = 0 ; a < arrayType.length; a++){
+                  if(arrayType[a] == category){
+                    testCategory = true;
+                  }
+              }
+              if(testCategory){
+                obj[x].scoreTags = (cpt / nbtag) * 25;
+              } else {
+                obj[x].scoreTags = ((cpt / nbtag) * 25)/5;
+              }
+              cpt = 0;
+              testCategory = false;
             }
-            // check for multiple category
-            var arrayType = obj[x].establishement_type1.split(',');
-            // console.log(arrayType);
-            for(var a = 0 ; a < arrayType.length; a++){
-                if(arrayType[a] == category){
-                  testCategory = true;
-                }
-            }
-            if(testCategory){
-              obj[x].scoreTags = (cpt / nbtag) * 25;
-            } else {
-              obj[x].scoreTags = ((cpt / nbtag) * 25)/5;
-            }
-            cpt = 0;
           } // if "any" choice
           else {
             // check for multiple category
@@ -286,11 +306,15 @@ angular.module('memorableAppApp')
                   testCategory = true;
                 }
             }
+
+            console.log(category + " : " + testCategory + " : " + obj[x].establishement_name);
             if(testCategory){
               obj[x].scoreTags = 25 * 3;
             } else {
               obj[x].scoreTags =  25 / 5;
             }
+            testCategory = false;
+            // console.log(obj[x].scoreTags + " : " + obj[x].establishement_name);
           }
         }
 

@@ -212,7 +212,7 @@ function getObjectsWithHourScore(obj,time,day) {
           if(time > schedule[y][0] && time < schedule[y][1]){
             open = true;
             if((schedule[y][1] - time) < 1){
-              obj[i].timeAlert = "Close soon";
+              obj[i].timeAlert = "Closing soon";
             }
 
           }
@@ -220,6 +220,11 @@ function getObjectsWithHourScore(obj,time,day) {
       }
       if(open === true){
         obj[i].scoreTime = 25;
+        if(obj[i].timeAlert === "Closing soon"){
+          obj[i].timeAlert = "Closing soon";
+        } else {
+          obj[i].timeAlert = "Open now";
+        }
       } else {
           obj[i].scoreTime = 0;
       }
@@ -389,6 +394,16 @@ function getMainCategory(tag) {
       case "specialshop":
         c_shop++;
         break;
+      case "eat":
+        c_eat++;
+        break;
+      case "drink":
+        c_drink++;
+        c_coffee++;
+        break;
+      case "shop":
+        c_shop++;
+        break;
     }
   }
   var scores = [[],[],[],[]];
@@ -405,6 +420,16 @@ function getMainCategory(tag) {
   scores.sort(function(a, b){return b[0]-a[0]});
 
   return scores[0][1];
+}
+
+// get main Tag if any eat or drink
+function getMaintag(tag){
+  if(tag === "eat,"){
+    tag = "any";
+    return tag;
+  }else {
+    return tag;
+  }
 }
 
 /* jshint ignore:end */
