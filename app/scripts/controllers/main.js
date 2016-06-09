@@ -14,6 +14,7 @@ angular.module('memorableAppApp')
     var haveSession = false;
     var session = srvShareData.getData();
     if(typeof session[0] !== 'undefined'){
+      $scope.location = session[0][2];
       var sessionTab = session[0][8];
       var related = [];
       var cpt = 0 ;
@@ -30,6 +31,38 @@ angular.module('memorableAppApp')
       haveSession = false;
       console.log("no session variable");
     }
+
+    $scope.getDayFormated = function (day) {
+      if(day == "-"){
+        return "closed";
+      }
+      return day;
+    }
+
+    $scope.getPriceWithFormated = function (price) {
+      return getPriceFormated(price);
+    }
+
+    // ------------- DISPLAY DISTANCE ----------------
+    $scope.getDistance = function (distance, item){
+      if(isNaN(item.distance)){
+        var centerlat = 45.501724;
+        var centerlong = -73.567285;
+        var distanceCenter = getDistanceBetween(centerlat, centerlong, item.establishement_lat, item.establishement_long, 'K');
+        if(distanceCenter < 1){
+          distanceCenter = distanceCenter * 1000;
+          return distanceCenter + " m from city center";
+        } else {
+          return distanceCenter + " km from city center";
+        }
+      }
+      if(distance < 1){
+        distance = distance * 1000;
+        return distance + " m  - from " + $scope.location;
+      } else {
+        return distance + " km  - from "  + $scope.location;
+      }
+    };
 
 
     $http.get('Row1data.json').success (function(data){

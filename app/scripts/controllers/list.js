@@ -15,8 +15,8 @@ angular.module('memorableAppApp')
     // ------------- NAVIGATION MANAGEMENT ----------------
     // nav filter management
     $(window).scroll(function() {
-       var hT = $('#recommendations-section').offset().top,
-           hH = $('#recommendations-section').outerHeight(),
+       var hT = $('#cta-hero').offset().top,
+           hH = $('#cta-hero').outerHeight(),
            wH = $(window).height(),
            wS = $(this).scrollTop();
        if (wS > (hT+hH)){
@@ -63,7 +63,7 @@ angular.module('memorableAppApp')
       if(typeof session[0] !== 'undefined'){
         updateList(session[0][0], $.searchquery,session[0][2],session[0][3],session[0][4]);
       } else {
-        updateList("any", $.searchquery,"around-me",$scope.hour,$scope.day);
+        updateList("any", $.searchquery,"you",$scope.hour,$scope.day);
       }
 
     });
@@ -81,7 +81,7 @@ angular.module('memorableAppApp')
       if(typeof session[0] !== 'undefined'){
         updateList($(this).attr("id"),session[0][1],session[0][2],session[0][3],session[0][4]);
       } else {
-        updateList($(this).attr("id"),"any","around-me",hour,day);
+        updateList($(this).attr("id"),"any","you",hour,day);
       }
     });
 
@@ -101,7 +101,7 @@ angular.module('memorableAppApp')
       if(typeof session[0] !== 'undefined'){
         updateList(session[0][0],session[0][1],session[0][2],hour,session[0][4]);
       } else {
-        updateList(session[0][0],"any","around-me",hour,day);
+        updateList(session[0][0],"any","you",hour,day);
       }
     });
 
@@ -130,19 +130,20 @@ angular.module('memorableAppApp')
     $("#filter-category-validation-btn").click(function() {
     $.searchquery = "";
     $(".selected").each(function() {
-      console.log($(this));
+      // console.log($(this));
     //  console.log(index + " : " + value);
       //console.log(value[index].attr("id"));
       $.searchquery+=$(this).attr("id")+",";
     });
 
     $.searchquery = $.searchquery.substring(0,$.searchquery.length-1);
-    console.log($.searchquery);
+    var searchFormated = getSearchFormated($.searchquery);
+    $scope.search = searchFormated;
     /*updateList($(this).text());*/
     var d = new Date(); // for now
     var hour = d.getHours();
     var day = getday(d);
-      updateList("$$", $.searchquery,"around-me",hour,day);
+      updateList("$$", $.searchquery,"you",hour,day);
     $('html, body').animate({
         scrollTop: $( $.attr(this, 'href') ).delay(1000).offset().top
     }, 1000);
@@ -167,30 +168,38 @@ angular.module('memorableAppApp')
   $scope.day = getday(d);
   //Session if already exist
   var session = srvShareData.getData();
+  $scope.search = getCategorieFromTime(d.getHours());
 
   if(typeof session[0] !== 'undefined'){
     updateList(session[0][0],session[0][1],session[0][2],session[0][3],session[0][4]);
+
+    var searchFormated = getSearchFormated(session[0][1]);
+    $scope.search = searchFormated;
 
     var tagArray = session[0][1].split(',');
     for(var i = 0 ; i < tagArray.length; i++){
       $("#"+tagArray[i]).addClass("active");
     }
     // $("#"+session[0][1]).addClass("active");
-    console.log(session[0][2]);
+    // console.log(session[0][2]);
     $("#"+session[0][2]).addClass("active");
     // $("#"+session[0][1]).addClass("active");
     // price, tag, location, time, day
 
   } else {
-    updateList("any","any","around-me",$scope.hour,$scope.day);
+    updateList("any","any","you",$scope.hour,$scope.day);
     // $("#any").addClass("active");
-    $("#around-me").addClass("active");
+    $("#you").addClass("active");
   }
 
 
     $scope.getHomeScreenImage = function () {
       var categorieImage = getCategorieFromTime($scope.hour) +".jpg";
       return categorieImage;
+    }
+
+    $scope.getPriceWithFormated = function (price) {
+      return getPriceFormated(price);
     }
 
     // ------------- DISPLAY DISTANCE ----------------
@@ -208,9 +217,11 @@ angular.module('memorableAppApp')
       }
       if(distance < 1){
         distance = distance * 1000;
-        return distance + " m";
+
+
+        return distance + " m  - from " + $scope.location;
       } else {
-        return distance + " km";
+        return distance + " km  - from "  + $scope.location;
       }
     };
 
@@ -218,8 +229,10 @@ angular.module('memorableAppApp')
     // ------------- UPDATE LIST ----------------
     // update list of item depending on criteria
     function updateList(price, tag, location, time, day) {
+      $scope.search = getSearchFormated(tag);
       $scope.loading = true;
       $scope.loaded = false;
+      $scope.location = location;
       var category;
       if(tag != "any"){
         category = getMainCategory(tag);
@@ -239,36 +252,56 @@ angular.module('memorableAppApp')
         // TODO: add COFFEE to tag => min majuscule..
 
 
-
         // ------------- USE TAG SCORE ----------------
         // loop into array of obj
         for(var x = 0; x < obj.length; x++){
           // check if any
           if(tag != "any"){
-            // split usetag into array
-            var array = obj[x].usetags.split(',');
-            // loop into tag array to calculate score of usetag
-            for(var i = 0 ; i < tagArray.length; i++) {
-              for(var y = 0 ; y < array.length; y++) {
-                if(tagArray[i] == array[y]){
-                  cpt++;
+            if(tag === "eat," || tag === "drink," || tag === "shop,"){
+
+              // // check for multiple category
+              var arrayType = obj[x].establishement_type1.split(',');
+              for(var a = 0 ; a < arrayType.length; a++){
+                  if(arrayType[a] == category){
+                    testCategory = true;
+                  }
+              }
+
+              // console.log(category + " : " + testCategory + " : " + obj[x].establishement_name);
+              if(testCategory){
+                obj[x].scoreTags = 25 * 3;
+              } else {
+                obj[x].scoreTags =  25 / 5;
+              }
+              testCategory = false;
+            }
+            else {
+              // split usetag into array
+              var array = obj[x].usetags.split(',');
+              // loop into tag array to calculate score of usetag
+              for(var i = 0 ; i < tagArray.length; i++) {
+                for(var y = 0 ; y < array.length; y++) {
+                  if(tagArray[i] == array[y]){
+                    cpt++;
+                  }
                 }
               }
+              // check for multiple category
+              var arrayType = obj[x].establishement_type1.split(',');
+              // console.log(arrayType);
+              for(var a = 0 ; a < arrayType.length; a++){
+                  if(arrayType[a] == category){
+                    testCategory = true;
+                  }
+              }
+              if(testCategory){
+                obj[x].scoreTags = (cpt / nbtag) * 25;
+              } else {
+                obj[x].scoreTags = ((cpt / nbtag) * 25)/5;
+              }
+              cpt = 0;
+              testCategory = false;
             }
-            // check for multiple category
-            var arrayType = obj[x].establishement_type1.split(',');
-            // console.log(arrayType);
-            for(var a = 0 ; a < arrayType.length; a++){
-                if(arrayType[a] == category){
-                  testCategory = true;
-                }
-            }
-            if(testCategory){
-              obj[x].scoreTags = (cpt / nbtag) * 25;
-            } else {
-              obj[x].scoreTags = ((cpt / nbtag) * 25)/5;
-            }
-            cpt = 0;
           } // if "any" choice
           else {
             // check for multiple category
@@ -278,11 +311,15 @@ angular.module('memorableAppApp')
                   testCategory = true;
                 }
             }
+
+            // console.log(category + " : " + testCategory + " : " + obj[x].establishement_name);
             if(testCategory){
               obj[x].scoreTags = 25 * 3;
             } else {
               obj[x].scoreTags =  25 / 5;
             }
+            testCategory = false;
+            // console.log(obj[x].scoreTags + " : " + obj[x].establishement_name);
           }
         }
 
@@ -319,7 +356,7 @@ angular.module('memorableAppApp')
         $scope.items = obj;
 
 
-        if(location == "around-me"){
+        if(location == "you"){
           var lats = getValues(obj ,'establishement_lat');
           var longs = getValues(obj ,'establishement_long');
           $scope.lats = lats;
@@ -335,7 +372,7 @@ angular.module('memorableAppApp')
           console.log(session);
           if(typeof session[0] !== 'undefined'){
             var difference = timeResearch - session[0][7];
-            console.log(difference + " : difference");
+            // console.log(difference + " : difference");
             if(difference < 0.06){
               gps = true;
             } else {
@@ -540,10 +577,10 @@ angular.module('memorableAppApp')
               var session = srvShareData.getData();
               if(typeof session[0] !== 'undefined'){
                 var difference = timeResearch - session[0][7];
-                console.log(difference);
+                // console.log(difference);
                 if(difference < 0.06){
                   gps = true;
-                  console.log(difference);
+                  // console.log(difference);
                 }
               }
 
