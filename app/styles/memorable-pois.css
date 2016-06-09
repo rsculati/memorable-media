@@ -129,6 +129,12 @@ hr{
   font-size:0.6em;
 }
 
+@media (max-width: 767px) {
+  .navbar-nav .open .dropdown-menu {
+    background-color: #fff;
+  }
+}
+
 /*.nav-menu .menu-item{
   top:15px;
 }*/

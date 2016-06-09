@@ -138,14 +138,15 @@ angular.module('memorableAppApp')
     $("#filter-category-validation-btn").click(function() {
     $.searchquery = "";
     $(".selected").each(function() {
-      console.log($(this));
+      // console.log($(this));
     //  console.log(index + " : " + value);
       //console.log(value[index].attr("id"));
       $.searchquery+=$(this).attr("id")+",";
     });
 
     $.searchquery = $.searchquery.substring(0,$.searchquery.length-1);
-    console.log($.searchquery);
+    var searchFormated = getSearchFormated($.searchquery);
+    $scope.search = searchFormated;
     /*updateList($(this).text());*/
     var d = new Date(); // for now
     var hour = d.getHours();
@@ -175,16 +176,20 @@ angular.module('memorableAppApp')
   $scope.day = getday(d);
   //Session if already exist
   var session = srvShareData.getData();
+  $scope.search = getCategorieFromTime(d.getHours());
 
   if(typeof session[0] !== 'undefined'){
     updateList(session[0][0],session[0][1],session[0][2],session[0][3],session[0][4]);
+
+    var searchFormated = getSearchFormated(session[0][1]);
+    $scope.search = searchFormated;
 
     var tagArray = session[0][1].split(',');
     for(var i = 0 ; i < tagArray.length; i++){
       $("#"+tagArray[i]).addClass("active");
     }
     // $("#"+session[0][1]).addClass("active");
-    console.log(session[0][2]);
+    // console.log(session[0][2]);
     $("#"+session[0][2]).addClass("active");
     // $("#"+session[0][1]).addClass("active");
     // price, tag, location, time, day
@@ -232,6 +237,7 @@ angular.module('memorableAppApp')
     // ------------- UPDATE LIST ----------------
     // update list of item depending on criteria
     function updateList(price, tag, location, time, day) {
+      $scope.search = getSearchFormated(tag);
       $scope.loading = true;
       $scope.loaded = false;
       $scope.location = location;
@@ -314,7 +320,7 @@ angular.module('memorableAppApp')
                 }
             }
 
-            console.log(category + " : " + testCategory + " : " + obj[x].establishement_name);
+            // console.log(category + " : " + testCategory + " : " + obj[x].establishement_name);
             if(testCategory){
               obj[x].scoreTags = 25 * 3;
             } else {
@@ -374,7 +380,7 @@ angular.module('memorableAppApp')
           console.log(session);
           if(typeof session[0] !== 'undefined'){
             var difference = timeResearch - session[0][7];
-            console.log(difference + " : difference");
+            // console.log(difference + " : difference");
             if(difference < 0.06){
               gps = true;
             } else {
@@ -579,10 +585,10 @@ angular.module('memorableAppApp')
               var session = srvShareData.getData();
               if(typeof session[0] !== 'undefined'){
                 var difference = timeResearch - session[0][7];
-                console.log(difference);
+                // console.log(difference);
                 if(difference < 0.06){
                   gps = true;
-                  console.log(difference);
+                  // console.log(difference);
                 }
               }
 
