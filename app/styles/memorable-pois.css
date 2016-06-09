@@ -332,7 +332,7 @@ hr{
   letter-spacing:2px;
   font-weight: 300;
   /*font-size:3em;*/
-  text-align: right;
+  text-align: center;
   padding-bottom:5vh;
 }
 
@@ -361,6 +361,7 @@ hr{
   position:relative;
   font-weight: 900;
   background-color:white;
+  text-transform: uppercase;
   color:#0D0D0D;
 /*  border: 5px solid #f2ed63;
   color:#f2ed63;*/
@@ -368,13 +369,31 @@ hr{
 /*  font-size:20px;*/
   letter-spacing:3px;
   padding:10px;
+  font-size:0.6em;
+}
+
+.btn-cta-todo{
+  position:relative;
+  margin-top:30px;
+  font-weight: 900;
+  background-color:#5CB85C;
+  text-transform: uppercase;
+  color:white;
+  text-align:center;
+  letter-spacing:3px;
+  padding:10px;
+  font-size:0.6em;
+}
+
+.btn-cta-todo:hover{
+  background-color:#e2e2e2;
+  transition: 0.6s;
 }
 
 .btn-cta-header:hover{
-  background-color:#f2ed63;
+  background-color:#e2e2e2;
   color:black;
   transition: 0.6s;
-  color:black;
 }
 
 .btn-cta-menu-fp{
@@ -578,22 +597,22 @@ hr{
       filter: alpha(opacity=99);
     }
 
-    .modal-fullscreen .modal-dialog {
+  /*  .modal-fullscreen .modal-dialog {
       margin: 0;
       margin-right: auto;
       margin-left: auto;
       width: 100%;
-      height:1080px;
-      position:relative;
-    }
+      /*min-height:1080px;*/
+      /*position:relative;
+    }*/
 
     .dropdown-content{
-      top:5vh;
-      height:60vh;
       width:100%;
       position:relative;
       list-style: none;
       padding:0;
+      margin-bottom: 20px;
+      top:0!important;
     }
 
     .dropdown-content li{
@@ -609,7 +628,7 @@ hr{
     }
 
     .dropdown-content li i{
-        padding-right:30px;
+        padding-right:15px;
     }
 
     .dropdown-content li i .icon-exception{
@@ -623,15 +642,17 @@ hr{
       }
     }
     @media (min-width: 768px) {
-      .modal-fullscreen .modal-dialog {
+
+      #modal-fullscreen-category .navbar-memorable{
+        display:none;
+      }
+     .modal-fullscreen .modal-dialog {
         width: 750px;
-        /*font-size:30px;*/
       }
     }
     @media (min-width: 992px) {
       .modal-fullscreen .modal-dialog {
         width: 970px;
-        /*font-size:34px;*/
       }
       .dropdown-content li{
 
@@ -648,10 +669,20 @@ hr{
 
     .filter{
       position:relative;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 900;
+      font-size:0.6em;
+      cursor:pointer;
+    }
+
+    .title-filter{
+      text-align: center;
+      font-weight: 700;
     }
 
     .dropdown-content li .selected h3{
-      color:green;
+      color:#5CB85C;
       font-weight: 700;
     }
 
@@ -820,6 +851,15 @@ hr{
         max-width: 48px;
         margin: 0 auto 15px;
         color: #161616;
+    }
+
+    .title-divider-2 {
+        border-top: 2px solid;
+        display: block;
+        max-width: 48px;
+        margin: 0 auto;
+        color: #161616;
+        margin-bottom:15px;
     }
 
     .title-center {

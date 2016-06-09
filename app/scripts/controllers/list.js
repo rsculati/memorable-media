@@ -21,20 +21,12 @@ angular.module('memorableAppApp')
            wS = $(this).scrollTop();
        if (wS > (hT+hH)){
            $(".filter-navbar").addClass("visible-filter");
-          /* $(".fa-filter").addClass("visible-filter");
-           $(".fa-filter").removeClass("invisible-filter");
-           $(".icon-bar").addClass("invisible-filter");
-           $(".icon-bar").removeClass("visible-filter");*/
            $(".icon-filter").addClass("visible-filter");
            $(".icon-filter").removeClass("invisible-filter");
            $(".icon-menu").addClass("invisible-filter");
            $(".icon-menu").removeClass("visible-filter");
        } else{
          $(".filter-navbar").removeClass("visible-filter");
-         /*$(".icon-bar").addClass("visible-filter");
-         $(".icon-bar").removeClass("invisible-filter");
-         $(".fa-filter").removeClass("visible-filter");
-         $(".fa-filter").addClass("invisible-filter");*/
          $(".icon-menu").addClass("visible-filter");
          $(".icon-menu").removeClass("invisible-filter");
          $(".icon-filter").removeClass("visible-filter");
@@ -53,14 +45,14 @@ angular.module('memorableAppApp')
 
     // ------------- FILTER USE TAGS ----------------
     $('.filter-todo').click(function(){
-      if($(this).hasClass("active")){
-        ($(this).removeClass("active"));
+      if($(this).hasClass("active-filter")){
+        ($(this).removeClass("active-filter"));
       }else{
-        $(this).addClass("active");
+        $(this).addClass("active-filter");
       }
 
       $.searchquery = "";
-      $(".filter-todo.active").each(function() {
+      $(".filter-todo.active-filter").each(function() {
         $.searchquery+=$(this).attr("id")+",";
       });
       if($.searchquery == ""){
