@@ -192,34 +192,44 @@ function getObjectsFromTags(obj, val) {
 function getObjectsWithHourScore(obj,time,day) {
   // TODO: check day
   // TODO: check
-
+  time = parseInt(time);
 
   for (var i = 0; i < obj.length; i++) {
     if(time == "any"){
         obj[i].scoreTime = 25;
     } else {
       var open = false;
-      var hour = obj[i].monday;
-      var schedule = hour.split(',');
-      for(var y = 0; y < schedule.length; y++){
-        schedule[y] = schedule[y].split('-');
+      var hour = obj[i][day];
 
-        if(parseInt(schedule[y][1]) < parseInt(schedule[y][0])){
-          schedule[y][1] = parseInt(schedule[y][1]) + 24;
-        }
+      // console.log(hour);
+      if(hour){
+        var schedule = hour.split(',');
 
-        if(schedule[y][0] != ""){
-          if(time > schedule[y][0] && time < schedule[y][1]){
-            open = true;
-            if((schedule[y][1] - time) < 1){
-              obj[i].timeAlert = "Closing soon";
+        // console.log(schedule + " : " + obj[i].establishement_name);
+        for(var y = 0; y < schedule.length; y++){
+          schedule[y] = schedule[y].split('-');
+
+          if(parseInt(schedule[y][1]) < parseInt(schedule[y][0])){
+            schedule[y][1] = parseInt(schedule[y][1]) + 24;
+          }
+
+          if(schedule[y][0] != ""){
+            if(time > schedule[y][0] && time < schedule[y][1]){
+              open = true;
+              // obj[i].timeAlert = "Open";
+              if((schedule[y][1] - time) < 1){
+                obj[i].timeAlert = "Closing soon";
+              }
             }
-
+            console.log(obj[i].establishement_name + " : " + schedule[y][0] + "-"+schedule[y][1] + " : "  + time + " : " + open);
           }
         }
       }
+
+      // console.log(time + " : " +  schedule + " : " + obj[i].establishement_name);
       if(open === true){
         obj[i].scoreTime = 25;
+        // obj[i].timeAlert = "Open";
         if(obj[i].timeAlert === "Closing soon"){
           obj[i].timeAlert = "Closing soon";
         } else {
@@ -449,6 +459,42 @@ function getGeoData(location){
   return geodata;
 }
 
+// return formated location named
+function getFormatedLocation(location){
+  // console.log(location);
+  var formated = "";
+  switch (location) {
+    case "mile-end":
+      formated = "Mile-End";
+      break;
+    case "plateau":
+      formated = "Plateau";
+      break;
+    case "downtown":
+      formated = "Downtown";
+      break;
+    case "old-port":
+      formated = "Old Port";
+      break;
+    case "village":
+      formated = "Quartier des Spectacles";
+      break;
+    case "westmount":
+      formated = "Westmount & NDG";
+      break;
+    case "little-italy":
+      formated = "Little Italy";
+      break;
+    case "sud-ouest":
+      formated = "Sud-Ouest";
+      break;
+    case "you":
+      formated = "you";
+    break;
+  }
+  return formated;
+}
+
 // return a main category depending on use tag
 function getMainCategory(tag) {
 
@@ -546,5 +592,38 @@ function getMaintag(tag){
     return tag;
   }
 }
+
+// return time name for
+function getTimeName(time){
+  var formated = "";
+  switch (time) {
+    case "now":
+      formated = "now";
+      break;
+    case "9.5":
+      formated = "in the morning";
+      break;
+    case "12.5":
+      formated = "at Lunch";
+      break;
+    case "15":
+      formated = "in the Afternoon";
+      break;
+    case "17.5":
+      formated = "for a 5 à 7";
+      break;
+    case "19":
+      formated = "for Dinner";
+      break;
+    case "23":
+      formated = "Late Night";
+      break;
+    default:
+      formated = "now";
+  }
+
+  return formated;
+
+  }
 
 /* jshint ignore:end */

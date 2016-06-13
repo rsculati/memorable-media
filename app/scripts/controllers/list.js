@@ -10,8 +10,6 @@
 angular.module('memorableAppApp')
   .controller('ListCtrl', function ($scope, $http, srvShareData) {
 
-
-
     // ------------- NAVIGATION MANAGEMENT ----------------
     // nav filter management
     $(window).scroll(function() {
@@ -45,14 +43,19 @@ angular.module('memorableAppApp')
 
     // ------------- FILTER USE TAGS ----------------
     $('.filter-todo').click(function(){
-      if($(this).hasClass("active-filter")){
-        ($(this).removeClass("active-filter"));
+      if($(this).hasClass("active")){
+        ($(this).removeClass("active"));
       }else{
-        $(this).addClass("active-filter");
+        $(this).addClass("active");
       }
 
+      // $("#"+tagArray[i]).addClass("active");
+
+      // $('.filter-price').removeClass("active");
+      // $(this).addClass("active");
+
       $.searchquery = "";
-      $(".filter-todo.active-filter").each(function() {
+      $(".filter-todo.active").each(function() {
         $.searchquery+=$(this).attr("id")+",";
       });
       if($.searchquery == ""){
@@ -95,6 +98,9 @@ angular.module('memorableAppApp')
       var day = getday(d);
       if(hour == "now"){
         hour = d.getHours();
+        $scope.time = "now";
+      } else {
+        $scope.time = hour;
       }
 
       var session = srvShareData.getData();
@@ -182,13 +188,14 @@ angular.module('memorableAppApp')
     }
     // $("#"+session[0][1]).addClass("active");
     // console.log(session[0][2]);
-    $("#"+session[0][2]).addClass("active");
+    // $("#"+session[0][2]).addClass("active");
     // $("#"+session[0][1]).addClass("active");
     // price, tag, location, time, day
 
   } else {
     updateList("any","any","you",$scope.hour,$scope.day);
-    // $("#any").addClass("active");
+    // $("#any").addClass("active");$
+    $scope.search = getCategorieFromTime($scope.hour);
     $("#you").addClass("active");
   }
 
@@ -215,14 +222,17 @@ angular.module('memorableAppApp')
           return distanceCenter + " km from city center";
         }
       }
+      var formatedLocation = getFormatedLocation($scope.location);
       if(distance < 1){
         distance = distance * 1000;
-
-
-        return distance + " m  - from " + $scope.location;
+        return distance + " m  - from " + formatedLocation;
       } else {
-        return distance + " km  - from "  + $scope.location;
+        return distance + " km  - from "  + formatedLocation;
       }
+    };
+
+    $scope.getTimeName = function (){
+      return getTimeName($scope.time);
     };
 
 
