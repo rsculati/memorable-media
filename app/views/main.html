@@ -43,25 +43,27 @@
   </header> -->
   <header class="intro-header intro-header-detail" id="TOP" style="background-image: url({{urlImage}})">
     <div class="intro-header-overlay">
-    <nav class="navbar navbar-default navbar-fixed-top navbar-memorable">
-    <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="icon-menu visible-filter">Menu</span>
-          <span class="icon-filter invisible-filter">Filters</span>
-          <!--<span class="icon-bar visible-filter"></span>
-          <span class="icon-bar visible-filter"></span>
-          <span class="icon-bar visible-filter"></span>-->
-          <!--<i class="fa fa-filter invisible-filter" aria-hidden="true"></i>-->
-       </button>
-        <a class="navbar-brand" href="#"><img class="logo-nav-brand"src="images/memorable-logo-white-cube.png" alt=""><span class="text-nav-brand navbar-item">memorable</span></a>
-      </div>
-        <ul class="nav navbar-nav navbar-item navbar-right">
-          <li class="active"><a  href="{{item.establishement_gmap_url}}" target="_blank">Get Directions</a></li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-  </nav>
+      <nav class="navbar navbar-default navbar-fixed-top navbar-memorable">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button href="{{item.establishement_gmap_url}}" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="icon-menu visible-filter">Get Directions</span>
+            <!--<span class="icon-bar visible-filter"></span>
+            <span class="icon-bar visible-filter"></span>
+            <span class="icon-bar visible-filter"></span>-->
+            <!--<i class="fa fa-filter invisible-filter" aria-hidden="true"></i>-->
+          </button>
+          <a class="navbar-brand" href="/"><img class="logo-nav-brand"src="images/memorable-logo-white-cube.png" alt=""><span class="text-nav-brand navbar-item">memorable</span></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-item navbar-right">
+            <li class="active"><a href="{{item.establishement_gmap_url}}" target="_blank">Get Directions</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
   <div class="container">
       <div class="row title-center">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -101,7 +103,7 @@
           </div>
 
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-          <p class="photo-credit">Follow them @<a class="colored" href="{{item.establishement_facebook_url}}">{{item.establishement_name}}</a></p>
+          <p class="photo-credit">Follow them @<a class="colored" style="color:#ab6948" href="{{item.establishement_facebook_url}}">{{item.establishement_name}}</a></p>
         </div>
 
       </div>
@@ -119,20 +121,20 @@
 
         <div class="row">
             <div class="col-lg-4 col-md-5">
-              <h4 class="text-center">Price</h4>
+              <h4 class="text-center" style="">Price</h4>
                 <span class="title-divider" style="color: #fff"></span>
-                <p class="text-center"><span class="colored">{{item.establishement_pricerange}}</span></p>
+                <p class="text-center"><span class="colored" style="color:#ab6948">{{item.establishement_pricerange}}</span></p>
             </div>
             <div class="col-lg-4 col-md-5">
                 <h4 class="text-center">Location</h4>
                 <span class="title-divider" style="color: #fff"></span>
-                <p class="text-center"><a href="{{item.establishement_gmap_url}}"><span class="colored">{{item.establishement_address}}</span></a></p>
+                <p class="text-center"><a href="{{item.establishement_gmap_url}}"><span class="colored" style="color:#ab6948">{{item.establishement_address}}</span></a></p>
             </div>
 
             <div class="col-lg-4 col-md-5">
                 <h4 class="text-center">Website</h4>
                 <span class="title-divider" style="color: #fff"></span>
-                <p class="text-center"><a href="{{item.establishement_website_url}}"><span class="colored">{{item.establishement_website_url}}</span></a></p>
+                <p class="text-center"><a href="{{item.establishement_website_url}}"><span class="colored" style="color:#ab6948">{{item.establishement_website_url}}</span></a></p>
             </div>
           </div>
           <div class="row">
@@ -141,15 +143,15 @@
                 <span class="title-divider" style="color: #fff"></span>
                 <div class="row">
                   <div class="col-lg-6 col-md-5">
-                    <p class="text-center"><span class="colored">Monday : {{getDayFormated(item.monday)}}</span></p>
-                    <p class="text-center"><span class="colored">Tuesday : {{getDayFormated(item.tuesday)}}</span></p>
-                    <p class="text-center"><span class="colored">Wednesday : {{getDayFormated(item.wednesday)}}</span></p>
-                    <p class="text-center"><span class="colored">Thursday : {{getDayFormated(item.thursday)}}</span></p>
+                    <p class="text-center"><span class="colored" style="color:#ab6948">Monday : {{getDayFormated(item.monday)}}</span></p>
+                    <p class="text-center"><span class="colored" style="color:#ab6948">Tuesday : {{getDayFormated(item.tuesday)}}</span></p>
+                    <p class="text-center"><span class="colored" style="color:#ab6948" >Wednesday : {{getDayFormated(item.wednesday)}}</span></p>
+                    <p class="text-center"><span class="colored" style="color:#ab6948">Thursday : {{getDayFormated(item.thursday)}}</span></p>
                   </div>
                   <div class="col-lg-6 col-md-5">
-                    <p class="text-center"><span class="colored">Friday : {{getDayFormated(item.friday)}}</span></p>
-                    <p class="text-center"><span class="colored">Saturday : {{getDayFormated(item.saturday)}}</span></p>
-                    <p class="text-center"><span class="colored">Sunday : {{getDayFormated(item.sunday)}}</span></p>
+                    <p class="text-center"><span class="colored" style="color:#ab6948">Friday : {{getDayFormated(item.friday)}}</span></p>
+                    <p class="text-center"><span class="colored" style="color:#ab6948">Saturday : {{getDayFormated(item.saturday)}}</span></p>
+                    <p class="text-center"><span class="colored" style="color:#ab6948">Sunday : {{getDayFormated(item.sunday)}}</span></p>
                   </div>
                 </div>
 
@@ -179,7 +181,7 @@
               <div class="col-lg-2 col-lg-offset-2 col-md-3 col-md-offset-1">
                 <div class="influencer-block">
                   <p><strong>{{item.influencer1_name}}</strong></p>
-                  <p class="text-left">Read the <a class="colored" href="{{item.influencer1_article_url}}" target="_blank">full article</a> published by <a class="colored" href="{{item.influencer1_article_url}}" target="_blank">{{item.influencer1_publisher_name}}.</a></p>
+                  <p class="text-left">Read the <a class="colored" style="color:#ab6948" href="{{item.influencer1_article_url}}" target="_blank">full article</a> published by <a class="colored" style="color:#ab6948" href="{{item.influencer1_article_url}}" target="_blank">{{item.influencer1_publisher_name}}.</a></p>
                 </div>
               </div>
               <div class="col-lg-6 col-md-7">
@@ -192,7 +194,7 @@
               <div class="col-lg-2 col-lg-offset-2 col-md-3 col-md-offset-1">
                 <div class="influencer-block">
                   <p><strong>{{item.influencer2_name}}</strong></p>
-                  <p class="text-left">Read the <a class="colored" href="{{item.influencer2_article_url}}" target="_blank">full article</a> published by <a class="colored" href="{{item.influencer2_article_url}}" target="_blank">{{item.influencer2_publisher_name}}.</a></p>
+                  <p class="text-left">Read the <a class="colored" style="color:#ab6948" href="{{item.influencer2_article_url}}" target="_blank">full article</a> published by <a class="colored" style="color:#ab6948" href="{{item.influencer2_article_url}}" target="_blank">{{item.influencer2_publisher_name}}.</a></p>
                 </div>
               </div>
               <div class="col-lg-6 col-md-7">

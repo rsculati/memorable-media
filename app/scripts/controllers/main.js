@@ -11,10 +11,15 @@
 angular.module('memorableAppApp')
   .controller('MainCtrl', function ($scope, $http, $routeParams, $window, $sce, srvShareData) {
 
+    $(document).ready(function(){
+      $(this).scrollTop(0);
+    });
+
     var haveSession = false;
     var session = srvShareData.getData();
     if(typeof session[0] !== 'undefined'){
       $scope.location = session[0][2];
+      $scope.time = session[0][3];
       var sessionTab = session[0][8];
       var related = [];
       var cpt = 0 ;
@@ -62,6 +67,10 @@ angular.module('memorableAppApp')
       } else {
         return distance + " km  - from "  + $scope.location;
       }
+    };
+
+    $scope.getTimeName = function (){
+      return getTimeName($scope.time);
     };
 
 
