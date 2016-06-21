@@ -707,10 +707,14 @@ hr{
   position:relative;
   width:100%;
   background-color:#fff;
-  height:450px;
-  margin:15px auto;
+  /*height:450px;*/
+  margin:25px auto;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.2s ease-in-out;
+  -webkit-column-break-inside: avoid;
+	-moz-column-break-inside: avoid;
+	column-break-inside: avoid;
+
 }
 
 .insta-cards{
@@ -792,26 +796,70 @@ hr{
         color:#fff;
       }
 
+  .influencer-ctn{
+    position:relative;
+    width:85%;
+    margin:0 auto;
+  }
+
+  .influencer-quote{
+    font-size:0.8em;
+    text-align: justify;
+  }
+
+  .influencer-info{
+    font-size:0.7em;
+    text-align: right;
+    font-style: italic;
+  }
+
+  .influencer-info a{
+    color:#374B5E;
+  }
+
   .info-ctn{
     position:relative;
-    width:90%;
-    margin:0 auto;
-    padding:10px 0;
-    height:150px;
-    /*letter-spacing: 3px;
-    text-transform: uppercase;*/
-    font-size: 18px;
-
+    display: inline-block;
+    width:95%;
+    margin-left: 8%;
   }
 
     .info-p{
-      color:#000;
-
-      font-weight: 400;
-      /*font-size:18px;
-      line-height:24px;*/
-      margin-bottom:20px;
+      color:#545454;
+      position:relative;
+      font-weight:400;
+      font-size:0.7em;
+      width:33%;
+      float:left;
     }
+
+  .card-cta-ctn{
+    width:100%;
+    position:relative;
+    height:50px;
+  }
+
+  .card-cta-btn{
+    width:50%;
+    position:relative;
+    float: left;
+    line-height: 50px;
+  }
+
+  .card-cta-txt{
+    text-align: center;
+    letter-spacing: 3px;
+    font-weight: 700;
+    font-size:0.7em;
+    color:white;
+  }
+
+  .card-cta-btn-save{
+    background-color:#2E4151;
+  }
+  .card-cta-btn-direction{
+    background-color:#374B5E;
+  }
 
   .cta-ctn{
     postition:relative;
@@ -1033,3 +1081,78 @@ hr{
       background-color: #818181;
       color: #fff;
     }
+
+
+    /***test****/
+
+    #wrapper {
+	width: 100%;
+	/*max-width: 1100px;
+	min-width: 800px;*/
+	margin: 50px auto;
+}
+
+#columns {
+	-webkit-column-count: 1;
+	-webkit-column-gap: 10px;
+	-webkit-column-fill: auto;
+	-moz-column-count:1;
+	-moz-column-gap: 10px;
+	-moz-column-fill: auto;
+	column-count: 1;
+	column-gap: 15px;
+	column-fill: auto;
+}
+
+.pin {
+	display: inline-block;
+	background: #FEFEFE;
+	border: 2px solid #FAFAFA;
+	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+	margin: 0 2px 15px;
+	-webkit-column-break-inside: avoid;
+	-moz-column-break-inside: avoid;
+	column-break-inside: avoid;
+	padding: 15px;
+	padding-bottom: 5px;
+	background: -webkit-linear-gradient(45deg, #FFF, #F9F9F9);
+	opacity: 1;
+
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+	-o-transition: all .2s ease;
+	transition: all .2s ease;
+}
+
+.pin img {
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 15px;
+	margin-bottom: 5px;
+}
+
+.pin p {
+	font: 12px/18px Arial, sans-serif;
+	color: #333;
+	margin: 0;
+}
+
+@media (min-width: 780px) {
+	#columns {
+		-webkit-column-count: 2;
+		-moz-column-count: 2;
+		column-count: 2;
+	}
+}
+
+@media (min-width: 1100px) {
+	#columns {
+		-webkit-column-count: 3;
+		-moz-column-count: 3;
+		column-count: 3;
+	}
+}
+
+#columns:hover .pin:not(:hover) {
+	opacity: 0.4;
+}

@@ -135,8 +135,12 @@ setInterval(function(){
 
         <!-- feed cards section -->
         <div class="row" id="recommendation-feed">
-          <!-- card -->
-            <div ng-repeat="item in items | limitTo:limit" class="col-lg-4">
+
+          <div id="wrapper">
+            <div id="columns">
+          <!-- card class="col-lg-4" -->
+            <div ng-repeat="item in items | limitTo:limit" >
+
               <div class="poi-card">
                 <a href="https://memorable.io/detail/{{item.establishement_name_id}}#TOP" ng-click="shareMyData()">
                   <div class="img-ctn" style="background-image: url('images/{{item.establishement_name_id}}.jpg')">
@@ -151,6 +155,10 @@ setInterval(function(){
               					<h4><a href="https://memorable.io/detail/{{item.establishement_name_id}}#TOP">{{item.establishement_name}}</a></h4>
               		<span class="title-divider"></span>
               	</div>
+                <div class="influencer-ctn">
+                  <p class="influencer-quote">{{item.influencer1_quote_text}}</p>
+                  <p class="influencer-info">{{item.influencer1_name}}, <a href="{{item.influencer1_article_url}}">{{item.influencer1_publisher_name}}</a></p>
+                </div>
                 <div class="info-ctn">
                   <div class="info-p">
                     {{getPriceWithFormated(item.establishement_pricerange)}}
@@ -163,10 +171,19 @@ setInterval(function(){
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                     {{item.timeAlert}} {{getTimeName()}}
                   </div>
-
-
+                </div>
+                <div class="card-cta-ctn">
+                  <div class="card-cta-btn card-cta-btn-save">
+                    <div class="card-cta-txt">SAVE</div>
+                  </div>
+                  <div class="card-cta-btn card-cta-btn-direction">
+                    <div class="card-cta-txt">DIRECTION</div>
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
+
             </div>
 
       </div>
