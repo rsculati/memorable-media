@@ -135,10 +135,12 @@ setInterval(function(){
 
         <!-- feed cards section -->
         <div class="row" id="recommendation-feed">
+
           <div id="wrapper">
             <div id="columns">
           <!-- card class="col-lg-4" -->
             <div ng-repeat="item in items | limitTo:limit" >
+
               <div class="poi-card">
                 <a href="https://memorable.io/detail/{{item.establishement_name_id}}#TOP" ng-click="shareMyData()">
                   <div class="img-ctn" style="background-image: url('images/{{item.establishement_name_id}}.jpg')">
@@ -172,10 +174,10 @@ setInterval(function(){
                 </div>
                 <div class="card-cta-ctn">
                   <div class="card-cta-btn card-cta-btn-save">
-                    <div class="card-cta-txt save-btn">SAVE</div>
+                    <div class="card-cta-txt">SAVE</div>
                   </div>
                   <div class="card-cta-btn card-cta-btn-direction">
-                    <div class="card-cta-txt direction-btn">DIRECTION</div>
+                    <div class="card-cta-txt">DIRECTION</div>
                   </div>
                 </div>
               </div>
