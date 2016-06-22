@@ -13,7 +13,7 @@ angular
     'ngRoute'
   ])
   //, $locationProvider
-  .config(function ($routeProvider, $locationProvider) {
+  .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/list.html',
@@ -45,6 +45,6 @@ angular
       });
 
       // enable HTML5 mode as hashbang-type URLs will not work with mod_rewrite redirection
-      $locationProvider.html5Mode(true).hashPrefix('!');
+      //$locationProvider.html5Mode(true).hashPrefix('!');
 
   });

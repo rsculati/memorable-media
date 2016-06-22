@@ -41,6 +41,31 @@ angular.module('memorableAppApp')
       }
     });
 
+    // ------------- Analytics Goal Tracking ----------------
+
+    /*$(".direction-btn").click(function(event) {
+      ga('send', 'event', {
+        eventCategory: 'Engagement',
+        eventAction: 'Direction or Save click',
+  });
+
+      ga('send', 'event', {
+        eventCategory: 'Engagement',
+        eventAction: 'Direction click',
+      });
+    });
+​
+  $(".save-btn").click(function(event) {
+    ga('send', 'event', {
+      eventCategory: 'Engagement',
+      eventAction: 'Direction or Save click',
+    });
+  ga('send', 'event', {
+    eventCategory: 'Engagement',
+    eventAction: 'Save click',
+  });
+});*/
+
     // ------------- FILTER USE TAGS ----------------
     $('.filter-todo').click(function(){
       if($(this).hasClass("active")){
