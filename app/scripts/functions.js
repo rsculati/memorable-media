@@ -221,7 +221,7 @@ function getObjectsWithHourScore(obj,time,day) {
                 obj[i].timeAlert = "Closing soon";
               }
             }
-            console.log(obj[i].establishement_name + " : " + schedule[y][0] + "-"+schedule[y][1] + " : "  + time + " : " + open);
+            // console.log(obj[i].establishement_name + " : " + schedule[y][0] + "-"+schedule[y][1] + " : "  + time + " : " + open);
           }
         }
       }

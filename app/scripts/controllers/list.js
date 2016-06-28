@@ -1,143 +1,218 @@
 'use strict';
 
 /**
- * @ngdoc function
- * @name memorableAppApp.controller:ListCtrl
- * @description
- * # ListCtrl
- * Controller of the memorableAppApp
- */
+* @ngdoc function
+* @name memorableAppApp.controller:ListCtrl
+* @description
+* # ListCtrl
+* Controller of the memorableAppApp
+*/
 angular.module('memorableAppApp')
-  .controller('ListCtrl', function ($scope, $http, srvShareData) {
+.controller('ListCtrl', function ($scope, $http, srvShareData,$cookies,$window) {
 
-    // ------------- NAVIGATION MANAGEMENT ----------------
-    // nav filter management
-    $(window).scroll(function() {
-       var hT = $('#cta-hero').offset().top,
-           hH = $('#cta-hero').outerHeight(),
-           wH = $(window).height(),
-           wS = $(this).scrollTop();
-       if (wS > (hT+hH)){
-           $(".filter-navbar").addClass("visible-filter");
-           $(".icon-filter").addClass("visible-filter");
-           $(".icon-filter").removeClass("invisible-filter");
-           $(".icon-menu").addClass("invisible-filter");
-           $(".icon-menu").removeClass("visible-filter");
-       } else{
-         $(".filter-navbar").removeClass("visible-filter");
-         $(".icon-menu").addClass("visible-filter");
-         $(".icon-menu").removeClass("invisible-filter");
-         $(".icon-filter").removeClass("visible-filter");
-         $(".icon-filter").addClass("invisible-filter");
-       }
-    });
+  // $scope.myUser =
+  // console.log($scope.myUser);
+  if(typeof $cookies.getObject('myUser') === 'undefined'){
+    console.log("user unactive");
+    $scope.myUser = null;
+    $("#savebtn").hide();
+    $("#logoutbtn").hide();
+    $("#unsavebtn").hide();
+    $("#favoritebtn").hide();
 
-    //$(".filter").click().addClass("selected");
-    $('.filter').click(function(){
-      if($(this).hasClass("selected")){
-        ($(this).removeClass("selected"));
-      }else{
-        $(this).addClass("selected");
-      }
-    });
+  } else {
+    console.log("user active");
+    $scope.myUser = $cookies.getObject('myUser');
+    $("#savebtn").show();
+    $("#logoutbtn").show();
+    $("#unsavebtn").show();
+    $("#favoritebtn").show();
+  }
+  // Get cookie
+  // var myUser = $cookies.getObject('myUser');
+  // console.log(myUser);
 
-    // ------------- FILTER USE TAGS ----------------
-    $('.filter-todo').click(function(){
-      if($(this).hasClass("active")){
-        ($(this).removeClass("active"));
-      }else{
-        $(this).addClass("active");
-      }
+  // Removing a cookie
+  // $cookies.remove('myUserToken');
 
-      // $("#"+tagArray[i]).addClass("active");
+  $scope.save = function (place) {
+    // http://localhost:8080/auth/facebook
 
-      // $('.filter-price').removeClass("active");
-      // $(this).addClass("active");
+    if($scope.myUser == null){
+      console.log("no user");
+    } else {
+      var token = $scope.myUser.token;
+      place = "new place";
 
-      $.searchquery = "";
-      $(".filter-todo.active").each(function() {
-        $.searchquery+=$(this).attr("id")+",";
+      $http.post("http://localhost:8080/api/favorite?place="+place+"&token="+token).success (function(data){
+          console.log(data.success);
+          $scope.myUser.favorite = data.success;
+          // Put cookie
+          $cookies.put('myUser',JSON.stringify($scope.myUser));
       });
-      if($.searchquery == ""){
-        $.searchquery = "any";
-      }
+    }
+  }
 
-      var session = srvShareData.getData();
-      if(typeof session[0] !== 'undefined'){
-        updateList(session[0][0], $.searchquery,session[0][2],session[0][3],session[0][4]);
-      } else {
-        updateList("any", $.searchquery,"you",$scope.hour,$scope.day);
-      }
+  $scope.unsave = function (place) {
 
+    if($scope.myUser == null){
+      console.log("no user");
+    } else {
+      var token = $scope.myUser.token;
+      place = "new place";
+
+      $http.delete("http://localhost:8080/api/favorite?place="+place+"&token="+token).success (function(data){
+          console.log(data.success);
+          $scope.myUser.favorite = data.success;
+          // Put cookie
+          $cookies.put('myUser',JSON.stringify($scope.myUser));
+      });
+    }
+  }
+
+  $scope.logout = function () {
+
+    $cookies.remove('myUser');
+    $scope.myUser = null;
+    $http.get("http://localhost:8080/logout").success (function(data){
+        console.log(data);
     });
+    $window.location.href = '/';
+  }
+  // $scope.favorite = function ()  {
+  //   $http.get('http://localhost:8080/favorite').success (function(data){
+  //     console.log(data);
+  //   });
+  // }
 
-    // ------------- FILTER PRICE ----------------
-    $('.filter-price').click(function(){
-      $('.filter-price').removeClass("active");
+  // ------------- NAVIGATION MANAGEMENT ----------------
+  // nav filter management
+  $(window).scroll(function() {
+    var hT = $('#cta-hero').offset().top,
+    hH = $('#cta-hero').outerHeight(),
+    wH = $(window).height(),
+    wS = $(this).scrollTop();
+    if (wS > (hT+hH)){
+      $(".filter-navbar").addClass("visible-filter");
+      $(".icon-filter").addClass("visible-filter");
+      $(".icon-filter").removeClass("invisible-filter");
+      $(".icon-menu").addClass("invisible-filter");
+      $(".icon-menu").removeClass("visible-filter");
+    } else{
+      $(".filter-navbar").removeClass("visible-filter");
+      $(".icon-menu").addClass("visible-filter");
+      $(".icon-menu").removeClass("invisible-filter");
+      $(".icon-filter").removeClass("visible-filter");
+      $(".icon-filter").addClass("invisible-filter");
+    }
+  });
+
+  //$(".filter").click().addClass("selected");
+  $('.filter').click(function(){
+    if($(this).hasClass("selected")){
+      ($(this).removeClass("selected"));
+    }else{
+      $(this).addClass("selected");
+    }
+  });
+
+  // ------------- FILTER USE TAGS ----------------
+  $('.filter-todo').click(function(){
+    if($(this).hasClass("active")){
+      ($(this).removeClass("active"));
+    }else{
       $(this).addClass("active");
+    }
 
-      var d = new Date(); // for now
-      var day = getday(d);
-      var hour = d.getHours();
+    // $("#"+tagArray[i]).addClass("active");
 
-      var session = srvShareData.getData();
-      if(typeof session[0] !== 'undefined'){
-        updateList($(this).attr("id"),session[0][1],session[0][2],session[0][3],session[0][4]);
-      } else {
-        updateList($(this).attr("id"),"any","you",hour,day);
-      }
+    // $('.filter-price').removeClass("active");
+    // $(this).addClass("active");
+
+    $.searchquery = "";
+    $(".filter-todo.active").each(function() {
+      $.searchquery+=$(this).attr("id")+",";
     });
+    if($.searchquery == ""){
+      $.searchquery = "any";
+    }
 
-    // ------------- FILTER TIME ----------------
-    $('.filter-time').click(function(){
-      $('.filter-time').removeClass("active");
-      $(this).addClass("active");
+    var session = srvShareData.getData();
+    if(typeof session[0] !== 'undefined'){
+      updateList(session[0][0], $.searchquery,session[0][2],session[0][3],session[0][4]);
+    } else {
+      updateList("any", $.searchquery,"you",$scope.hour,$scope.day);
+    }
 
-      var hour = $(this).attr("id");
-      var d = new Date(); // for now
-      var day = getday(d);
-      if(hour == "now"){
-        hour = d.getHours();
-        $scope.time = "now";
-      } else {
-        $scope.time = hour;
-      }
+  });
 
-      var session = srvShareData.getData();
-      if(typeof session[0] !== 'undefined'){
-        updateList(session[0][0],session[0][1],session[0][2],hour,session[0][4]);
-      } else {
-        updateList(session[0][0],"any","you",hour,day);
-      }
-    });
+  // ------------- FILTER PRICE ----------------
+  $('.filter-price').click(function(){
+    $('.filter-price').removeClass("active");
+    $(this).addClass("active");
+
+    var d = new Date(); // for now
+    var day = getday(d);
+    var hour = d.getHours();
+
+    var session = srvShareData.getData();
+    if(typeof session[0] !== 'undefined'){
+      updateList($(this).attr("id"),session[0][1],session[0][2],session[0][3],session[0][4]);
+    } else {
+      updateList($(this).attr("id"),"any","you",hour,day);
+    }
+  });
+
+  // ------------- FILTER TIME ----------------
+  $('.filter-time').click(function(){
+    $('.filter-time').removeClass("active");
+    $(this).addClass("active");
+
+    var hour = $(this).attr("id");
+    var d = new Date(); // for now
+    var day = getday(d);
+    if(hour == "now"){
+      hour = d.getHours();
+      $scope.time = "now";
+    } else {
+      $scope.time = hour;
+    }
+
+    var session = srvShareData.getData();
+    if(typeof session[0] !== 'undefined'){
+      updateList(session[0][0],session[0][1],session[0][2],hour,session[0][4]);
+    } else {
+      updateList(session[0][0],"any","you",hour,day);
+    }
+  });
 
 
-    // ------------- FILTER LOCATION ----------------
-    $('.filter-location').click(function(){
-      $('.filter-location').removeClass("active");
-      $(this).addClass("active");
+  // ------------- FILTER LOCATION ----------------
+  $('.filter-location').click(function(){
+    $('.filter-location').removeClass("active");
+    $(this).addClass("active");
 
-      var d = new Date(); // for now
-      var day = getday(d);
-      var hour = d.getHours();
+    var d = new Date(); // for now
+    var day = getday(d);
+    var hour = d.getHours();
 
-      // category, price, tag, location, time, day
-      var session = srvShareData.getData();
-      if(typeof session[0] !== 'undefined'){
-        updateList(session[0][0],session[0][1],$(this).attr("id"),session[0][3],session[0][4]);
-      } else {
-        updateList("any","any",$(this).attr("id"),hour,day);
-      }
-    });
+    // category, price, tag, location, time, day
+    var session = srvShareData.getData();
+    if(typeof session[0] !== 'undefined'){
+      updateList(session[0][0],session[0][1],$(this).attr("id"),session[0][3],session[0][4]);
+    } else {
+      updateList("any","any",$(this).attr("id"),hour,day);
+    }
+  });
 
 
-    // ------------- VALIDATE BUTTON ----------------
-    // validate button - thing to do query
-    $("#filter-category-validation-btn").click(function() {
+  // ------------- VALIDATE BUTTON ----------------
+  // validate button - thing to do query
+  $("#filter-category-validation-btn").click(function() {
     $.searchquery = "";
     $(".selected").each(function() {
       // console.log($(this));
-    //  console.log(index + " : " + value);
+      //  console.log(index + " : " + value);
       //console.log(value[index].attr("id"));
       $.searchquery+=$(this).attr("id")+",";
     });
@@ -149,22 +224,22 @@ angular.module('memorableAppApp')
     var d = new Date(); // for now
     var hour = d.getHours();
     var day = getday(d);
-      updateList("$$", $.searchquery,"you",hour,day);
+    updateList("$$", $.searchquery,"you",hour,day);
     $('html, body').animate({
-        scrollTop: $( $.attr(this, 'href') ).delay(1000).offset().top
+      scrollTop: $( $.attr(this, 'href') ).delay(1000).offset().top
     }, 1000);
-    });
+  });
 
 
-    // ------------- MODALS MANAGEMENT ----------------
-    $(".modal-fullscreen").on('show.bs.modal', function () {
-      setTimeout( function() {
-        $(".modal-backdrop").addClass("modal-backdrop-fullscreen");
-      }, 0);
-    });
-    $(".modal-fullscreen").on('hidden.bs.modal', function () {
+  // ------------- MODALS MANAGEMENT ----------------
+  $(".modal-fullscreen").on('show.bs.modal', function () {
+    setTimeout( function() {
       $(".modal-backdrop").addClass("modal-backdrop-fullscreen");
-    });
+    }, 0);
+  });
+  $(".modal-fullscreen").on('hidden.bs.modal', function () {
+    $(".modal-backdrop").addClass("modal-backdrop-fullscreen");
+  });
 
   // ------------- INITIALIZATION ----------------
 
@@ -200,126 +275,81 @@ angular.module('memorableAppApp')
   }
 
 
-    $scope.getHomeScreenImage = function () {
-      var categorieImage = getCategorieFromTime($scope.hour) +".jpg";
-      return categorieImage;
+  $scope.getHomeScreenImage = function () {
+    var categorieImage = getCategorieFromTime($scope.hour) +".jpg";
+    return categorieImage;
+  }
+
+  $scope.getPriceWithFormated = function (price) {
+    return getPriceFormated(price);
+  }
+
+  // ------------- DISPLAY DISTANCE ----------------
+  $scope.getDistance = function (distance, item){
+    if(isNaN(item.distance)){
+      var centerlat = 45.501724;
+      var centerlong = -73.567285;
+      var distanceCenter = getDistanceBetween(centerlat, centerlong, item.establishement_lat, item.establishement_long, 'K');
+      if(distanceCenter < 1){
+        distanceCenter = distanceCenter * 1000;
+        return distanceCenter + " m from city center";
+      } else {
+        return distanceCenter + " km from city center";
+      }
+    }
+    var formatedLocation = getFormatedLocation($scope.location);
+    if(distance < 1){
+      distance = distance * 1000;
+      return distance + " m  - from " + formatedLocation;
+    } else {
+      return distance + " km  - from "  + formatedLocation;
+    }
+  };
+
+  $scope.getTimeName = function (){
+    return getTimeName($scope.time);
+  };
+
+
+  // ------------- UPDATE LIST ----------------
+  // update list of item depending on criteria
+  function updateList(price, tag, location, time, day) {
+    $scope.search = getSearchFormated(tag);
+    $scope.loading = true;
+    $scope.loaded = false;
+    $scope.location = location;
+    var category;
+    if(tag != "any"){
+      category = getMainCategory(tag);
+    } else {
+      category = getCategorieFromTime(time);
     }
 
-    $scope.getPriceWithFormated = function (price) {
-      return getPriceFormated(price);
-    }
+    console.log(category + " : " + price + " : " + tag + " : " + location + " : " + time + " : " + day);
 
-    // ------------- DISPLAY DISTANCE ----------------
-    $scope.getDistance = function (distance, item){
-      if(isNaN(item.distance)){
-        var centerlat = 45.501724;
-        var centerlong = -73.567285;
-        var distanceCenter = getDistanceBetween(centerlat, centerlong, item.establishement_lat, item.establishement_long, 'K');
-        if(distanceCenter < 1){
-          distanceCenter = distanceCenter * 1000;
-          return distanceCenter + " m from city center";
-        } else {
-          return distanceCenter + " km from city center";
-        }
-      }
-      var formatedLocation = getFormatedLocation($scope.location);
-      if(distance < 1){
-        distance = distance * 1000;
-        return distance + " m  - from " + formatedLocation;
-      } else {
-        return distance + " km  - from "  + formatedLocation;
-      }
-    };
+    $http.get('Row1data.json').success (function(data){
+      var obj = data;
+      var tagArray = tag.split(',');
+      var nbtag = tagArray.length;
+      var cpt = 0;
+      var testCategory = false;
 
-    $scope.getTimeName = function (){
-      return getTimeName($scope.time);
-    };
+      // TODO: add COFFEE to tag => min majuscule..
 
 
-    // ------------- UPDATE LIST ----------------
-    // update list of item depending on criteria
-    function updateList(price, tag, location, time, day) {
-      $scope.search = getSearchFormated(tag);
-      $scope.loading = true;
-      $scope.loaded = false;
-      $scope.location = location;
-      var category;
-      if(tag != "any"){
-        category = getMainCategory(tag);
-      } else {
-        category = getCategorieFromTime(time);
-      }
+      // ------------- USE TAG SCORE ----------------
+      // loop into array of obj
+      for(var x = 0; x < obj.length; x++){
+        // check if any
+        if(tag != "any"){
+          if(tag === "eat," || tag === "drink," || tag === "shop,"){
 
-      console.log(category + " : " + price + " : " + tag + " : " + location + " : " + time + " : " + day);
-
-      $http.get('Row1data.json').success (function(data){
-        var obj = data;
-        var tagArray = tag.split(',');
-        var nbtag = tagArray.length;
-        var cpt = 0;
-        var testCategory = false;
-
-        // TODO: add COFFEE to tag => min majuscule..
-
-
-        // ------------- USE TAG SCORE ----------------
-        // loop into array of obj
-        for(var x = 0; x < obj.length; x++){
-          // check if any
-          if(tag != "any"){
-            if(tag === "eat," || tag === "drink," || tag === "shop,"){
-
-              // // check for multiple category
-              var arrayType = obj[x].establishement_type1.split(',');
-              for(var a = 0 ; a < arrayType.length; a++){
-                  if(arrayType[a] == category){
-                    testCategory = true;
-                  }
-              }
-
-              // console.log(category + " : " + testCategory + " : " + obj[x].establishement_name);
-              if(testCategory){
-                obj[x].scoreTags = 25 * 3;
-              } else {
-                obj[x].scoreTags =  25 / 5;
-              }
-              testCategory = false;
-            }
-            else {
-              // split usetag into array
-              var array = obj[x].usetags.split(',');
-              // loop into tag array to calculate score of usetag
-              for(var i = 0 ; i < tagArray.length; i++) {
-                for(var y = 0 ; y < array.length; y++) {
-                  if(tagArray[i] == array[y]){
-                    cpt++;
-                  }
-                }
-              }
-              // check for multiple category
-              var arrayType = obj[x].establishement_type1.split(',');
-              // console.log(arrayType);
-              for(var a = 0 ; a < arrayType.length; a++){
-                  if(arrayType[a] == category){
-                    testCategory = true;
-                  }
-              }
-              if(testCategory){
-                obj[x].scoreTags = (cpt / nbtag) * 25;
-              } else {
-                obj[x].scoreTags = ((cpt / nbtag) * 25)/5;
-              }
-              cpt = 0;
-              testCategory = false;
-            }
-          } // if "any" choice
-          else {
-            // check for multiple category
+            // // check for multiple category
             var arrayType = obj[x].establishement_type1.split(',');
             for(var a = 0 ; a < arrayType.length; a++){
-                if(arrayType[a] == category){
-                  testCategory = true;
-                }
+              if(arrayType[a] == category){
+                testCategory = true;
+              }
             }
 
             // console.log(category + " : " + testCategory + " : " + obj[x].establishement_name);
@@ -329,228 +359,134 @@ angular.module('memorableAppApp')
               obj[x].scoreTags =  25 / 5;
             }
             testCategory = false;
-            // console.log(obj[x].scoreTags + " : " + obj[x].establishement_name);
           }
+          else {
+            // split usetag into array
+            var array = obj[x].usetags.split(',');
+            // loop into tag array to calculate score of usetag
+            for(var i = 0 ; i < tagArray.length; i++) {
+              for(var y = 0 ; y < array.length; y++) {
+                if(tagArray[i] == array[y]){
+                  cpt++;
+                }
+              }
+            }
+            // check for multiple category
+            var arrayType = obj[x].establishement_type1.split(',');
+            // console.log(arrayType);
+            for(var a = 0 ; a < arrayType.length; a++){
+              if(arrayType[a] == category){
+                testCategory = true;
+              }
+            }
+            if(testCategory){
+              obj[x].scoreTags = (cpt / nbtag) * 25;
+            } else {
+              obj[x].scoreTags = ((cpt / nbtag) * 25)/5;
+            }
+            cpt = 0;
+            testCategory = false;
+          }
+        } // if "any" choice
+        else {
+          // check for multiple category
+          var arrayType = obj[x].establishement_type1.split(',');
+          for(var a = 0 ; a < arrayType.length; a++){
+            if(arrayType[a] == category){
+              testCategory = true;
+            }
+          }
+
+          // console.log(category + " : " + testCategory + " : " + obj[x].establishement_name);
+          if(testCategory){
+            obj[x].scoreTags = 25 * 3;
+          } else {
+            obj[x].scoreTags =  25 / 5;
+          }
+          testCategory = false;
+          // console.log(obj[x].scoreTags + " : " + obj[x].establishement_name);
         }
+      }
 
-        // ------------- PRICE RANGE SCORE ----------------
-        // get object with Score of price Range
-        var objByPrice = getObjectWithPriceRangeScore(obj,price);
-        obj = objByPrice;
+      // ------------- PRICE RANGE SCORE ----------------
+      // get object with Score of price Range
+      var objByPrice = getObjectWithPriceRangeScore(obj,price);
+      obj = objByPrice;
 
 
 
-        // ---------------- TIME SCORE ------------------
-        // get object with Score of schedule
-          var objByTime = getObjectsWithHourScore(obj,time,day);
-          obj = objByTime;
-          // for(var b = 0 ; b < obj.length; b++) {
-          //   console.log(obj[b].timeAlert + " : " + obj[b].establishement_name );
-          // }
+      // ---------------- TIME SCORE ------------------
+      // get object with Score of schedule
+      var objByTime = getObjectsWithHourScore(obj,time,day);
+      obj = objByTime;
+      // for(var b = 0 ; b < obj.length; b++) {
+      //   console.log(obj[b].timeAlert + " : " + obj[b].establishement_name );
+      // }
 
-        // ---------------- LOAD MORE ------------------
-        // set the default amount of items being displayed
-        $scope.limit= 6;
-        // loadMore function max 6 => infinite scroll
-        $scope.loadMore = function() {
+      // ---------------- LOAD MORE ------------------
+      // set the default amount of items being displayed
+      $scope.limit= 6;
+      // loadMore function max 6 => infinite scroll
+      $scope.loadMore = function() {
         console.log($scope.limit);
         $scope.limit = $scope.limit + 6;
         if($scope.limit >= $scope.items.length){
           $( "#btnload" ).hide();
+        }
+      }
+
+
+      // ---------------- LOCATION SCORE ------------------
+
+      $scope.items = obj;
+
+
+      if(location == "you"){
+        var lats = getValues(obj ,'establishement_lat');
+        var longs = getValues(obj ,'establishement_long');
+        $scope.lats = lats;
+        $scope.longs = longs;
+
+        var d = new Date(); // for now
+        // var day = getday(d);
+        var hour = d.getHours();
+        var n = d.getMinutes();
+        var timeResearch = hour + (n / 60);
+        var gps = false;
+        var session = srvShareData.getData();
+        console.log(session);
+        if(typeof session[0] !== 'undefined'){
+          var difference = timeResearch - session[0][7];
+          // console.log(difference + " : difference");
+          if(difference < 0.06){
+            gps = true;
+          } else {
+            gps = false;
           }
         }
 
-
-        // ---------------- LOCATION SCORE ------------------
-
-        $scope.items = obj;
-
-
-        if(location == "you"){
-          var lats = getValues(obj ,'establishement_lat');
-          var longs = getValues(obj ,'establishement_long');
-          $scope.lats = lats;
-          $scope.longs = longs;
-
-          var d = new Date(); // for now
-          // var day = getday(d);
-          var hour = d.getHours();
-          var n = d.getMinutes();
-          var timeResearch = hour + (n / 60);
-          var gps = false;
-          var session = srvShareData.getData();
-          console.log(session);
-          if(typeof session[0] !== 'undefined'){
-            var difference = timeResearch - session[0][7];
-            // console.log(difference + " : difference");
-            if(difference < 0.06){
-              gps = true;
-            } else {
-              gps = false;
-            }
-          }
-
-            if(gps == false){
-              console.log("no old gps records");
-              // if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                  var lat1 = position.coords.latitude;
-                  var lng1 = position.coords.longitude;
-
-                  var distances = [];
-                  // console.log(distance);
-                  $scope.$apply(function(){
-                    // $scope.distance = distance;
-                    $scope.lat = lats;
-                    $scope.lng = lng1;
-                    for (var i = 0 ; i < longs.length; i++) {
-                      distances[i]  = getDistanceBetween(lat1, lng1, $scope.lats[i], $scope.longs[i], 'K');
-                      obj[i].distance = distances[i];
-                      // console.log(obj[i].establishement_name + " : " + distances[i]);
-                    }
-
-                    // sort by distance
-                    obj.sort(function(a, b) {
-                        return parseFloat(a.distance) - parseFloat(b.distance);
-                    });
-
-
-                    // calculate score distance
-                    for (var i = 0 ; i < obj.length; i++) {
-                      if(tag == "any"){
-                        obj[i].scoreDistance = 25 - ((25 / obj.length) * i * 2);
-                      } else {
-                        obj[i].scoreDistance = 25 - ((25 / obj.length) * i);
-                      }
-                        // console.log(obj[i].establishement_name + " : " + obj[i].distance);
-                    }
-
-                    //calculate total score
-                    for (var i = 0 ; i < obj.length; i++) {
-                        obj[i].totalScore = (obj[i].scoreTags * 5) + obj[i].scoreTime  + obj[i].scoreDistance  +  obj[i].scorePrice;
-                    }
-
-                    // sort by total score
-                    obj.sort(function(a, b) {
-                        return parseFloat(b.totalScore) - parseFloat(a.totalScore);
-                    });
-
-
-                    console.log(timeResearch);
-                    console.log(srvShareData.getData());
-                    $scope.loading = false;
-                    $scope.loaded = true;
-
-                    sessionStorage.clear();
-                    $scope.dataToShare = [];
-                    $scope.dataToShare.push(price);
-                    $scope.dataToShare.push(tag);
-                    $scope.dataToShare.push(location);
-                    $scope.dataToShare.push(time);
-                    $scope.dataToShare.push(day);
-                    $scope.dataToShare.push(lat1);
-                    $scope.dataToShare.push(lng1);
-                    $scope.dataToShare.push(timeResearch);
-
-                    var multipleobj = [];
-                    multipleobj.push(obj[0]);
-                    multipleobj.push(obj[1]);
-                    multipleobj.push(obj[2]);
-                    multipleobj.push(obj[3]);
-                    $scope.dataToShare.push(multipleobj);
-
-                    // console.log($scope.items);
-                    srvShareData.addData($scope.dataToShare);
-
-                  }); // scope.apply()
-
-                }); // navigator.geolocation
-
-            } else { // gps == false
-              $scope.lats = session[0][5];
-              $scope.longs = session[0][6];
-              var lat1 = session[0][5];
-              var lng1 = session[0][6];
-
-              var distances = [];
-              // console.log(distance);
-              // $scope.$apply(function(){
-                // $scope.distance = distance;
-                for (var i = 0 ; i < obj.length; i++) {
-                  distances[i]  = getDistanceBetween(obj[i].establishement_lat, obj[i].establishement_long, session[0][5], session[0][6], 'K');
-                  obj[i].distance = distances[i];
-                }
-
-                // sort by distance
-                obj.sort(function(a, b) {
-                    return parseFloat(a.distance) - parseFloat(b.distance);
-                });
-
-
-                // calculate score distance
-                for (var i = 0 ; i < obj.length; i++) {
-                  if(tag == "any"){
-                    obj[i].scoreDistance = 25 - ((25 / obj.length) * i * 2);
-                  } else {
-                    obj[i].scoreDistance = 25 - ((25 / obj.length) * i);
-                  }
-                    // console.log(obj[i].establishement_name + " : " + obj[i].distance);
-                }
-
-                //calculate total score
-                for (var i = 0 ; i < obj.length; i++) {
-                    obj[i].totalScore = (obj[i].scoreTags * 5) + obj[i].scoreTime  + obj[i].scoreDistance  +  obj[i].scorePrice;
-                }
-
-                // sort by total score
-                obj.sort(function(a, b) {
-                    return parseFloat(b.totalScore) - parseFloat(a.totalScore);
-                });
-
-                $scope.loading = false;
-                $scope.loaded = true;
-
-                sessionStorage.clear();
-                $scope.dataToShare = [];
-                $scope.dataToShare.push(price);
-                $scope.dataToShare.push(tag);
-                $scope.dataToShare.push(location);
-                $scope.dataToShare.push(time);
-                $scope.dataToShare.push(day);
-                $scope.dataToShare.push(lat1);
-                $scope.dataToShare.push(lng1);
-                $scope.dataToShare.push(timeResearch);
-                var multipleobj = [];
-                multipleobj.push(obj[0]);
-                multipleobj.push(obj[1]);
-                multipleobj.push(obj[2]);
-                multipleobj.push(obj[3]);
-                $scope.dataToShare.push(multipleobj);
-
-                // console.log($scope.items);
-                srvShareData.addData($scope.dataToShare);
-            }
-
-            // console.log(obj);
-          }
-
-          else {
-            var geodata = getGeoData(location);
-            $scope.lats = geodata[0];
-            $scope.longs = geodata[0];
+        if(gps == false){
+          console.log("no old gps records");
+          // if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var lat1 = position.coords.latitude;
+            var lng1 = position.coords.longitude;
 
             var distances = [];
             // console.log(distance);
-            // $scope.$apply(function(){
+            $scope.$apply(function(){
               // $scope.distance = distance;
-              for (var i = 0 ; i < obj.length; i++) {
-                distances[i]  = getDistanceBetween(obj[i].establishement_lat, obj[i].establishement_long, geodata[0],  geodata[1], 'K');
+              $scope.lat = lats;
+              $scope.lng = lng1;
+              for (var i = 0 ; i < longs.length; i++) {
+                distances[i]  = getDistanceBetween(lat1, lng1, $scope.lats[i], $scope.longs[i], 'K');
                 obj[i].distance = distances[i];
+                // console.log(obj[i].establishement_name + " : " + distances[i]);
               }
 
               // sort by distance
               obj.sort(function(a, b) {
-                  return parseFloat(a.distance) - parseFloat(b.distance);
+                return parseFloat(a.distance) - parseFloat(b.distance);
               });
 
 
@@ -561,38 +497,24 @@ angular.module('memorableAppApp')
                 } else {
                   obj[i].scoreDistance = 25 - ((25 / obj.length) * i);
                 }
-                  // console.log(obj[i].establishement_name + " : " + obj[i].distance);
+                // console.log(obj[i].establishement_name + " : " + obj[i].distance);
               }
 
               //calculate total score
               for (var i = 0 ; i < obj.length; i++) {
-                  obj[i].totalScore = (obj[i].scoreTags * 5) + obj[i].scoreTime  + obj[i].scoreDistance  +  obj[i].scorePrice;
+                obj[i].totalScore = (obj[i].scoreTags * 5) + obj[i].scoreTime  + obj[i].scoreDistance  +  obj[i].scorePrice;
               }
 
               // sort by total score
               obj.sort(function(a, b) {
-                  return parseFloat(b.totalScore) - parseFloat(a.totalScore);
+                return parseFloat(b.totalScore) - parseFloat(a.totalScore);
               });
 
+
+              console.log(timeResearch);
+              console.log(srvShareData.getData());
               $scope.loading = false;
               $scope.loaded = true;
-
-              var d = new Date(); // for now
-              // var day = getday(d);
-              var hour = d.getHours();
-              var n = d.getMinutes();
-              var timeResearch = hour + (n / 60);
-              console.log(timeResearch);
-              var gps = false;
-              var session = srvShareData.getData();
-              if(typeof session[0] !== 'undefined'){
-                var difference = timeResearch - session[0][7];
-                // console.log(difference);
-                if(difference < 0.06){
-                  gps = true;
-                  // console.log(difference);
-                }
-              }
 
               sessionStorage.clear();
               $scope.dataToShare = [];
@@ -601,17 +523,10 @@ angular.module('memorableAppApp')
               $scope.dataToShare.push(location);
               $scope.dataToShare.push(time);
               $scope.dataToShare.push(day);
-
-              if(gps == true){
-                $scope.dataToShare.push(session[0][5]);
-                $scope.dataToShare.push(session[0][6]);
-              } else {
-                $scope.dataToShare.push(24);
-                $scope.dataToShare.push(24);
-              }
-
-
+              $scope.dataToShare.push(lat1);
+              $scope.dataToShare.push(lng1);
               $scope.dataToShare.push(timeResearch);
+
               var multipleobj = [];
               multipleobj.push(obj[0]);
               multipleobj.push(obj[1]);
@@ -622,46 +537,206 @@ angular.module('memorableAppApp')
               // console.log($scope.items);
               srvShareData.addData($scope.dataToShare);
 
-            // }); // scope.apply()
-          }
-      }
-    );
-  }
+            }); // scope.apply()
 
-    $('#cta-hero').click(function(){
-    $('html, body').animate({
-        scrollTop: $( $.attr(this, 'href') ).offset().top
-    }, 1000);
-    return false;
-  });
+          }); // navigator.geolocation
+
+        } else { // gps == false
+          $scope.lats = session[0][5];
+          $scope.longs = session[0][6];
+          var lat1 = session[0][5];
+          var lng1 = session[0][6];
+
+          var distances = [];
+          // console.log(distance);
+          // $scope.$apply(function(){
+          // $scope.distance = distance;
+          for (var i = 0 ; i < obj.length; i++) {
+            distances[i]  = getDistanceBetween(obj[i].establishement_lat, obj[i].establishement_long, session[0][5], session[0][6], 'K');
+            obj[i].distance = distances[i];
+          }
+
+          // sort by distance
+          obj.sort(function(a, b) {
+            return parseFloat(a.distance) - parseFloat(b.distance);
+          });
+
+
+          // calculate score distance
+          for (var i = 0 ; i < obj.length; i++) {
+            if(tag == "any"){
+              obj[i].scoreDistance = 25 - ((25 / obj.length) * i * 2);
+            } else {
+              obj[i].scoreDistance = 25 - ((25 / obj.length) * i);
+            }
+            // console.log(obj[i].establishement_name + " : " + obj[i].distance);
+          }
+
+          //calculate total score
+          for (var i = 0 ; i < obj.length; i++) {
+            obj[i].totalScore = (obj[i].scoreTags * 5) + obj[i].scoreTime  + obj[i].scoreDistance  +  obj[i].scorePrice;
+          }
+
+          // sort by total score
+          obj.sort(function(a, b) {
+            return parseFloat(b.totalScore) - parseFloat(a.totalScore);
+          });
+
+          $scope.loading = false;
+          $scope.loaded = true;
+
+          sessionStorage.clear();
+          $scope.dataToShare = [];
+          $scope.dataToShare.push(price);
+          $scope.dataToShare.push(tag);
+          $scope.dataToShare.push(location);
+          $scope.dataToShare.push(time);
+          $scope.dataToShare.push(day);
+          $scope.dataToShare.push(lat1);
+          $scope.dataToShare.push(lng1);
+          $scope.dataToShare.push(timeResearch);
+          var multipleobj = [];
+          multipleobj.push(obj[0]);
+          multipleobj.push(obj[1]);
+          multipleobj.push(obj[2]);
+          multipleobj.push(obj[3]);
+          $scope.dataToShare.push(multipleobj);
+
+          // console.log($scope.items);
+          srvShareData.addData($scope.dataToShare);
+        }
+
+        // console.log(obj);
+      }
+
+      else {
+        var geodata = getGeoData(location);
+        $scope.lats = geodata[0];
+        $scope.longs = geodata[0];
+
+        var distances = [];
+        // console.log(distance);
+        // $scope.$apply(function(){
+        // $scope.distance = distance;
+        for (var i = 0 ; i < obj.length; i++) {
+          distances[i]  = getDistanceBetween(obj[i].establishement_lat, obj[i].establishement_long, geodata[0],  geodata[1], 'K');
+          obj[i].distance = distances[i];
+        }
+
+        // sort by distance
+        obj.sort(function(a, b) {
+          return parseFloat(a.distance) - parseFloat(b.distance);
+        });
+
+
+        // calculate score distance
+        for (var i = 0 ; i < obj.length; i++) {
+          if(tag == "any"){
+            obj[i].scoreDistance = 25 - ((25 / obj.length) * i * 2);
+          } else {
+            obj[i].scoreDistance = 25 - ((25 / obj.length) * i);
+          }
+          // console.log(obj[i].establishement_name + " : " + obj[i].distance);
+        }
+
+        //calculate total score
+        for (var i = 0 ; i < obj.length; i++) {
+          obj[i].totalScore = (obj[i].scoreTags * 5) + obj[i].scoreTime  + obj[i].scoreDistance  +  obj[i].scorePrice;
+        }
+
+        // sort by total score
+        obj.sort(function(a, b) {
+          return parseFloat(b.totalScore) - parseFloat(a.totalScore);
+        });
+
+        $scope.loading = false;
+        $scope.loaded = true;
+
+        var d = new Date(); // for now
+        // var day = getday(d);
+        var hour = d.getHours();
+        var n = d.getMinutes();
+        var timeResearch = hour + (n / 60);
+        console.log(timeResearch);
+        var gps = false;
+        var session = srvShareData.getData();
+        if(typeof session[0] !== 'undefined'){
+          var difference = timeResearch - session[0][7];
+          // console.log(difference);
+          if(difference < 0.06){
+            gps = true;
+            // console.log(difference);
+          }
+        }
+
+        sessionStorage.clear();
+        $scope.dataToShare = [];
+        $scope.dataToShare.push(price);
+        $scope.dataToShare.push(tag);
+        $scope.dataToShare.push(location);
+        $scope.dataToShare.push(time);
+        $scope.dataToShare.push(day);
+
+        if(gps == true){
+          $scope.dataToShare.push(session[0][5]);
+          $scope.dataToShare.push(session[0][6]);
+        } else {
+          $scope.dataToShare.push(24);
+          $scope.dataToShare.push(24);
+        }
+
+
+        $scope.dataToShare.push(timeResearch);
+        var multipleobj = [];
+        multipleobj.push(obj[0]);
+        multipleobj.push(obj[1]);
+        multipleobj.push(obj[2]);
+        multipleobj.push(obj[3]);
+        $scope.dataToShare.push(multipleobj);
+
+        // console.log($scope.items);
+        srvShareData.addData($scope.dataToShare);
+
+        // }); // scope.apply()
+      }
+    }
+  );
+}
+
+$('#cta-hero').click(function(){
+  $('html, body').animate({
+    scrollTop: $( $.attr(this, 'href') ).offset().top
+  }, 1000);
+  return false;
+});
 
 });
 
 angular.module('memorableAppApp')
-  .service('srvShareData', function($window) {
-        var KEY = 'App.SelectedValue';
+.service('srvShareData', function($window) {
+  var KEY = 'App.SelectedValue';
 
-        var addData = function(newObj) {
-            var mydata = $window.sessionStorage.getItem(KEY);
-            if (mydata) {
-                mydata = JSON.parse(mydata);
-            } else {
-                mydata = [];
-            }
-            mydata.push(newObj);
-            $window.sessionStorage.setItem(KEY, JSON.stringify(mydata));
-        };
+  var addData = function(newObj) {
+    var mydata = $window.sessionStorage.getItem(KEY);
+    if (mydata) {
+      mydata = JSON.parse(mydata);
+    } else {
+      mydata = [];
+    }
+    mydata.push(newObj);
+    $window.sessionStorage.setItem(KEY, JSON.stringify(mydata));
+  };
 
-        var getData = function(){
-            var mydata = $window.sessionStorage.getItem(KEY);
-            if (mydata) {
-                mydata = JSON.parse(mydata);
-            }
-            return mydata || [];
-        };
+  var getData = function(){
+    var mydata = $window.sessionStorage.getItem(KEY);
+    if (mydata) {
+      mydata = JSON.parse(mydata);
+    }
+    return mydata || [];
+  };
 
-        return {
-            addData: addData,
-            getData: getData
-        };
-    });
+  return {
+    addData: addData,
+    getData: getData
+  };
+});

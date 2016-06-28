@@ -124,6 +124,21 @@ setInterval(function(){
   </div>
 </header>
 <!-- Post Content -->
+
+<div class="container">
+<div class="row" id="recommendations-section">
+  <!-- <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Save place</a> -->
+  <a ng-click="save(mtl-test)" id="savebtn" class="btn btn-default"><span class="fa fa-user"></span> Save</a>
+  <a ng-click="unsave(mtl-test)" id="unsavebtn" class="btn btn-default"><span class="fa fa-user"></span> Unsave</a>
+
+<a href="http://localhost:8080/auth/facebook" target="_self" class="btn btn-primary"><span class="fa fa-facebook"></span> Log in</a>
+<a href="http://localhost:9000/#/favorite" id="favoritebtn" target="_self" class="btn btn-default"><span class="fa fa-list"></span> Favorite</a>
+<a ng-click="logout()" id="logoutbtn" class="btn btn-default"><span class="fa fa-user"></span> Log out</a>
+
+</div>
+</div>
+
+
 <article>
 
       <div class="container">
