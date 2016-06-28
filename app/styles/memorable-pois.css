@@ -39,7 +39,6 @@ a:focus {
 }
 a img:hover,
 a img:focus {
-  cursor: zoom-in;
 }
 blockquote {
   text-align: left;
@@ -85,9 +84,13 @@ hr{
 /********************NAVIGATION-START***********************/
 
 .navbar-memorable{
-  background-color: #0D0D0D;
-  color:white;
+  /*background-color: #0D0D0D;*/
+  background-color:white;
+  color:black;
   border:none;
+}
+.navbar-memorable a{
+  color:black;
 }
 
 .navbar-memorable .navbar-toggle{
@@ -108,7 +111,7 @@ hr{
 
 .nav-menu a, .nav-menu .text-nav-brand{
   line-height:35px;
-  color:#fff;
+  color:#000;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
@@ -196,8 +199,8 @@ hr{
 }
 
 .active > a{
-  background-color:#5CB85C !important;
-  color:white !important;
+  color:#5CB85C !important;
+  background-color:white !important;
 }
 
 .filter-navbar{
@@ -218,7 +221,7 @@ hr{
 /*******************HEADER-START******************************/
 
 .intro-header {
-  background-color: #808080;
+  background-color: none;
   background-repeat: no-repeat;
   background: top center;
   background-attachment: cover;
@@ -227,7 +230,13 @@ hr{
   background-size: cover;
   -o-background-size: cover;
   margin-bottom: 50px;
-  height: 100vh;
+  height: 50vh;
+}
+
+@media (max-width: 1200px){
+  .intro-header{
+    height:100vh;
+  }
 }
 
 .intro-header-detail{
@@ -281,7 +290,7 @@ hr{
 
   .intro-header .site-heading
   {
-    padding:10vh 0;
+
   }
 }
 
@@ -312,7 +321,7 @@ hr{
 
 
 .site-heading h1{
-  color:#fff;
+  color:#000;
   font-weight: 900;
   font-family: 'Lato', sans-serif;
   letter-spacing: 3px;
@@ -328,16 +337,16 @@ hr{
 }
 
 .site-heading .title-divider{
-  color:white;
+  color:#000;
 }
 .site-heading h2{
 
-  color:#e2e2e2;
+  color:#000;
   padding-top:5vh;
 /*  font-size:30px !important;*/
   letter-spacing:2px;
   font-weight: 300;
-  /*font-size:3em;*/
+  font-size:2em;
   text-align: center;
   padding-bottom:5vh;
 }
@@ -486,6 +495,74 @@ hr{
 /**********************MAIN-VIEW-START*************************/
 
 /**********************LIST-VIEW-START************************/
+
+    .main-filter-ctn{
+      display: inline-block;
+    }
+
+    .main-filter-ctn .main-filter-img{
+      z-index: 99;
+      float:left;
+    }
+
+    .main-filter-ctn a:hover .main-filter-img{
+      filter: grayscale(0%);
+      -webkit-filter: grayscale(0%);
+      transition: .4s;
+    }
+
+    .img-unselected{
+      filter: grayscale(100%);
+      -webkit-filter: grayscale(100%);
+      transition: .4s;
+    }
+
+    .img-selected{
+      filter: grayscale(0%);
+      -webkit-filter: grayscale(0%);
+      transition: .4s;
+    }
+
+    .visible{
+      display:block;
+    }
+
+    .invisible{
+      display:none;
+    }
+
+    .main-filter-ctn h5{
+      z-index:1;
+      float:left;
+      position:absolute;
+      width:95%;
+      text-align: center;
+      top:40%;
+      color:#fff;
+      letter-spacing: 3px;
+      font-weight: 900;
+      font-size:2em;
+    }
+
+    #usecase-tag-row{
+      margin-top:25px;
+    }
+
+  #usecase-tag-row h5{
+      top:35%;
+      font-size:1.3em;
+    }
+
+
+
+
+    .hidden-row{
+      display:block;
+    }
+
+    .display-row{
+      display:block;
+    }
 
     .filter-btns{
       width:85%;
@@ -840,7 +917,7 @@ hr{
   }
 
   .card-cta-btn{
-    width:50%;
+    width:100%;
     position:relative;
     float: left;
     line-height: 50px;
@@ -858,7 +935,12 @@ hr{
     background-color:#2E4151;
   }
   .card-cta-btn-direction{
-    background-color:#374B5E;
+    /*background-color:#374B5E;*/
+    background-color:#0D0D0D;
+  }
+
+  .card-cta-btn a{
+    color:white;
   }
 
   .cta-ctn{
@@ -1156,3 +1238,51 @@ hr{
 #columns:hover .pin:not(:hover) {
 	opacity: 0.4;
 }
+
+/*************** Login Design ************************/
+
+.login-section{
+  margin-top:200px;
+  margin-bottom:200px;
+}
+
+/*************** Blog Design *************************/
+
+.blog-article-ctn{
+  display:inline-block;
+  position:relative;
+  height:400px;
+  width:100%;
+  background-color:red;
+}
+
+  .blog-article-img{
+    width:30%;
+    position:relative;
+    height:100%;
+    padding:5%;
+    float:left;
+    background:green;
+  }
+
+  .blog-article-content{
+    display:block;
+    position:relative;
+    width:70%;
+    height:100%;
+    padding:5%;
+    float:left;
+    background:yellow;
+  }
+
+    .blog-article-content-title{
+
+    }
+
+    .blog-article-content-description{
+
+    }
+
+    .blog-article-content-informations{
+
+    }
