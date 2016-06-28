@@ -9,8 +9,9 @@
  */
 angular.module('memorableAppApp')
   .controller('ListCtrl', function ($scope, $http, srvShareData) {
-
     // ------------- NAVIGATION MANAGEMENT ----------------
+
+
     // nav filter management
     $(window).scroll(function() {
        var hT = $('#cta-hero').offset().top,
@@ -41,7 +42,85 @@ angular.module('memorableAppApp')
       }
     });
 
+
+
+    // ------------- Analytics Goals ----------------
+
+      $(document).on('click', '.direction-btn', function(event){
+        ga('send', 'event', {
+          eventCategory: 'Engagement',
+          eventAction: 'Direction click',
+        });
+
+        ga('send', 'event', {
+          eventCategory: 'Engagement',
+          eventAction: 'Direction or Save click',
+        });
+
+      });
+
+      $(document).on('click', '.save-btn', function(event){
+        ga('send', 'event', {
+          eventCategory: 'Engagement',
+          eventAction: 'Save click',
+        });
+
+        ga('send', 'event', {
+          eventCategory: 'Engagement',
+          eventAction: 'Direction or Save click',
+        });
+      });
+
+      /*$(document).on('click', '.save-btn', function(event){
+              if($(this).hasClass('.display'){
+                $(this).removeClass('.display');
+
+              }
+        });*/
+
+
     // ------------- FILTER USE TAGS ----------------
+
+    $('.main-filter-link').click(function(){
+        if(!$(this).find('> img').hasClass("img-selected")){
+          $('.main-filter-img').addClass("img-unselected");
+          $(this).find('> img').removeClass("img-unselected").addClass("img-selected");
+        } else{
+          $(this).find('> img').removeClass("img-selected").addClass("img-unselected");
+        }
+
+        $('.owl-item').hide();
+
+        if($(this).hasClass('eat-main-filter')){
+          $('.owl-item').has('.eat-tag').show("slow");
+        }
+        if($(this).hasClass('drink-main-filter')){
+          $('.owl-item').has('.drink-tag').show("slow");
+        }
+        if($(this).hasClass('coffee-main-filter')){
+          $('.owl-item').has('.coffee-tag').show("slow");
+        }
+        if($(this).hasClass('shop-main-filter')){
+          $('.owl-item').has('.shop-tag').show("slow");
+        }
+
+
+        /*$(this).removeClass(".img-unselected");*/
+        $( "#usecase-tag-row" ).show("slow");
+        $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin:10,
+            nav:false,
+            items:5
+        });
+
+
+
+    });
+
+
+
+
     $('.filter-todo').click(function(){
       if($(this).hasClass("active")){
         ($(this).removeClass("active"));

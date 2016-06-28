@@ -9,11 +9,11 @@ setInterval(function(){
 })();
 </script> -->
 
-<!-- Page Header -->
-<header class="intro-header" style="background-image: url(images/{{getHomeScreenImage()}})">
-<div class="intro-header-overlay-main">
+<!-- Page Header style="background-image: url(images/{{getHomeScreenImage()}})"  intro-header-overlay-main-->
+<header class="intro-header" >
+<div class="">
   <nav class="navbar navbar-default navbar-fixed-top navbar-memorable">
-  <div class="container-fluid">
+  <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -24,7 +24,7 @@ setInterval(function(){
         <span class="icon-bar visible-filter"></span>-->
         <!--<i class="fa fa-filter invisible-filter" aria-hidden="true"></i>-->
       </button>
-      <a class="navbar-brand" href="#"><img class="logo-nav-brand"src="images/memorable-logo-white-cube.png" alt=""><span class="text-nav-brand navbar-item">memorable</span></a>
+      <a class="navbar-brand" href="#"><img class="logo-nav-brand"src="images/memorable-logo-black-cube.png" alt=""><span class="text-nav-brand navbar-item">memorable</span></a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -107,24 +107,138 @@ setInterval(function(){
                 <div class="site-heading">
                     <h1>A MONTREAL Insider guide</h1>
                     <span class="title-divider"></span>
-                    <h2 class="subheading">I want to
-                          <a data-toggle="modal" data-target="#modal-fullscreen-category" href="#modal-fullscreen">{{search}}<i class="fa fa-angle-down"></i></a><br>
-                        <!--  & <a data-toggle="modal" data-target="#modal-fullscreen-category" href="#modal-fullscreen">Drink Cocktail <i class="fa fa-angle-down"></i></a><br>
+                    <h2 class="subheading">Inspired by the experiences of passionate locals, foodies, chefs, critics, fashionistas & travelers.
+                          <!--  <a data-toggle="modal" data-target="#modal-fullscreen-category" href="#modal-fullscreen">{{search}}<i class="fa fa-angle-down"></i></a><br>
+                        & <a data-toggle="modal" data-target="#modal-fullscreen-category" href="#modal-fullscreen">Drink Cocktail <i class="fa fa-angle-down"></i></a><br>
                           & <a data-toggle="modal" data-target="#modal-fullscreen-category" href="#modal-fullscreen">Shop in speciality stores <i class="fa fa-angle-down"></i></a><br>
               -->  </div>
           </div>
         </div>
-        <div class="row">
+        <!--<div class="row">
             <div class="col-lg-2 col-lg-offset-5">
                 <a id="cta-hero" href="#recommendations-section"><div class="btn-cta-header">Search</div></a>
           </div>
-        </div>
+        </div>-->
 
 </div>
   </div>
 </header>
 <!-- Post Content -->
 <article>
+
+      <div class="container">
+        <div class="row" id="main-filter-row">
+          <div class="col-lg-3 col-xs-2 main-filter-ctn">
+          <a class="main-filter-link eat-main-filter" href="">
+            <img src="images/eat-main-filter.jpg" class="img-responsive main-filter-img" alt="Responsive image">
+            <h5>EAT</h5>
+          </img>
+          </a>
+          </div>
+          <div class="col-lg-3 col-xs-2 main-filter-ctn">
+            <a class="main-filter-link drink-main-filter" href="">
+            <img src="images/drink-main-filter.jpg" class="img-responsive main-filter-img" alt="Responsive image">
+            <h5>DRINK</h5>
+          </img>
+          </a>
+          </div>
+          <div class="col-lg-3 col-xs-2 main-filter-ctn">
+            <a class="main-filter-link coffee-main-filter" href="">
+            <img src="images/coffee-main-filter.jpg" class="img-responsive main-filter-img" alt="Responsive image">
+            <h5>COFFEE</h5>
+          </img>
+          </a>
+          </div>
+          <div class="col-lg-3 col-xs-2 main-filter-ctn">
+            <a class="main-filter-link shop-main-filter" href="">
+            <img src="images/shop-main-filter.jpg" class="img-responsive main-filter-img img-unselected" alt="Responsive image">
+            <h5>SHOP</h5>
+          </img>
+          </a>
+          </div>
+        </div>
+
+        <div class="row hidden-row" id="usecase-tag-row">
+          <div class="owl-carousel">
+            <div class="main-filter-ctn item eat-tag">
+              <img class="" src="images/brunch-tag.jpg" alt="Responsive image">
+              <h5>BRUNCH</h5>
+            </img>
+            </div>
+            <div class="main-filter-ctn item eat-tag coffee-tag">
+              <img class="" src="images/sweets-tag.jpg" alt="Responsive image">
+              <h5>SWEETS</h5>
+            </img>
+            </div>
+            <div class="main-filter-ctn item eat-tag">
+              <img class="" src="images/small-bites.jpg" alt="Responsive image">
+              <h5>SMALL BITES</h5>
+            </img>
+            </div>
+            <div class="main-filter-ctn item eat-tag">
+              <img class="" src="images/vegan-tag.jpg" alt="Responsive image">
+              <h5>VEGETARIAN VEGAN</h5>
+            </img>
+            </div>
+            <div class="main-filter-ctn item eat-tag drink-tag">
+              <img class="" src="images/healthy-tag.jpg" alt="Responsive image">
+              <h5>HEALTHY FOOD/DRINK</h5>
+            </img>
+            </div>
+            <div class="main-filter-ctn item coffee-tag">
+              <img class="" src="images/coffee-tag.jpg" alt="Responsive image">
+              <h5>COFFEE</h5>
+            </img>
+            </div>
+            <div class="main-filter-ctn item eat-tag coffee-tag">
+              <img class="" src="images/tea-tag.jpg" alt="Responsive image">
+              <h5>TEA</h5>
+            </img>
+            </div>
+            <div class="main-filter-ctn item drink-tag">
+              <img class="" src="images/cocktail-tag.jpg" alt="Responsive image">
+              <h5>COCKTAIL</h5>
+            </img>
+            </div>
+            <div class="main-filter-ctn item drink-tag">
+              <img class="" src="images/wine-tag.jpg" alt="Responsive image">
+              <h5>WINE</h5>
+            </img>
+            </div>
+            <div class="main-filter-ctn item drink-tag">
+              <img class="" src="images/beer-tag.jpg" alt="Responsive image">
+              <h5>BEER</h5>
+            </img>
+            </div>
+            <div class="main-filter-ctn item eat-tag drink-tag">
+              <img class="" src="images/terasse-tag.jpg" alt="Responsive image">
+              <h5>TERASSE</h5>
+            </img>
+            </div>
+            <div class="main-filter-ctn item drink-tag">
+              <img class="" class="" src="images/dance-tag.jpg" alt="Responsive image">
+              <h5>DANCE</h5>
+            </img>
+            </div>
+            <div class="main-filter-ctn item shop-tag">
+              <img class="" src="images/clothing-tag.jpg" alt="Responsive image">
+              <h5>CLOTHING</h5>
+            </img>
+            </div>
+            <div class="main-filter-ctn item shop-tag">
+              <img class="" src="images/food-drink-shop-tag.jpg" alt="Responsive image">
+              <h5>FOOD/DRINK SHOP</h5>
+            </img>
+            </div>
+            <div class="main-filter-ctn item shop-tag">
+              <img class="" src="images/special-store-tag.jpg" alt="Responsive image">
+              <h5>SPECIAL STORE</h5>
+            </img>
+            </div>
+          </div>
+
+        </div>
+      </div>
 
       <div class="container">
           <div class="row" id="recommendations-section">
@@ -135,8 +249,12 @@ setInterval(function(){
 
         <!-- feed cards section -->
         <div class="row" id="recommendation-feed">
-          <!-- card -->
-            <div ng-repeat="item in items | limitTo:limit" class="col-lg-4">
+
+          <div id="wrapper">
+            <div id="columns">
+          <!-- card class="col-lg-4" -->
+            <div ng-repeat="item in items | limitTo:limit" >
+
               <div class="poi-card">
                 <a href="https://memorable.io/detail/{{item.establishement_name_id}}#TOP" ng-click="shareMyData()">
                   <div class="img-ctn" style="background-image: url('images/{{item.establishement_name_id}}.jpg')">
@@ -151,6 +269,10 @@ setInterval(function(){
               					<h4><a href="https://memorable.io/detail/{{item.establishement_name_id}}#TOP">{{item.establishement_name}}</a></h4>
               		<span class="title-divider"></span>
               	</div>
+                <div class="influencer-ctn">
+                  <p class="influencer-quote">{{item.influencer1_quote_text}}</p>
+                  <p class="influencer-info">{{item.influencer1_name}}, <a href="{{item.influencer1_article_url}}">{{item.influencer1_publisher_name}}</a></p>
+                </div>
                 <div class="info-ctn">
                   <div class="info-p">
                     {{getPriceWithFormated(item.establishement_pricerange)}}
@@ -163,10 +285,19 @@ setInterval(function(){
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                     {{item.timeAlert}} {{getTimeName()}}
                   </div>
-
-
+                </div>
+                <div class="card-cta-ctn">
+                  <!--<div class="card-cta-btn card-cta-btn-save">
+                    <div class="card-cta-txt "><a class="save-btn" href="#">SAVE</a></div>
+                  </div>-->
+                  <div class="card-cta-btn card-cta-btn-direction">
+                    <div class="card-cta-txt "><a class="direction-btn" href="{{item.establishement_gmap_url}}" target="_blank">DIRECTIONS</a></div>
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
+
             </div>
 
       </div>
