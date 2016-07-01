@@ -1,0 +1,44 @@
+{
+	"items" : [
+		{
+			"img": "images/sweets-tag.jpg",
+			"alt" : "Owl Image 1",
+      "id" : "sweet"
+		},
+		{
+			"img": "images/small-bites.jpg",
+			"alt" : "Owl Image 2",
+      "id" : "quick"
+		},
+		{
+			"img": "images/vegan-tag.jpg",
+			"alt" : "Owl Image 1",
+      "id" : "veg"
+		},
+		{
+			"img": "images/healthy-tag.jpg",
+			"alt" : "Owl Image 2",
+      "id" : "heal"
+		},
+    {
+			"img": "images/sweets-tag.jpg",
+			"alt" : "Owl Image 1",
+      "id" : "sweet"
+		},
+		{
+			"img": "images/small-bites.jpg",
+			"alt" : "Owl Image 2",
+      "id" : "quick"
+		},
+		{
+			"img": "images/vegan-tag.jpg",
+			"alt" : "Owl Image 1",
+      "id" : "veg"
+		},
+		{
+			"img": "images/healthy-tag.jpg",
+			"alt" : "Owl Image 2",
+      "id" : "heal"
+		}
+	]
+}

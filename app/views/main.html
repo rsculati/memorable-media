@@ -24,7 +24,7 @@
             <span class="icon-bar visible-filter"></span>-->
             <!--<i class="fa fa-filter invisible-filter" aria-hidden="true"></i>-->
           </button>
-          <a class="navbar-brand" href="/"><img class="logo-nav-brand"src="images/memorable-logo-white-cube.png" alt=""><span class="text-nav-brand navbar-item">memorable</span></a>
+          <a class="navbar-brand" href="/"><img class="logo-nav-brand"src="images/memorable-logo-black-cube.png" alt=""><span class="text-nav-brand navbar-item">memorable</span></a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -196,12 +196,11 @@
         </div>
       <div class="row">
         <div ng-repeat="item in session" class="col-lg-4">
-          <div class="poi-card">
+          <!-- <div class="poi-card">
             <a href="https://memorable.io/detail/{{item.establishement_name_id}}#TOP" ng-click="shareMyData()">
               <div class="img-ctn" style="background-image: url('images/{{item.establishement_name_id}}.jpg')">
                 <div class="img-ptrn-">
                   <div class="img-h1">
-                    <!-- {{item.establishement_name}} -->
                   </div>
                 </div>
               </div>
@@ -223,7 +222,47 @@
                 {{item.timeAlert}}
               </div>
             </div>
+          </div> -->
+          <div class="poi-card">
+            <a href="https://memorable.io/detail/{{item.establishement_name_id}}#TOP" ng-click="shareMyData()">
+              <div class="img-ctn" style="background-image: url('images/{{item.establishement_name_id}}.jpg')">
+                <div class="img-ptrn-">
+                  <div class="img-h1">
+                    <!-- {{item.establishement_name}} -->
+                  </div>
+                </div>
+              </div>
+            </a>
+            <div class="post-header">
+              <h4><a href="https://memorable.io/detail/{{item.establishement_name_id}}#TOP">{{item.establishement_name}}</a></h4>
+              <span class="title-divider"></span>
+            </div>
+            <div class="influencer-ctn">
+              <p class="influencer-quote">{{item.influencer1_quote_text}}</p>
+              <p class="influencer-info">{{item.influencer1_name}}, <a href="{{item.influencer1_article_url}}">{{item.influencer1_publisher_name}}</a></p>
+            </div>
+            <div class="info-ctn">
+              <div class="info-p">
+                {{getPriceWithFormated(item.establishement_pricerange)}}
+              </div>
+              <div class="info-p">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                {{getDistance(item.distance, item)}}
+              </div>
+              <div class="info-p">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                {{item.timeAlert}} {{getTimeName()}}
+              </div>
+            </div>
+            <div class="card-cta-ctn">
+              <!--<div class="card-cta-btn card-cta-btn-save">
+              <div class="card-cta-txt "><a class="save-btn" href="#">SAVE</a></div>
+            </div>-->
+            <div class="card-cta-btn card-cta-btn-direction">
+              <div class="card-cta-txt "><a class="direction-btn" href="{{item.establishement_gmap_url}}" target="_blank">DIRECTIONS</a></div>
+            </div>
           </div>
+        </div>
       </div>
 
       </div>
