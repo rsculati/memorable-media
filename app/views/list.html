@@ -28,73 +28,7 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-center">
-            <li class="filter-navbar navbar-item dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Things to Do<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <!-- <li class="filter-todo" id="any" ><a>Any Recommendation</a></li> -->
-                <li></li>
-                <li class="filter-todo" id="eat"><a><i class="fa fa-cutlery" aria-hidden="true"></i> Eat</a></li>
-                <li class="filter-todo" id="drink"><a><i class="fa fa-glass" aria-hidden="true"></i> Drink</a></li>
-                <li class="filter-todo" id="shop"><a><i class="fa fa-gift" aria-hidden="true"></i> Shop</a></li>
-                <li></li>
-                <li class="filter-todo" id="brunch"><a><i class="fa fa-cutlery" aria-hidden="true"></i> Brunch</a></li>
-                <li class="filter-todo" id="sweet"><a><i class="fa fa-cutlery" aria-hidden="true"></i> Sweet</a></li>
-                <li class="filter-todo" id="quick"><a><i class="fa fa-cutlery" aria-hidden="true"></i> Quickly</a></li>
-                <li class="filter-todo" id="veg"><a><i class="fa fa-cutlery" aria-hidden="true"></i> Vegetarian or Vegan</a></li>
-                <li class="filter-todo" id="heal"><a><i class="fa fa-cutlery icon-exception" aria-hidden="true"></i> or <i class="fa fa-coffee" aria-hidden="true"></i> Healthy</a></li>
-                <li></li>
-                <li class="filter-todo" id="cafe"><a><i class="fa fa-coffee" aria-hidden="true"></i> Coffee</a></li>
-                <li class="filter-todo" id="tea"><a><i class="fa fa-coffee" aria-hidden="true"></i> Tea</a></li>
-                <li class="filter-todo" id="cocktail"><a><i class="fa fa-glass" aria-hidden="true"></i> Cocktail</a></li>
-                <li class="filter-todo" id="wine"><a><i class="fa fa-glass" aria-hidden="true"></i> Wine</a></li>
-                <li class="filter-todo" id="beer"><a><i class="fa fa-beer" aria-hidden="true"></i> beer</a></li>
-                <li class="filter-todo" id="terrace"><a><i class="fa fa-sun-o" aria-hidden="true"></i> Relax on a terasse</a></li>
-                <li class="filter-todo" id="dance"><a><i class="fa fa-moon-o" aria-hidden="true"></i> Go dancing</a></li>
-                <li></li>
-                <li class="filter-todo" id="special"><a><i class="fa fa-gift" aria-hidden="true"></i> Try something special</a></li>
-                <li class="filter-todo" id="clotheshop"><a><i class="fa fa-gift" aria-hidden="true"></i> Shop for clothes</a></li>
-                <li class="filter-todo" id="foodshop"><a><i class="fa fa-gift" aria-hidden="true"></i> Shop for speciality food & drink</a></li>
-                <li class="filter-todo" id="specialshop"><a><i class="fa fa-gift" aria-hidden="true"></i> Shop at a special store</a></li>
-              </ul>
-            </li>
-            <li class="filter-navbar navbar-item dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Location<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li class="filter-location" id="you"><a>Near Me</a></li>
-                <!-- <li><a>Anywhere in Montreal</a></li> -->
-                <li class="filter-location" id="mile-end"><a>Mile-End</a></li>
-                <li class="filter-location" id="plateau"><a>Plateau</a></li>
-                <li class="filter-location" id="downtown"><a>Downtown</a></li>
-                <li class="filter-location" id="village"><a>Quartier des Spectacles & Village</a></li>
-                <li class="filter-location" id="old-port"><a>Old Port</a></li>
-                <li class="filter-location" id="westmount"><a>Westmount & NDG</a></li>
-                <li class="filter-location" id="little-italy"><a>Little Italy</a></li>
-                <li class="filter-location" id="sud-ouest"><a>Sud-Ouest</a></li>
-              </ul>
-            </li>
-            <li class="filter-navbar dropdown navbar-item">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Price<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li class="filter-price" id="$" ><a>$ - inexpensive</a></li>
-                <li class="filter-price" id="$$"><a>$$ - moderate</a></li>
-                <li class="filter-price" id="$$$"><a>$$$ - pricey</a></li>
-                <li class="filter-price" id="$$$$"><a>$$$$ - ultra high-end</a></li>
-              </ul>
-            </li>
-            <li class="filter-navbar navbar-item dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opening Hours <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li class="filter-time" id="now"><a>Open Now</a></li>
-                <li class="filter-time" id="9.5"><a>Morning</a></li>
-                <li class="filter-time" id="12.5"><a>Lunch</a></li>
-                <li class="filter-time" id="15"><a>Afternoon</a></li>
-                <li class="filter-time" id="17.5"><a>5 à 7</a></li>
-                <li class="filter-time" id="19"><a>Dinner</a></li>
-                <li class="filter-time" id="23"><a>Late Night</a></li>
-              </ul>
-            </li>
-          </ul>
+
           <ul class="nav navbar-nav navbar-item navbar-right">
             <li class="active"><a href="http://m.me/memorablemtl" target="_blank"><img class="logo-nav-brand"src="images/messenger.png" alt=""> Get suggestions via chat</a></li>
           </ul>
@@ -162,7 +96,7 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
 <div class="row" id="usecase-tag-row">
   <div class="col-md-12">
     <data-owl-carousel class="owl-carousel" data-options="{navigation: false, pagination: true, rewindNav : false,
-      items:5,pagination : true, paginationNumbers: false}">
+      items:5,pagination : true, paginationNumbers: false, itemsMobile: [479,3], itemsTablet : [768,3]}">
       <div owl-carousel-item="" ng-repeat="item in filterData" class="items main-filter-ctn filter-btns" data-owl-carousel>
         <div class="{{item.category}}" >
           <a ng-click="filterTag(item.id, item.category)">
@@ -190,7 +124,7 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
     <div class="col-lg-12 col-xs-12">
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Price range
+          {{selectedPrice}}
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -202,7 +136,7 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
     </div>
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Location
+          {{selectedLocation}}
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownMenu1">
@@ -220,7 +154,7 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
       </div>
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Opening hours
+          {{selectedHours}}
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
@@ -274,7 +208,8 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
               </div>
               <div class="info-p">
                 <i class="fa fa-clock-o" aria-hidden="true"></i>
-                {{item.timeAlert}} {{getTimeName()}}
+                {{item.timeAlert}}
+                <!-- {{getTimeName()}} -->
               </div>
             </div>
             <div class="card-cta-ctn">
@@ -282,7 +217,7 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
               <div class="card-cta-txt "><a class="save-btn" href="#">SAVE</a></div>
             </div>-->
             <div class="card-cta-btn card-cta-btn-direction">
-              <div class="card-cta-txt "><a class="direction-btn" href="{{item.establishement_gmap_url}}" target="_blank">DIRECTIONS</a></div>
+              <div class="card-cta-txt "><a class="direction-btn direction-kpi" href="{{item.establishement_gmap_url}}" target="_blank">DIRECTIONS</a></div>
             </div>
           </div>
         </div>

@@ -560,6 +560,16 @@ hr{
       font-weight: 900;
       font-size:2em;
     }
+
+    #usecase-tag-row{
+      margin-top:25px;
+    }
+
+  #usecase-tag-row h5{
+      margin-top: -8px;
+      font-size:1.3em;
+    }
+
   @media (max-width: 1200px) {
 
     .site-heading h2{
@@ -585,16 +595,14 @@ hr{
     .main-filter-ctn h5{
       font-size:1.5em;
     }
+
+    #usecase-tag-row h5{
+        top:35%;
+        font-size:0.7em;
+    }
   }
 
-    #usecase-tag-row{
-      margin-top:25px;
-    }
 
-  #usecase-tag-row h5{
-      top:35%;
-      font-size:1.3em;
-    }
 
 
     .hidden-row{
@@ -657,7 +665,7 @@ hr{
 
     .fixed-filter {
       position: fixed;
-      top:25px;
+      top:20px;
       background-color: white;
       z-index: 1;
     }
@@ -983,7 +991,7 @@ hr{
   }
 
   .influencer-info{
-    font-size:0.7em;
+    font-size:0.8em;
     text-align: right;
     font-style: italic;
   }
@@ -1003,7 +1011,7 @@ hr{
       color:#545454;
       position:relative;
       font-weight:400;
-      font-size:0.7em;
+      font-size:0.9em;
       width:33%;
       float:left;
     }
