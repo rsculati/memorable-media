@@ -221,7 +221,7 @@ function getObjectsWithHourScore(obj,time,day) {
                 obj[i].timeAlert = "Closing soon";
               }
             }
-            console.log(obj[i].establishement_name + " : " + schedule[y][0] + "-"+schedule[y][1] + " : "  + time + " : " + open);
+            // console.log(obj[i].establishement_name + " : " + schedule[y][0] + "-"+schedule[y][1] + " : "  + time + " : " + open);
           }
         }
       }
@@ -259,7 +259,7 @@ function getObjectsFromCriteria(obj, criteria, value) {
 // get search formated
 function getSearchFormated(search){
   var formated = "";
-  var tagArray = search.split(',');
+  var tagArray = search; //search.split(',');
   var arrEat = [];
   var arrDrink = [];
   var arrShop = [];
@@ -498,7 +498,7 @@ function getFormatedLocation(location){
 // return a main category depending on use tag
 function getMainCategory(tag) {
 
-  var tagArray = tag.split(',');
+  var tagArray = tag;  //tag.split(',');
   var c_eat = 0 , c_coffee = 0 , c_drink = 0 , c_shop = 0 ;
   for(var i = 0 ; i < tagArray.length; i++) {
     switch (tagArray[i]) {
