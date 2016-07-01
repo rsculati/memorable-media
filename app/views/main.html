@@ -17,7 +17,7 @@
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button href="{{item.establishement_gmap_url}}" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <button href="{{item.establishement_gmap_url}}" type="button" class="navbar-toggle collapsed direction-kpi" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span class="icon-menu visible-filter">Get Directions</span>
             <!--<span class="icon-bar visible-filter"></span>
             <span class="icon-bar visible-filter"></span>
@@ -34,11 +34,34 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-memorable">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="icon-menu visible-filter">Menu</span>
+            <span class="icon-filter invisible-filter">Filters</span>
+            <!--<span class="icon-bar visible-filter"></span>
+            <span class="icon-bar visible-filter"></span>
+            <span class="icon-bar visible-filter"></span>-->
+            <!--<i class="fa fa-filter invisible-filter" aria-hidden="true"></i>-->
+          </button>
+          <a class="navbar-brand" href="#"><img class="logo-nav-brand"src="images/memorable-logo-black-cube.png" alt=""><span class="text-nav-brand navbar-item">memorable</span></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+          <ul class="nav navbar-nav navbar-item navbar-right">
+          <li class="active"><a href="{{item.establishement_gmap_url}}" target="_blank">Get Directions</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
   <div class="container">
       <div class="row title-center">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
               <div class="post-heading text-center">
-                  <h1>{{item.establishement_name}}</h1>
+                  <h1 style="font-size: 4em">{{item.establishement_name}}</h1>
               </div>
           </div>
       </div>
@@ -90,42 +113,49 @@
           </div>
 
         <div class="row">
-            <div class="col-lg-4 col-md-5">
+          <div class="col-lg-6 col-md-5">
+            <div class="col-lg-12">
               <h4 class="text-center" style="">Price</h4>
                 <span class="title-divider" style="color: #fff"></span>
-                <p class="text-center"><span class="colored" style="color:#ab6948">{{item.establishement_pricerange}}</span></p>
+                <p class="text-center"><span class="colored" style="color:#ab6948">{{getPriceWithFormated(item.establishement_pricerange)}}</span></p>
             </div>
-            <div class="col-lg-4 col-md-5">
+            <div class="col-lg-12">
                 <h4 class="text-center">Location</h4>
                 <span class="title-divider" style="color: #fff"></span>
-                <p class="text-center"><a href="{{item.establishement_gmap_url}}"><span class="colored" style="color:#ab6948">{{item.establishement_address}}</span></a></p>
+                <p class="text-center"><a class="direction-kpi" href="{{item.establishement_gmap_url}}" target="_blank"><span class="colored" style="color:#ab6948">{{item.establishement_address}}</span></a></p>
             </div>
 
-            <div class="col-lg-4 col-md-5">
+            <div class="col-lg-12">
                 <h4 class="text-center">Website</h4>
                 <span class="title-divider" style="color: #fff"></span>
                 <p class="text-center"><a href="{{item.establishement_website_url}}"><span class="colored" style="color:#ab6948">{{item.establishement_website_url}}</span></a></p>
             </div>
           </div>
+          <div class="col-lg-6 col-md-5">
+
+          </div>
+
+
           <div class="row">
             <div class="col-lg-4 col-md-5">
                 <h4 class="text-center">Opening Hours</h4>
                 <span class="title-divider" style="color: #fff"></span>
                 <div class="row">
                   <div class="col-lg-6 col-md-5">
-                    <p class="text-center"><span class="colored" style="color:#ab6948">Monday : {{getDayFormated(item.monday)}}</span></p>
-                    <p class="text-center"><span class="colored" style="color:#ab6948">Tuesday : {{getDayFormated(item.tuesday)}}</span></p>
-                    <p class="text-center"><span class="colored" style="color:#ab6948" >Wednesday : {{getDayFormated(item.wednesday)}}</span></p>
-                    <p class="text-center"><span class="colored" style="color:#ab6948">Thursday : {{getDayFormated(item.thursday)}}</span></p>
+                    <p class="text-center"><span class="colored" style="color:#ab6948">Mon : {{getDayFormated(item.monday)}}</span></p>
+                    <p class="text-center"><span class="colored" style="color:#ab6948">Tue : {{getDayFormated(item.tuesday)}}</span></p>
+                    <p class="text-center"><span class="colored" style="color:#ab6948" >Wed : {{getDayFormated(item.wednesday)}}</span></p>
+                    <p class="text-center"><span class="colored" style="color:#ab6948">Thu : {{getDayFormated(item.thursday)}}</span></p>
                   </div>
                   <div class="col-lg-6 col-md-5">
-                    <p class="text-center"><span class="colored" style="color:#ab6948">Friday : {{getDayFormated(item.friday)}}</span></p>
-                    <p class="text-center"><span class="colored" style="color:#ab6948">Saturday : {{getDayFormated(item.saturday)}}</span></p>
-                    <p class="text-center"><span class="colored" style="color:#ab6948">Sunday : {{getDayFormated(item.sunday)}}</span></p>
+                    <p class="text-center"><span class="colored" style="color:#ab6948">Fri : {{getDayFormated(item.friday)}}</span></p>
+                    <p class="text-center"><span class="colored" style="color:#ab6948">Sat : {{getDayFormated(item.saturday)}}</span></p>
+                    <p class="text-center"><span class="colored" style="color:#ab6948">Sun : {{getDayFormated(item.sunday)}}</span></p>
                   </div>
                 </div>
 
 
+              </div>
             </div>
             <!-- <div class="col-lg-4 col-md-5">
                 <h4 class="text-center">Menu</h4>
@@ -259,7 +289,7 @@
               <div class="card-cta-txt "><a class="save-btn" href="#">SAVE</a></div>
             </div>-->
             <div class="card-cta-btn card-cta-btn-direction">
-              <div class="card-cta-txt "><a class="direction-btn" href="{{item.establishement_gmap_url}}" target="_blank">DIRECTIONS</a></div>
+              <div class="card-cta-txt "><a class="direction-btn direction-kpi" href="{{item.establishement_gmap_url}}" target="_blank">DIRECTIONS</a></div>
             </div>
           </div>
         </div>

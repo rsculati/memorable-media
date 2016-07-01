@@ -33,6 +33,10 @@ angular.module('memorableAppApp')
       scrollTop: $("body").offset().top
   }, 0);
 
+  $scope.selectedPrice = "Price range";
+  $scope.selectedLocation = "Location";
+  $scope.selectedHours = "Opening hours";
+
   $scope.firstRun = false;
 
   $scope.carouselData =[
@@ -221,6 +225,7 @@ angular.module('memorableAppApp')
   // ------------- Analytics Goals ----------------
 
   $(document).on('click', '.direction-btn', function(event){
+
     ga('send', 'event', {
       eventCategory: 'Engagement',
       eventAction: 'Direction click',
@@ -295,6 +300,8 @@ $('.filter-price').click(function(){
   var day = getday(d);
   var hour = d.getHours();
 
+  $scope.selectedPrice = getPriceFormated($(this).attr("id"));
+
   var session = srvShareData.getData();
   if(typeof session[0] !== 'undefined'){
     updateList($(this).attr("id"),session[0][1],session[0][2],session[0][3],session[0][4]);
@@ -318,6 +325,8 @@ $('.filter-time').click(function(){
     $scope.time = hour;
   }
 
+  $scope.selectedHours = getTimeName($(this).attr("id"));
+
   var session = srvShareData.getData();
   if(typeof session[0] !== 'undefined'){
     updateList(session[0][0],session[0][1],session[0][2],hour,session[0][4]);
@@ -331,6 +340,8 @@ $('.filter-time').click(function(){
 $('.filter-location').click(function(){
   $('.filter-location').removeClass("active");
   $(this).addClass("active");
+
+  $scope.selectedLocation = getFormatedLocation($(this).attr("id"));
 
   var d = new Date(); // for now
   var day = getday(d);
@@ -422,6 +433,7 @@ $scope.getHomeScreenImage = function () {
 
 $scope.getPriceWithFormated = function (price) {
   return getPriceFormated(price);
+
 }
 
 // ------------- DISPLAY DISTANCE ----------------
