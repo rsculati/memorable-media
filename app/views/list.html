@@ -128,28 +128,28 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
 
   <div class="container">
     <div class="row" id="main-filter-row">
-      <div class="col-lg-3 col-xs-2 main-filter-ctn">
+      <div class="col-lg-3 col-md-3 col-xs-6 main-filter-ctn">
         <a class="main-filter-link eat-main-filter" ng-click="refreshData('eat')">
           <img id="main-eat" src="images/eat-main-filter.jpg" class="img-responsive main-filter-img" alt="Responsive image">
           <h5>EAT</h5>
         </img>
       </a>
     </div>
-    <div class="col-lg-3 col-xs-2 main-filter-ctn">
+    <div class="col-lg-3 col-md-3 col-xs-6 main-filter-ctn">
       <a class="main-filter-link drink-main-filter" ng-click="refreshData('drink')">
         <img id="main-drink" src="images/drink-main-filter.jpg" class="img-responsive main-filter-img" alt="Responsive image">
         <h5>DRINK</h5>
       </img>
     </a>
   </div>
-  <div class="col-lg-3 col-xs-2 main-filter-ctn">
+  <div class="col-lg-3 col-md-3 col-xs-6 main-filter-ctn">
     <a class="main-filter-link coffee-main-filter" ng-click="refreshData('coffee')">
       <img id="main-coffee" src="images/coffee-main-filter.jpg" class="img-responsive main-filter-img" alt="Responsive image">
       <h5>COFFEE</h5>
     </img>
   </a>
 </div>
-<div class="col-lg-3 col-xs-2 main-filter-ctn">
+<div class="col-lg-3 col-md-3 col-xs-6 main-filter-ctn">
   <a class="main-filter-link shop-main-filter" ng-click="refreshData('shop')">
     <img id="main-shop" src="images/shop-main-filter.jpg" class="img-responsive main-filter-img img-unselected" alt="Responsive image">
     <h5>SHOP</h5>
@@ -187,7 +187,7 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
   </div>
 
   <div class="row" id="secondary-filter">
-    <div class="col-lg-4 col-xs-4">
+    <div class="col-lg-12 col-xs-12">
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           Price range
@@ -199,35 +199,31 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
           <li class="filter-price" id="$$$"><a>$$$ - pricey</a></li>
           <li class="filter-price" id="$$$$"><a>$$$$ - ultra high-end</a></li>
         </ul>
-      </div>
     </div>
-    <div class="col-lg-4 col-xs-4">
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           Location
           <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownMenu1">
           <li class="filter-location" id="you"><a>Near Me</a></li>
           <!-- <li><a>Anywhere in Montreal</a></li> -->
           <li class="filter-location" id="mile-end"><a>Mile-End</a></li>
           <li class="filter-location" id="plateau"><a>Plateau</a></li>
           <li class="filter-location" id="downtown"><a>Downtown</a></li>
-          <li class="filter-location" id="village"><a>Quartier des Spectacles & Village</a></li>
+          <li class="filter-location" id="village"><a>Village</a></li>
           <li class="filter-location" id="old-port"><a>Old Port</a></li>
           <li class="filter-location" id="westmount"><a>Westmount & NDG</a></li>
           <li class="filter-location" id="little-italy"><a>Little Italy</a></li>
           <li class="filter-location" id="sud-ouest"><a>Sud-Ouest</a></li>
         </ul>
       </div>
-    </div>
-    <div class="col-lg-4 col-xs-4">
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           Opening hours
           <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
           <li class="filter-time" id="now"><a>Open Now</a></li>
           <li class="filter-time" id="9.5"><a>Morning</a></li>
           <li class="filter-time" id="12.5"><a>Lunch</a></li>
@@ -236,7 +232,7 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
           <li class="filter-time" id="19"><a>Dinner</a></li>
           <li class="filter-time" id="23"><a>Late Night</a></li>
         </ul>
-      </div>
+    </div>
     </div>
   </div>
   ​
