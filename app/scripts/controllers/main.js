@@ -41,7 +41,42 @@ angular.module('memorableAppApp')
       if(day == "-"){
         return "closed";
       }
-      return day;
+      // "11.5-15,17.5-23",
+      //
+      var result = "";
+      var temp_result = "";
+      if (typeof day != typeof undefined) {
+        var arraySchedule = day.split(',');
+        for(var i = 0 ; i < arraySchedule.length; i++) {
+
+          var array = arraySchedule[i].split('-');
+          for(var y = 0 ; y < array.length; y++) {
+            var numberArray = array[y].split('.');
+
+            var decimal = numberArray[0]
+            var float = "00";
+            if (typeof numberArray[1] != typeof undefined) {
+              float = numberArray[1];
+              float = "0." + float;
+              float = parseFloat(float);
+              float = float * 60;
+              console.log(float);
+            }
+
+            if(decimal < 10){
+              decimal = "0"+decimal;
+            }
+            var temp = decimal + ":" + float + "-";
+            temp_result = temp_result + temp;
+          }
+          temp_result = temp_result.substring(0,temp_result.length-1)
+          // console.log(temp_result);
+          temp_result = temp_result + ", ";
+        }
+
+      }
+      var length = temp_result.length;
+      return temp_result.substring(0, length-2) ;
     }
 
     $scope.getPriceWithFormated = function (price) {
@@ -81,67 +116,67 @@ angular.module('memorableAppApp')
       // param1 avec l'unique ID correspondant. (temporaire)
 
       var param1 = $routeParams.param1;
-
-      if(param1 == 14) {
-        param1 = "mtl-fantome";
-      }
-      if(param1 == 33) {
-        param1 = "mtl-jatoba";
-      }
-      if(param1 == 2) {
-        param1 = "mtl-olivegourmando";
-      }
-      if(param1 == 39) {
-        param1 = "mtl-squaredominion";
-      }
-      if(param1 == 53) {
-        param1 = "mtl-unicorn";
-      }
-      if(param1 == 0) {
-        param1 = "mtl-piedcochn";
-      }
-      if(param1 == 44) {
-        param1 = "mtl-salondaome";
-      }
-      if(param1 == 50) {
-        param1 = "mtl-m0851";
-      }
-      if(param1 == 16) {
-        param1 = "mtl-lab";
-      }
-      if(param1 == 41) {
-        param1 = "mtl-cafeplume";
-      }
-      if(param1 == 31) {
-        param1 = "mtl-distillerie";
-      }
-      if(param1 == 12) {
-        param1 = "mtl-patricepatissier";
-      }
-      if(param1 == 13) {
-        param1 = "mtl-viceversa";
-      }
-      if(param1 == 29) {
-        param1 = "mtl-dispatch";
-      }
-      if(param1 == 36) {
-        param1 = "mtl-buvettesimone";
-      }
-      if(param1 == 46) {
-        param1 = "mtl-kitsune";
-      }
-      if(param1 == 26) {
-        param1 = "mtl-pullman";
-      }
-      if(param1 == 18) {
-        param1 = "mtl-pikoloexpressobar";
-      }
-      if(param1 == 32) {
-        param1 = "mtl-sparrow";
-      }
-      if(param1 == 46) {
-        param1 = "mtl-kitsune";
-      }
+      // 
+      // if(param1 == 14) {
+      //   param1 = "mtl-fantome";
+      // }
+      // if(param1 == 33) {
+      //   param1 = "mtl-jatoba";
+      // }
+      // if(param1 == 2) {
+      //   param1 = "mtl-olivegourmando";
+      // }
+      // if(param1 == 39) {
+      //   param1 = "mtl-squaredominion";
+      // }
+      // if(param1 == 53) {
+      //   param1 = "mtl-unicorn";
+      // }
+      // if(param1 == 0) {
+      //   param1 = "mtl-piedcochn";
+      // }
+      // if(param1 == 44) {
+      //   param1 = "mtl-salondaome";
+      // }
+      // if(param1 == 50) {
+      //   param1 = "mtl-m0851";
+      // }
+      // if(param1 == 16) {
+      //   param1 = "mtl-lab";
+      // }
+      // if(param1 == 41) {
+      //   param1 = "mtl-cafeplume";
+      // }
+      // if(param1 == 31) {
+      //   param1 = "mtl-distillerie";
+      // }
+      // if(param1 == 12) {
+      //   param1 = "mtl-patricepatissier";
+      // }
+      // if(param1 == 13) {
+      //   param1 = "mtl-viceversa";
+      // }
+      // if(param1 == 29) {
+      //   param1 = "mtl-dispatch";
+      // }
+      // if(param1 == 36) {
+      //   param1 = "mtl-buvettesimone";
+      // }
+      // if(param1 == 46) {
+      //   param1 = "mtl-kitsune";
+      // }
+      // if(param1 == 26) {
+      //   param1 = "mtl-pullman";
+      // }
+      // if(param1 == 18) {
+      //   param1 = "mtl-pikoloexpressobar";
+      // }
+      // if(param1 == 32) {
+      //   param1 = "mtl-sparrow";
+      // }
+      // if(param1 == 46) {
+      //   param1 = "mtl-kitsune";
+      // }
 
       // console.log(getObjects(data ,'establishement_name_id',param1));
 
