@@ -241,12 +241,12 @@ hr{
   background-size: cover;
   -o-background-size: cover;
   margin-bottom: 50px;
-  height: 50vh;
+  /*height: 50vh;*/
 }
 
 @media (max-width: 1200px){
   .intro-header{
-    height:100vh;
+    /*height:100vh;*/
   }
 }
 
@@ -560,6 +560,32 @@ hr{
       font-weight: 900;
       font-size:2em;
     }
+  @media (max-width: 1200px) {
+
+    .site-heading h2{
+      font-size:1.3em;
+    }
+
+    #recommendations-section{
+      margin-top:-50px;
+    }
+    #recommendations-section h1{
+      font-size:1em;
+    }
+    #secondary-filter .dropdown:last-child{
+      margin-right:-15px
+    }
+    #secondary-filter .btn{
+      font-size:0.8em;
+    }
+
+    .main-filter-ctn{
+      margin-bottom:10px;
+    }
+    .main-filter-ctn h5{
+      font-size:1.5em;
+    }
+  }
 
     #usecase-tag-row{
       margin-top:25px;
@@ -609,11 +635,20 @@ hr{
     }
 
     #secondary-filter {
-      padding: 0;
-      margin: 0;
       margin-top: 30px;
       background-color: white;
-      width: 100%;
+      display: inline-block;
+    }
+
+    #secondary-filter .dropdown{
+      float:left;
+      position: relative;
+      margin:5px;
+
+    }
+
+    #secondary-filter .dropdown:first-child{
+      margin-left:-15px;
     }
 
     #recommendation-feed {

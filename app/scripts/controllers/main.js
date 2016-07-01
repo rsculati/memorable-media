@@ -11,6 +11,21 @@
 angular.module('memorableAppApp')
   .controller('MainCtrl', function ($scope, $http, $routeParams, $window, $sce, srvShareData) {
 
+    // ------------- Analytics Goals ----------------
+
+    $(document).on('click', '.direction-btn', function(event){
+      ga('send', 'event', {
+        eventCategory: 'Engagement',
+        eventAction: 'Direction click',
+      });
+
+      ga('send', 'event', {
+        eventCategory: 'Engagement',
+        eventAction: 'Direction or Save click',
+      });
+
+    });
+
     $(document).ready(function(){
       $(this).scrollTop(0);
     });

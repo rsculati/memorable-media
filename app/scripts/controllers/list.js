@@ -51,8 +51,8 @@ angular.module('memorableAppApp')
     {"category":"coffee","src":"images/tea-tag.jpg", "text":"Tea","id":"tea"},
     {"category":"coffee","src":"images/sweets-tag.jpg", "text":"Sweet","id":"sweet"},
     {"category":"coffee","src":"images/terasse-tag.jpg", "text":"Terasse","id":"terrace"},
-    {"category":"shop","src":"images/special-store-tag.jpg", "text":"Special Store","id":"specialshop"},
     {"category":"shop","src":"images/clothing-tag.jpg", "text":"Clothing","id":"clotheshop"},
+    {"category":"shop","src":"images/special-store-tag.jpg", "text":"Special Store","id":"specialshop"},
     {"category":"shop","src":"images/food-drink-shop-tag.jpg", "text":"Food & Drink","id":"foodshop"},
     {"category":"shop","src":"images/coffee-tag.jpg", "text":"Coffee","id":"cafe"},
   ];
@@ -233,7 +233,7 @@ angular.module('memorableAppApp')
 
   });
 
-  $(document).on('click', '.save-btn', function(event){
+  /*$(document).on('click', '.save-btn', function(event){
     ga('send', 'event', {
       eventCategory: 'Engagement',
       eventAction: 'Save click',
@@ -243,7 +243,7 @@ angular.module('memorableAppApp')
       eventCategory: 'Engagement',
       eventAction: 'Direction or Save click',
     });
-  });
+  });*/
 
   /*$(document).on('click', '.save-btn', function(event){
   if($(this).hasClass('.display'){
@@ -455,7 +455,7 @@ $scope.getTimeName = function (){
 // update list of item depending on criteria
 function updateList(price, tag, location, time, day) {
 
-
+  //$('#recommendation-feed').fadeOut("slow");
   $scope.search = getSearchFormated(tag);
   $scope.loading = true;
   $scope.loaded = false;
@@ -843,6 +843,7 @@ function updateList(price, tag, location, time, day) {
     }
   }
 );
+$('#recommendation-feed').fadeOut("fast").fadeIn("slow");
 }
 
 $('#cta-hero').click(function(){
