@@ -489,7 +489,7 @@ function getFormatedLocation(location){
       formated = "Sud-Ouest";
       break;
     case "you":
-      formated = "you";
+      formated = "your position";
     break;
   }
   return formated;

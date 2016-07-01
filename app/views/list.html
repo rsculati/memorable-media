@@ -28,7 +28,7 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          
+
           <ul class="nav navbar-nav navbar-item navbar-right">
             <li class="active"><a href="http://m.me/memorablemtl" target="_blank"><img class="logo-nav-brand"src="images/messenger.png" alt=""> Get suggestions via chat</a></li>
           </ul>
@@ -96,7 +96,7 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
 <div class="row" id="usecase-tag-row">
   <div class="col-md-12">
     <data-owl-carousel class="owl-carousel" data-options="{navigation: false, pagination: true, rewindNav : false,
-      items:5,pagination : true, paginationNumbers: false}">
+      items:5,pagination : true, paginationNumbers: false, itemsMobile: [479,3], itemsTablet : [768,3]}">
       <div owl-carousel-item="" ng-repeat="item in filterData" class="items main-filter-ctn filter-btns" data-owl-carousel>
         <div class="{{item.category}}" >
           <a ng-click="filterTag(item.id, item.category)">
@@ -124,7 +124,7 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
     <div class="col-lg-12 col-xs-12">
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Price range
+          {{selectedPrice}}
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -136,7 +136,7 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
     </div>
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Location
+          {{selectedLocation}}
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownMenu1">
@@ -154,7 +154,7 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
       </div>
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Opening hours
+          {{selectedHours}}
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
@@ -208,7 +208,8 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
               </div>
               <div class="info-p">
                 <i class="fa fa-clock-o" aria-hidden="true"></i>
-                {{item.timeAlert}} {{getTimeName()}}
+                {{item.timeAlert}}
+                <!-- {{getTimeName()}} -->
               </div>
             </div>
             <div class="card-cta-ctn">
@@ -216,7 +217,7 @@ $(this).html(words[i=(i+1)%words.length]).fadeIn();
               <div class="card-cta-txt "><a class="save-btn" href="#">SAVE</a></div>
             </div>-->
             <div class="card-cta-btn card-cta-btn-direction">
-              <div class="card-cta-txt "><a class="direction-btn" href="{{item.establishement_gmap_url}}" target="_blank">DIRECTIONS</a></div>
+              <div class="card-cta-txt "><a class="direction-btn direction-kpi" href="{{item.establishement_gmap_url}}" target="_blank">DIRECTIONS</a></div>
             </div>
           </div>
         </div>

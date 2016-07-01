@@ -13,7 +13,7 @@ angular.module('memorableAppApp')
 
     // ------------- Analytics Goals ----------------
 
-    $(document).on('click', '.direction-btn', function(event){
+    $(document).on('click', '.direction-kpi', function(event){
       ga('send', 'event', {
         eventCategory: 'Engagement',
         eventAction: 'Direction click',
@@ -131,7 +131,7 @@ angular.module('memorableAppApp')
       // param1 avec l'unique ID correspondant. (temporaire)
 
       var param1 = $routeParams.param1;
-      // 
+      //
       // if(param1 == 14) {
       //   param1 = "mtl-fantome";
       // }
