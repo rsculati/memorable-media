@@ -189,11 +189,69 @@ function getObjectsFromTags(obj, val) {
 }
 
 // return an array with the score of the time opened or not
-function getObjectsWithHourScore(obj,time,day) {
+function getObjectsFilterByTime(obj,time,day) {
   // TODO: check day
   // TODO: check
   time = parseInt(time);
 
+  for (var i = 0; i < obj.length; i++) {
+    if(time == "any"){
+        obj[i].scoreTime = 25;
+    } else {
+      var open = false;
+      var hour = obj[i][day];
+
+      // console.log(hour);
+      if(hour){
+        var schedule = hour.split(',');
+
+        // console.log(schedule + " : " + obj[i].establishement_name);
+        for(var y = 0; y < schedule.length; y++){
+          schedule[y] = schedule[y].split('-');
+
+          if(parseInt(schedule[y][1]) < parseInt(schedule[y][0])){
+            schedule[y][1] = parseInt(schedule[y][1]) + 24;
+          }
+
+          if(schedule[y][0] != ""){
+            if(time > schedule[y][0] && time < schedule[y][1]){
+              open = true;
+              // obj[i].timeAlert = "Open";
+              if((schedule[y][1] - time) < 1){
+                obj[i].timeAlert = "Closing soon";
+              }
+            }
+            // console.log(obj[i].establishement_name + " : " + schedule[y][0] + "-"+schedule[y][1] + " : "  + time + " : " + open);
+          }
+        }
+      }
+
+      // console.log(time + " : " +  schedule + " : " + obj[i].establishement_name);
+      if(open === true){
+        // obj[i].scoreTime = 25;
+        // obj[i].timeAlert = "Open";
+        if(obj[i].timeAlert === "Closing soon"){
+          obj[i].timeAlert = "Closing soon";
+        } else {
+          obj[i].timeAlert = "Open";
+        }
+      } else {
+          // obj[i].scoreTime = 0;
+          obj[i].timeAlert = "Closed";
+      }
+    }
+  }
+  // console.log(obj);
+  return obj;
+}
+
+// return an array with the score of the time opened or not
+function getObjectsFilterByOpenPlace(obj,time,day) {
+  // TODO: check day
+  // TODO: check
+  time = parseInt(time);
+  var results = [];
+  var closed = [];
   for (var i = 0; i < obj.length; i++) {
     if(time == "any"){
         obj[i].scoreTime = 25;
@@ -235,14 +293,19 @@ function getObjectsWithHourScore(obj,time,day) {
         } else {
           obj[i].timeAlert = "Open";
         }
+        results.push(obj[i]);
       } else {
           obj[i].scoreTime = 0;
           obj[i].timeAlert = "Closed";
+          closed.push(obj[i]);
       }
     }
   }
-  // console.log(obj);
-  return obj;
+  var final = [];
+  final.push(results);
+  final.push(closed);
+
+  return final;
 }
 
 // retrieve an array of items match to a certain criteria
@@ -371,6 +434,9 @@ function getPriceFormated(price) {
       break;
     case "$$$$":
       price = "$$$$ - Ultra High-End";
+      break;
+    case "any":
+      price = "Any price";
       break;
   }
   return price;

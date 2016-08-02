@@ -38,11 +38,11 @@
         <html>
             <head>
                 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-                <title>Memorable: Montreal</title>
-                <meta property="og:title" content="Memorable: Montreal - <?php echo $json[$id][establishement_name]; ?>" />
+                <title>Memorable.io | Montreal</title>
+                <meta property="og:title" content="Memorable.io | Montreal - <?php echo $json[$id][establishement_name]; ?>" />
                 <meta property="og:description" content="<?php echo $json[$id][influencer1_quote_text]; ?>" />
                 <meta property="og:image" content="<?php echo $imageUrl; ?>" />
-                <meta property="og:site_name" content="Memorable" />
+                <meta property="og:site_name" content="Memorable.io" />
                 <meta property="og:url" content="<?php echo $pageUrl; ?>" />
                 <meta property="og:type" content="article" />
                 <meta property="article:author" content="https://www.facebook.com/memorablemtl" />

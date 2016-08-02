@@ -131,67 +131,7 @@ angular.module('memorableAppApp')
       // param1 avec l'unique ID correspondant. (temporaire)
 
       var param1 = $routeParams.param1;
-      //
-      // if(param1 == 14) {
-      //   param1 = "mtl-fantome";
-      // }
-      // if(param1 == 33) {
-      //   param1 = "mtl-jatoba";
-      // }
-      // if(param1 == 2) {
-      //   param1 = "mtl-olivegourmando";
-      // }
-      // if(param1 == 39) {
-      //   param1 = "mtl-squaredominion";
-      // }
-      // if(param1 == 53) {
-      //   param1 = "mtl-unicorn";
-      // }
-      // if(param1 == 0) {
-      //   param1 = "mtl-piedcochn";
-      // }
-      // if(param1 == 44) {
-      //   param1 = "mtl-salondaome";
-      // }
-      // if(param1 == 50) {
-      //   param1 = "mtl-m0851";
-      // }
-      // if(param1 == 16) {
-      //   param1 = "mtl-lab";
-      // }
-      // if(param1 == 41) {
-      //   param1 = "mtl-cafeplume";
-      // }
-      // if(param1 == 31) {
-      //   param1 = "mtl-distillerie";
-      // }
-      // if(param1 == 12) {
-      //   param1 = "mtl-patricepatissier";
-      // }
-      // if(param1 == 13) {
-      //   param1 = "mtl-viceversa";
-      // }
-      // if(param1 == 29) {
-      //   param1 = "mtl-dispatch";
-      // }
-      // if(param1 == 36) {
-      //   param1 = "mtl-buvettesimone";
-      // }
-      // if(param1 == 46) {
-      //   param1 = "mtl-kitsune";
-      // }
-      // if(param1 == 26) {
-      //   param1 = "mtl-pullman";
-      // }
-      // if(param1 == 18) {
-      //   param1 = "mtl-pikoloexpressobar";
-      // }
-      // if(param1 == 32) {
-      //   param1 = "mtl-sparrow";
-      // }
-      // if(param1 == 46) {
-      //   param1 = "mtl-kitsune";
-      // }
+
 
       // console.log(getObjects(data ,'establishement_name_id',param1));
 
@@ -206,28 +146,35 @@ angular.module('memorableAppApp')
 
       // ------------- RELATED POIS ----------------
       if(!haveSession){
-        var relatedArray = [];
-        var related = getObjects(data ,'establishement_type1',item.establishement_type1);
+        // TODO: hidden
 
-        var arr = []
-          while(arr.length < 5){
-            var randomnumber=Math.ceil(Math.random()* related.length)
-            var found=false;
-            for(var i=0;i<arr.length;i++){
-          	if(arr[i]==randomnumber){found=true;break}
-            }
-            if(!found)arr[arr.length]=randomnumber;
-          }
+        var tabItem = getObjects(data ,'establishement_name_id',param1);
+        var related = getObjects(data ,'establishement_type1',tabItem[0].establishement_type1);
+        // console.log(related);
 
-        var cpt = 0 ;
-        for(var i = 0; i < 3; i++){
-          if(related[arr[i]].establishement_name_id != $routeParams.param1 && cpt < 3){
-            relatedArray.push(related[arr[i]]);
-            console.log(related[arr[i]]);
-            cpt++;
-          }
-        }
-        $scope.session = relatedArray;
+        var tier = related.length / 3 ;
+        tier = Math.round(tier);
+        var tier2 = tier * 2;
+        var final = tier * 3;
+        //
+        // console.log(tier);
+        // console.log(tier2);
+        // console.log(final);
+
+
+        var item1 = Math.floor(Math.random() * tier) + 1
+        // console.log(item1);
+        var item2 = Math.floor(Math.random() * tier) + tier+1
+        // console.log(item2);
+        var item3 = Math.floor(Math.random() * tier) + tier2+1
+        // console.log(item3);
+        var session = [];
+
+        session.push(related[item1]);
+        session.push(related[item2]);
+        session.push(related[item3]);
+        $scope.session = session;
+
       }
 
 
