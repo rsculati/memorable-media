@@ -11,6 +11,24 @@ angular.module('memorableAppApp')
 .controller('ListCtrl', function ($scope, $http, srvShareData,$rootScope,$filter,$timeout) {
 
 
+
+  $http.get('Row1data.json').success (function(data){
+    var newlist = data;
+    var oldCookieDate = new Date('2016-07-26')
+    var newListDate = [];
+    var cpt = 0 ;
+    for(var i = 0 ; i < newlist.length; i++){
+      var dateUpdate = new Date(newlist[i].date)
+      if(dateUpdate > oldCookieDate && cpt < 6){
+        console.log(newlist[i].establishement_name);
+        newListDate.push(newlist[i]);
+        cpt++;
+      }
+    }
+    $scope.newListDate = newListDate;
+    console.log(newListDate);
+
+  });
   // ------------- NAVIGATION MANAGEMENT ----------------
 
   // $(window).scroll(function() {
@@ -483,6 +501,7 @@ angular.module('memorableAppApp')
       var cpt = 0;
       var testCategory;
       var mainObj = [];
+
 
 
 

@@ -12,28 +12,78 @@
 
 <div id="masterContainer">
 
-<!-- Page Header style="background-image: url(images/{{getHomeScreenImage()}})"  intro-header-overlay-main-->
-<header class="intro-header" >
-  <div class="">
-    <nav class="navbar navbar-default navbar-fixed-top navbar-memorable">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+  <!-- Page Header style="background-image: url(images/{{getHomeScreenImage()}})"  intro-header-overlay-main-->
+  <header class="intro-header" >
+    <div class="">
+      <nav class="navbar navbar-default navbar-fixed-top navbar-memorable">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+
+<<<<<<< HEAD
+
+              <span class="icon-menu visible-filter">Menu</span>
+              <span class="icon-filter invisible-filter">Filters</span>
+              <!--<span class="icon-bar visible-filter"></span>
+              <span class="icon-bar visible-filter"></span>
+              <span class="icon-bar visible-filter"></span>-->
+              <!--<i class="fa fa-filter invisible-filter" aria-hidden="true"></i>-->
+            </button>
+            <a class="navbar-brand" href="#"><img class="logo-nav-brand"src="images/memorable-logo-black-cube.png" alt="memorable.io | insider guide log"><span class="text-nav-brand navbar-item">memorable</span></a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
 
 
-            <span class="icon-menu visible-filter">Menu</span>
-            <span class="icon-filter invisible-filter">Filters</span>
-            <!--<span class="icon-bar visible-filter"></span>
-            <span class="icon-bar visible-filter"></span>
-            <span class="icon-bar visible-filter"></span>-->
-            <!--<i class="fa fa-filter invisible-filter" aria-hidden="true"></i>-->
-          </button>
-          <a class="navbar-brand" href="#"><img class="logo-nav-brand"src="images/memorable-logo-black-cube.png" alt="memorable.io | insider guide log"><span class="text-nav-brand navbar-item">memorable</span></a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div class="navbar-custom-menu navbar-right">
+            <ul class="nav navbar-nav">
+              <!-- Messages: style can be found in dropdown.less-->
+              <li class="dropdown messages-menu">
+                <a href="#" class="dropdown-toggle t" data-toggle="dropdown" aria-expanded="true">
+                  <i class="fa fa-bell-o"></i>
+                  <span class="notification-label ">{{newListDate.length}}</span>
+                </a>
+                <!-- <div class="slimScrollDiv"> -->
+                  <ul class="dropdown-menu notification-menu" id="ex4">
 
+                    <!-- <div class="scrollable-menu scrollbar" id="ex4"> -->
+                    <li class="header notification-header">You have {{newListDate.length}} new places to discover</li>
+                      <li ng-repeat="item in newListDate">
+                        <a href="https://memorable.io/detail/{{item.establishement_name_id}}">
+                          <div class="pull-left">
+                            <img src="images/{{item.establishement_name_id}}.jpg" class="notification-image" alt="User Image">
+                          </div>
+                          <h4>
+                            {{item.establishement_name}}
+
+                          </h4>
+
+                          <p>  {{getPriceWithFormated(item.establishement_pricerange)}}</p>
+                        </a>
+                      </li>
+
+
+
+                  <!-- </div> -->
+                    <li class="notification-footer"><a href="#">Close panel</a></li>
+                  </ul>
+                <!-- </div> -->
+              </li>
+
+              <!-- <li class="active"><a href="http://m.me/memorablemtl" target="_blank"><img class="logo-nav-brand"src="images/messenger.png" alt="memorable messenger"> Get suggestions via chat</a></li> -->
+
+              <li class="dropdown messages-menu">
+                <a href="https://www.instagram.com/memorablemtl/"><i class="fa fa-instagram"></i></a>
+              </li>
+              <li class="dropdown messages-menu">
+                <a href="https://www.facebook.com/memorablemtl"><i class="fa fa-facebook"></i></a>
+              </li>
+              <li class="dropdown messages-menu">
+                <a href="https://twitter.com/MemorableTech"><i class="fa fa-twitter"></i></a>
+              </li>
+
+
+            </ul>
           <ul class="nav navbar-nav navbar-item navbar-right">
             <!-- <li class=""><a href="" target="_blank">About</a></li>
             <li class=""><a href="" target="_blank">API</a></li>
@@ -56,7 +106,7 @@
           </div>
           <div class="col-lg-4 col-xs-4 value-prop-ctn">
             <h1><span class="vp-number">10340</span><br>OPINIONS</h1><span class="title-divider"></span>
-            <h2 class="subheading">Memorable gather and analyse opinions about food, lifestyle and travel. We add thousands of opinions every week.</h2>
+            <h2 class="subheading">Memorable gathers and analyses opinions about food, lifestyle and travel. We add thousands of opinions every week.</h2>
           </div>
           <div class="col-lg-4 col-xs-4 value-prop-ctn">
             <h1><span class="vp-number">101</span><br>SOURCES</h1><span class="title-divider"></span>
@@ -67,18 +117,35 @@
             <h2 class="subheading">We have created this guide based on those opinions. Discover new and creative establishements as well as Montréal classics & hidden places.</h2>
           </div>
           <div class="col-xs-12 value-prop-ctn-mobile">
-            <p>Memorable gather and analyse opinions about food, lifestyle and travel. </p>
+            <p>Memorable gathers and analyses opinions about food, lifestyle and travel. </p>
             <p>Every week, we add thousands of experiences from locals, foodies, critics, fashionistas, chefs & travelers. </p>
             <p>Discover new and creative establishements as well as Montréal classics & hidden places in our guides.</p>
           </div>
-        </div>
-        <!--<div class="row">
-        <div class="col-lg-2 col-lg-offset-5">
-        <a id="cta-hero" href="#recommendations-section"><div class="btn-cta-header">Search</div></a>
-      </div>
-    </div>-->
 
-  </div>
+
+
+          <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+          <ul class="nav navbar-nav navbar-item navbar-right">
+
+          <li class="active"><a href="http://m.me/memorablemtl" target="_blank"><img class="logo-nav-brand"src="images/messenger.png" alt="memorable messenger"> Get suggestions via chat</a></li>
+        </ul>
+      </div> -->
+    </div>
+
+  </nav>
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="site-heading">
+          <h1>A MONTREAL Insider guide</h1>
+          <span class="title-divider"></span>
+          <h2 class="subheading">Inspired by the experiences of passionate locals, foodies, chefs, critics, fashionistas & travelers.
+          </div>
+        </div>
+      </div>
+</div> -->
+
 </div>
 </header>
 <!-- Post Content -->
@@ -119,21 +186,21 @@
 
 <!-- autoPlay : 3000, stopOnHover : true} -->
 <div class="container">
-<div class="row" id="usecase-tag-row">
-  <div class="col-md-12">
-    <data-owl-carousel class="owl-carousel" data-options="{navigation: false, pagination: true, rewindNav : false,
-      items:5,pagination : true, paginationNumbers: false, itemsMobile: [479,2], itemsTablet : [768,3]}">
-      <div owl-carousel-item="" ng-repeat="item in filterData" class="items main-filter-ctn filter-btns" data-owl-carousel>
-        <div class="{{item.category}}" >
-          <a ng-click="filterTag(item.id, item.category)">
-            <img class="second-filter-img {{item.id}}" src="{{item.src}}" alt="Memorable - {{item.src}}" id="{{item.id}}">
-            <h5>{{item.text}}</h5>
-          </img>
-        </a>
+  <div class="row" id="usecase-tag-row">
+    <div class="col-md-12">
+      <data-owl-carousel class="owl-carousel" data-options="{navigation: false, pagination: true, rewindNav : false,
+        items:5,pagination : true, paginationNumbers: false, itemsMobile: [479,2], itemsTablet : [768,3]}">
+        <div owl-carousel-item="" ng-repeat="item in filterData" class="items main-filter-ctn filter-btns" data-owl-carousel>
+          <div class="{{item.category}}" >
+            <a ng-click="filterTag(item.id, item.category)">
+              <img class="second-filter-img {{item.id}}" src="{{item.src}}" alt="Memorable - {{item.src}}" id="{{item.id}}">
+              <h5>{{item.text}}</h5>
+            </img>
+          </a>
+        </div>
       </div>
-    </div>
-  </data-owl-carousel>
-</div>
+    </data-owl-carousel>
+  </div>
 </div>
 </div>
 
@@ -200,70 +267,70 @@
       </div>
       <div class="dropdown">
 
-          <!-- <input type="text" id="searchBox" class="form-control" placeholder="Search by establishement, influencers & quotes"
-          data-ng-model="searchTxt" style="width:325px;">
-          <i class="icon-search"></i> -->
+        <!-- <input type="text" id="searchBox" class="form-control" placeholder="Search by establishement, influencers & quotes"
+        data-ng-model="searchTxt" style="width:325px;">
+        <i class="icon-search"></i> -->
 
+      </div>
+    </div>
+
+  </div>
+
+  <br><br><br><br>
+  <div class="container">
+    <!-- ​angular-grid="pics" ag-grid-width="300" ag-gutter-size="10" ag-id="gallery" -->
+    <!-- <div id="loading" ng-show="loading" class="loading"><img src="http://www.nasa.gov/multimedia/videogallery/ajax-loader.gif"></div> -->
+    <div class="row" id="recommendation-feed" >
+      <div class="callout callout-success" id="alertInfo">
+        <h4>Oups! No places matching with your criterias.</h4>
+      </div>
+      <ul class="dynamic-grid" angular-grid="items" ag-grid-width="280" ag-gutter-size="18" ag-id="gallery" ag-refresh-on-img-load="true" >
+        <li data-ng-repeat="item in items track by $index " class="grid">
+          <div class="poi-card" itemscope itemtype="http://schema.org/LocalBusiness">
+            <a href="https://memorable.io/detail/{{item.establishement_name_id}}" ng-click="shareMyData()">
+              <img src="images/{{item.establishement_name_id}}.jpg" class="grid-img" alt="memorable - {{item.establishement_name}} - montreal" itemprop="photo"/>
+            </a>
+            <div class="post-header">
+              <h4 itemprop="name"><a href="https://memorable.io/detail/{{item.establishement_name_id}}">{{item.establishement_name}}</a></h4>
+              <span class="title-divider"></span>
+            </div>
+            <div class="influencer-ctn" itemprop="review" itemscope itemtype="http://schema.org/Review">
+              <p class="influencer-quote" itemprop="description">{{item.influencer1_quote_text}}</p>
+              <p class="influencer-info" itemprop="author">{{item.influencer1_name}}, <a href="{{item.influencer1_article_url}}">{{item.influencer1_publisher_name}}</a></p>
+            </div>
+            <div class="info-ctn">
+              <div class="info-p">
+                {{getPriceWithFormated(item.establishement_pricerange)}}
+              </div>
+              <div class="info-p">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                {{getDistance(item.distance, item)}}
+              </div>
+              <div class="info-p">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                {{item.timeAlert}}
+              </div>
+            </div>
+            <div class="card-cta-ctn">
+              <div class="card-cta-btn card-cta-btn-direction">
+                <div class="card-cta-txt ">
+                  <a class="direction-btn direction-kpi" href="{{item.establishement_gmap_url}}" target="_blank">DIRECTIONS</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 
-</div>
 
-<br><br><br><br>
-<div class="container">
-<!-- ​angular-grid="pics" ag-grid-width="300" ag-gutter-size="10" ag-id="gallery" -->
-<!-- <div id="loading" ng-show="loading" class="loading"><img src="http://www.nasa.gov/multimedia/videogallery/ajax-loader.gif"></div> -->
-<div class="row" id="recommendation-feed" >
-  <div class="callout callout-success" id="alertInfo">
-    <h4>Oups! No places matching with your criterias.</h4>
+  <div>
+    <hr>
   </div>
-  <ul class="dynamic-grid" angular-grid="items" ag-grid-width="280" ag-gutter-size="18" ag-id="gallery" ag-refresh-on-img-load="true" >
-    <li data-ng-repeat="item in items track by $index " class="grid">
-      <div class="poi-card" itemscope itemtype="http://schema.org/LocalBusiness">
-        <a href="https://memorable.io/detail/{{item.establishement_name_id}}" ng-click="shareMyData()">
-          <img src="images/{{item.establishement_name_id}}.jpg" class="grid-img" alt="memorable - {{item.establishement_name}} - montreal" itemprop="photo"/>
-        </a>
-        <div class="post-header">
-          <h4 itemprop="name"><a href="https://memorable.io/detail/{{item.establishement_name_id}}">{{item.establishement_name}}</a></h4>
-          <span class="title-divider"></span>
-        </div>
-        <div class="influencer-ctn" itemprop="review" itemscope itemtype="http://schema.org/Review">
-          <p class="influencer-quote" itemprop="description">{{item.influencer1_quote_text}}</p>
-          <p class="influencer-info" itemprop="author">{{item.influencer1_name}}, <a href="{{item.influencer1_article_url}}">{{item.influencer1_publisher_name}}</a></p>
-        </div>
-        <div class="info-ctn">
-          <div class="info-p">
-            {{getPriceWithFormated(item.establishement_pricerange)}}
-          </div>
-          <div class="info-p">
-            <i class="fa fa-map-marker" aria-hidden="true"></i>
-            {{getDistance(item.distance, item)}}
-          </div>
-          <div class="info-p">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            {{item.timeAlert}}
-          </div>
-        </div>
-        <div class="card-cta-ctn">
-          <div class="card-cta-btn card-cta-btn-direction">
-            <div class="card-cta-txt ">
-              <a class="direction-btn direction-kpi" href="{{item.establishement_gmap_url}}" target="_blank">DIRECTIONS</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </li>
-  </ul>
-</div>
-</div>
 
-
-<div>
-  <hr>
-</div>
-
-<!-- <button id="btnload" class="btn btn-block load-more" ng-click='loadMore()'>
-Load More <span class="caret"></span>
+  <!-- <button id="btnload" class="btn btn-block load-more" ng-click='loadMore()'>
+  Load More <span class="caret"></span>
 </button> -->
 
 
