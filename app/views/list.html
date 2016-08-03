@@ -19,32 +19,74 @@
         <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
+<<<<<<< HEAD
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 
+=======
+            <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+>>>>>>> master
               <span class="icon-menu visible-filter">Menu</span>
               <span class="icon-filter invisible-filter">Filters</span>
               <!--<span class="icon-bar visible-filter"></span>
               <span class="icon-bar visible-filter"></span>
               <span class="icon-bar visible-filter"></span>-->
-              <!--<i class="fa fa-filter invisible-filter" aria-hidden="true"></i>-->
+              <!--<i class="fa fa-filter invisible-filter" aria-hidden="true"></i>
+            </button>-->
+            <button type="button" class="navbar-toggle collapsed dropdown-toggle t" data-toggle="collapse" data-target="#ex4" aria-expanded="true">
+            <!--<a href="#" class="dropdown-toggle t" data-toggle="dropdown" aria-expanded="true">-->
+              <i class="fa fa-star"></i>
+              <span class="notification-label notification-label-mobile">{{newListDate.length}}</span>
             </button>
+
             <a class="navbar-brand" href="#"><img class="logo-nav-brand"src="images/memorable-logo-black-cube.png" alt="memorable.io | insider guide log"><span class="text-nav-brand navbar-item">memorable</span></a>
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
+          <!-- <div class="slimScrollDiv"> -->
+            <ul class="dropdown-menu notification-menu" id="ex4">
+
+              <!-- <div class="scrollable-menu scrollbar" id="ex4"> -->
+              <li class="header notification-header">You have {{newListDate.length}} new places to discover</li>
+                <li ng-repeat="item in newListDate">
+                  <a href="https://memorable.io/detail/{{item.establishement_name_id}}">
+                    <div class="pull-left">
+                      <img src="images/{{item.establishement_name_id}}.jpg" class="notification-image" alt="User Image">
+                    </div>
+                    <h4>
+                      {{item.establishement_name}}
+
+                    </h4>
+
+                    <p>  {{item.establishement_pricerange}} | <i class="fa fa-cutlery"></i> | 12 opinions</p>
+                  </a>
+                </li>
 
 
-          <div class="navbar-custom-menu navbar-right">
+
+            <!-- </div> -->
+              <li class="notification-footer"><a href="#">Close panel</a></li>
+            </ul>
+
+          <div class="navbar-custom-menu navbar-right custom-menu-memo">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu">
+<<<<<<< HEAD
                 <a href="#" ng-click="updateNotif()" class="dropdown-toggle t" data-toggle="dropdown" aria-expanded="true">
                   <i class="fa fa-bell-o"></i>
                   <span id="notif" class="notification-label">{{newListDate.length}}</span>
+=======
+                <a href="#" class="dropdown-toggle t" data-toggle="dropdown" aria-expanded="true">
+                  <i class="fa fa-star"></i>
+                  <span class="notification-label ">{{newListDate.length}}
+                    <div class="notification-item-ctn"><i class="fa fa-cutlery"></i>  {{newListDate.length}}</div>
+                    <div class="notification-item-ctn"><i class="fa fa-glass"></i>  2{{newListDate.length}}</div>
+                    <div class="notification-item-ctn"><i class="fa fa-coffee"></i>  {{newListDate.length}}3</div>
+                    <div class="notification-item-ctn"><i class="fa fa-gift"></i>  1{{newListDate.length}}</div>
+                  </span>
+>>>>>>> master
                 </a>
                 <!-- <div class="slimScrollDiv"> -->
                   <ul class="dropdown-menu notification-menu" id="ex4">
-
-                    <!-- <div class="scrollable-menu scrollbar" id="ex4"> -->
                     <li class="header notification-header">You have {{newListDate.length}} new places to discover</li>
                       <li ng-repeat="item in newListDate track by $index">
                         <a href="https://memorable.io/detail/{{item.establishement_name_id}}">
@@ -53,39 +95,23 @@
                           </div>
                           <h4>
                             {{item.establishement_name}}
-
                           </h4>
-
-                          <p>  {{getPriceWithFormated(item.establishement_pricerange)}}</p>
+                          <p>  {{item.establishement_pricerange}} | <i class="fa fa-cutlery"></i> | 12 opinions</p>
                         </a>
                       </li>
-
-
-
-                  <!-- </div> -->
                     <li class="notification-footer"><a href="#">Close panel</a></li>
                   </ul>
-                <!-- </div> -->
               </li>
 
-              <!-- <li class="active"><a href="http://m.me/memorablemtl" target="_blank"><img class="logo-nav-brand"src="images/messenger.png" alt="memorable messenger"> Get suggestions via chat</a></li> -->
-
-              <li class="dropdown messages-menu">
-                <a href="https://www.instagram.com/memorablemtl/"><i class="fa fa-instagram"></i></a>
-              </li>
-              <li class="dropdown messages-menu">
-                <a href="https://www.facebook.com/memorablemtl"><i class="fa fa-facebook"></i></a>
-              </li>
-              <li class="dropdown messages-menu">
-                <a href="https://twitter.com/MemorableTech"><i class="fa fa-twitter"></i></a>
-              </li>
-
+              <!--<li class="dropdown messages-menu">
+                <a href="https://www.instagram.com/memorablemtl/"><i class="fa fa-bars"></i></a>
+              </li>-->
 
             </ul>
           <ul class="nav navbar-nav navbar-item navbar-right">
             <!-- <li class=""><a href="" target="_blank">About</a></li>
             <li class=""><a href="" target="_blank">API</a></li>
-            <li id="cta-menu"><a class="btn btn-lg" href="#contact">Login</a></li> -->
+            <li id="cta-menu"><a class="btn btn-lg" href="#contact">Login</a></li>
 
             <li class="active"><a href="http://m.me/memorablemtl" target="_blank"><img class="logo-nav-brand"src="images/messenger.png" alt="memorable messenger"> Get suggestions via chat</a></li>
           </ul>
