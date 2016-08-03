@@ -8,27 +8,60 @@
 * Controller of the memorableAppApp
 */
 angular.module('memorableAppApp')
-.controller('ListCtrl', function ($scope, $http, srvShareData,$rootScope,$filter,$timeout) {
+.controller('ListCtrl', function ($scope, $http, srvShareData,$rootScope,$filter,$timeout,$cookieStore) {
 
+  // $cookieStore.put('lastTime',new Date('2016-06-26'));
+  // $cookieStore.remove('lastTime');
 
-
-  $http.get('Row1data.json').success (function(data){
-    var newlist = data;
-    var oldCookieDate = new Date('2016-07-26')
-    var newListDate = [];
-    var cpt = 0 ;
-    for(var i = 0 ; i < newlist.length; i++){
-      var dateUpdate = new Date(newlist[i].date)
-      if(dateUpdate > oldCookieDate && cpt < 6){
-        console.log(newlist[i].establishement_name);
-        newListDate.push(newlist[i]);
-        cpt++;
-      }
+  $scope.updateNotif = function() {
+    console.log("update notif");
+    $cookieStore.remove('lastTime');
+    $cookieStore.put('lastTime',new Date());
+    $('#notif').hide();
+    if(typeof session[0] !== 'undefined'){
+      $scope.newListDate = session[0][10];
     }
-    $scope.newListDate = newListDate;
-    console.log(newListDate);
+    // $cookieStore.put('lastTime',new Date());
+    // console.log($cookieStore.get('lastUpdate'));
 
-  });
+  }
+  // $cookieStore.put('lastTime',new Date('2016-07-26'));
+
+
+  var old = $cookieStore.get('lastTime');
+  if(!old){
+    $cookieStore.put('lastTime',new Date('2016-07-26'));
+  }
+  $scope.newListDate = [];
+
+  // $http.get('Row1data.json').success (function(data){
+  //   var newlist = data;
+  //   var oldCookieDate = new Date($cookieStore.get('lastTime'));
+  //   console.log(oldCookieDate);
+  //   // var oldCookieDate = new Date('2016-07-26')
+  //   var newListDate = [];
+  //   var cpt = 0 ;
+  //   for(var i = 0 ; i < newlist.length; i++){
+  //     var dateUpdate = new Date(newlist[i].date)
+  //     if(dateUpdate > oldCookieDate && cpt < 6){
+  //       $scope.newListDate.push(newlist[i]);
+  //       cpt++;
+  //     }
+  //   }
+  //
+  //   // console.log($scope.newListDate);
+  //
+  //   sessionStorage['lastUpdate'] = $scope.newListDate;
+  //   console.log($scope.newListDate);
+  //   var sessionUpdate = sessionStorage.getItem("lastUpdate");
+  //   console.log(sessionUpdate);
+  //
+  //   // TODO: hide notification if 0
+  //   if(newListDate.length == 0){
+  //     $('#notif').hide();
+  //   }
+  //
+  // });
   // ------------- NAVIGATION MANAGEMENT ----------------
 
   // $(window).scroll(function() {
@@ -111,6 +144,7 @@ angular.module('memorableAppApp')
     $scope.selectedPrice = getPriceFormated(session[0][0]);
     $scope.selectedLocation = getFormatedLocation(session[0][2]);
     $scope.selectedHours = getTimeName(session[0][3]);
+    $scope.newListDate = session[0][10];
 
     var val = session[0][9];
     var val2 = session[0][1];
@@ -470,6 +504,8 @@ angular.module('memorableAppApp')
   //
   // getLocation();
 
+  // var couleur = sessionStorage.getItem("lastUpdate");
+  // console.log(couleur[0].establishement_name);
 
 
   // ------------- UPDATE LIST ----------------
@@ -504,6 +540,27 @@ angular.module('memorableAppApp')
 
 
 
+      // start notif
+      var newlist = data;
+      $scope.newListDate = [];
+      var oldCookieDate = new Date($cookieStore.get('lastTime'));
+      console.log(oldCookieDate);
+      // var oldCookieDate = new Date('2016-07-26')
+      var newListDate = [];
+      // var cpt = 0 ;
+      for(var i = 0 ; i < newlist.length; i++){
+        var dateUpdate = new Date(newlist[i].date)
+        if(dateUpdate > oldCookieDate ){ // && cpt < 6
+          $scope.newListDate.push(newlist[i]);
+          // cpt++;
+        }
+      }
+
+      if($scope.newListDate.length == 0){
+        $('#notif').hide();
+        // TODO: load last 6 recent
+      }
+      // end notif
 
 
 
@@ -698,6 +755,8 @@ angular.module('memorableAppApp')
               $scope.dataToShare.push(multipleobj);
               $scope.dataToShare.push(category);
               console.log($scope.dataToShare);
+              //notif
+              $scope.dataToShare.push($scope.newListDate);
 
               // console.log($scope.items);
               srvShareData.addData($scope.dataToShare);
@@ -755,6 +814,8 @@ angular.module('memorableAppApp')
           multipleobj.push(obj[3]);
           $scope.dataToShare.push(multipleobj);
           $scope.dataToShare.push(category);
+          //notif
+          $scope.dataToShare.push($scope.newListDate);
 
           // console.log($scope.items);
           srvShareData.addData($scope.dataToShare);
@@ -858,6 +919,8 @@ angular.module('memorableAppApp')
         multipleobj.push(obj[3]);
         $scope.dataToShare.push(multipleobj);
         $scope.dataToShare.push(category);
+        //notif
+        $scope.dataToShare.push($scope.newListDate);
 
         // console.log($scope.items);
         srvShareData.addData($scope.dataToShare);

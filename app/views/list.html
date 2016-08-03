@@ -21,8 +21,6 @@
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 
-<<<<<<< HEAD
-
               <span class="icon-menu visible-filter">Menu</span>
               <span class="icon-filter invisible-filter">Filters</span>
               <!--<span class="icon-bar visible-filter"></span>
@@ -39,16 +37,16 @@
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu">
-                <a href="#" class="dropdown-toggle t" data-toggle="dropdown" aria-expanded="true">
+                <a href="#" ng-click="updateNotif()" class="dropdown-toggle t" data-toggle="dropdown" aria-expanded="true">
                   <i class="fa fa-bell-o"></i>
-                  <span class="notification-label ">{{newListDate.length}}</span>
+                  <span id="notif" class="notification-label">{{newListDate.length}}</span>
                 </a>
                 <!-- <div class="slimScrollDiv"> -->
                   <ul class="dropdown-menu notification-menu" id="ex4">
 
                     <!-- <div class="scrollable-menu scrollbar" id="ex4"> -->
                     <li class="header notification-header">You have {{newListDate.length}} new places to discover</li>
-                      <li ng-repeat="item in newListDate">
+                      <li ng-repeat="item in newListDate track by $index">
                         <a href="https://memorable.io/detail/{{item.establishement_name_id}}">
                           <div class="pull-left">
                             <img src="images/{{item.establishement_name_id}}.jpg" class="notification-image" alt="User Image">
@@ -114,12 +112,12 @@
           </div>
           <div class="col-lg-4 col-xs-4 value-prop-ctn">
             <h1><span class="vp-number">202</span><br>SPOTS</h1><span class="title-divider"></span>
-            <h2 class="subheading">We have created this guide based on those opinions. Discover new and creative establishements as well as Montréal classics & hidden places.</h2>
+            <h2 class="subheading">We have created this guide based on those opinions. Discover new and creative establishments as well as Montréal classics & hidden places.</h2>
           </div>
           <div class="col-xs-12 value-prop-ctn-mobile">
             <p>Memorable gathers and analyses opinions about food, lifestyle and travel. </p>
             <p>Every week, we add thousands of experiences from locals, foodies, critics, fashionistas, chefs & travelers. </p>
-            <p>Discover new and creative establishements as well as Montréal classics & hidden places in our guides.</p>
+            <p>Discover new and creative establishments as well as Montréal classics & hidden places in our guides.</p>
           </div>
 
 

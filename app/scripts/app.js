@@ -10,7 +10,7 @@
  */
 angular
   .module('memorableAppApp', [
-    'ngRoute', 'angularGrid'
+    'ngRoute', 'angularGrid', 'ngCookies'
   ])
   //, $locationProvider
   .config(function ($routeProvider, $locationProvider) {
