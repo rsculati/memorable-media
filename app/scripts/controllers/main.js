@@ -35,6 +35,7 @@ angular.module('memorableAppApp')
     if(typeof session[0] !== 'undefined'){
       $scope.location = session[0][2];
       $scope.time = session[0][3];
+      $scope.newListDate = session[0][10];
       var sessionTab = session[0][8];
       var related = [];
       var cpt = 0 ;
