@@ -19,12 +19,9 @@
         <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-<<<<<<< HEAD
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 
-=======
             <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
->>>>>>> master
               <span class="icon-menu visible-filter">Menu</span>
               <span class="icon-filter invisible-filter">Filters</span>
               <!--<span class="icon-bar visible-filter"></span>
@@ -32,10 +29,10 @@
               <span class="icon-bar visible-filter"></span>-->
               <!--<i class="fa fa-filter invisible-filter" aria-hidden="true"></i>
             </button>-->
-            <button type="button" class="navbar-toggle collapsed dropdown-toggle t" data-toggle="collapse" data-target="#ex4" aria-expanded="true">
+            <button ng-click="updateNotif()" type="button" class="navbar-toggle collapsed dropdown-toggle t" data-toggle="collapse" data-target="#ex4" aria-expanded="true">
             <!--<a href="#" class="dropdown-toggle t" data-toggle="dropdown" aria-expanded="true">-->
               <i class="fa fa-star"></i>
-              <span class="notification-label notification-label-mobile">{{newListDate.length}}</span>
+              <span id="notifmobile" class="notification-label notification-label-mobile">{{newListDate.length}}</span>
             </button>
 
             <a class="navbar-brand" href="#"><img class="logo-nav-brand"src="images/memorable-logo-black-cube.png" alt="memorable.io | insider guide log"><span class="text-nav-brand navbar-item">memorable</span></a>
@@ -45,9 +42,9 @@
             <ul class="dropdown-menu notification-menu" id="ex4">
 
               <!-- <div class="scrollable-menu scrollbar" id="ex4"> -->
-              <li class="header notification-header">You have {{newListDate.length}} new places to discover</li>
+              <li class="header notification-header">{{newListDate.length}} new places to discover this week</li>
                 <li ng-repeat="item in newListDate">
-                  <a href="https://memorable.io/detail/{{item.establishement_name_id}}">
+                  <a href="https://memorable.io/detail/{{item.establishement_name_id}}" target="_blank">
                     <div class="pull-left">
                       <img src="images/{{item.establishement_name_id}}.jpg" class="notification-image" alt="User Image">
                     </div>
@@ -56,7 +53,7 @@
 
                     </h4>
 
-                    <p>  {{item.establishement_pricerange}} | <i class="fa fa-cutlery"></i> | 12 opinions</p>
+                    <div class="like-p">{{item.establishement_pricerange}} | &nbsp;</div><div class="like-p" ng-bind-html="trusthtml(item.establishement_type1)"></div>
                   </a>
                 </li>
 
@@ -70,33 +67,29 @@
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu">
-<<<<<<< HEAD
+
                 <a href="#" ng-click="updateNotif()" class="dropdown-toggle t" data-toggle="dropdown" aria-expanded="true">
-                  <i class="fa fa-bell-o"></i>
-                  <span id="notif" class="notification-label">{{newListDate.length}}</span>
-=======
-                <a href="#" class="dropdown-toggle t" data-toggle="dropdown" aria-expanded="true">
                   <i class="fa fa-star"></i>
-                  <span class="notification-label ">{{newListDate.length}}
-                    <div class="notification-item-ctn"><i class="fa fa-cutlery"></i>  {{newListDate.length}}</div>
+                  <span id="notif" class="notification-label ">{{newListDate.length}}
+                    <!-- <div class="notification-item-ctn"><i class="fa fa-cutlery"></i>  {{newListDate.length}}</div>
                     <div class="notification-item-ctn"><i class="fa fa-glass"></i>  2{{newListDate.length}}</div>
                     <div class="notification-item-ctn"><i class="fa fa-coffee"></i>  {{newListDate.length}}3</div>
-                    <div class="notification-item-ctn"><i class="fa fa-gift"></i>  1{{newListDate.length}}</div>
+                    <div class="notification-item-ctn"><i class="fa fa-gift"></i>  1{{newListDate.length}}</div> -->
                   </span>
->>>>>>> master
+
                 </a>
                 <!-- <div class="slimScrollDiv"> -->
                   <ul class="dropdown-menu notification-menu" id="ex4">
-                    <li class="header notification-header">You have {{newListDate.length}} new places to discover</li>
+                    <li class="header notification-header">{{newListDate.length}} new places to discover this week</li>
                       <li ng-repeat="item in newListDate track by $index">
-                        <a href="https://memorable.io/detail/{{item.establishement_name_id}}">
+                        <a href="https://memorable.io/detail/{{item.establishement_name_id}}" target="_blank">
                           <div class="pull-left">
                             <img src="images/{{item.establishement_name_id}}.jpg" class="notification-image" alt="User Image">
                           </div>
                           <h4>
                             {{item.establishement_name}}
                           </h4>
-                          <p>  {{item.establishement_pricerange}} | <i class="fa fa-cutlery"></i> | 12 opinions</p>
+                          <div class="like-p">{{item.establishement_pricerange}} | &nbsp;</div><div class="like-p" ng-bind-html="trusthtml(item.establishement_type1)"></div>
                         </a>
                       </li>
                     <li class="notification-footer"><a href="#">Close panel</a></li>
@@ -129,16 +122,16 @@
             </div>
           </div>
           <div class="col-lg-4 col-xs-4 value-prop-ctn">
-            <h1><span class="vp-number">10340</span><br>OPINIONS</h1><span class="title-divider"></span>
-            <h2 class="subheading">Memorable gathers and analyses opinions about food, lifestyle and travel. We add thousands of opinions every week.</h2>
+            <h1><span class="vp-number">202</span><br>SPOTS</h1><span class="title-divider"></span>
+            <h2 class="subheading">Discover new and creative establishments as well as Montréal classics & hidden places.</h2>
+          </div>
+          <div class="col-lg-4 col-xs-4 value-prop-ctn">
+            <h1><span class="vp-number">10'340</span><br>OPINIONS</h1><span class="title-divider"></span>
+            <h2 class="subheading">Every week, we gather thousands of new opinions help us keeping our guide fresh and up-to-date.</h2>
           </div>
           <div class="col-lg-4 col-xs-4 value-prop-ctn">
             <h1><span class="vp-number">101</span><br>SOURCES</h1><span class="title-divider"></span>
-            <h2 class="subheading">From passionate locals, foodies, chefs, critics fashionistas & travelers. All those experts have experiences to share.</h2>
-          </div>
-          <div class="col-lg-4 col-xs-4 value-prop-ctn">
-            <h1><span class="vp-number">202</span><br>SPOTS</h1><span class="title-divider"></span>
-            <h2 class="subheading">We have created this guide based on those opinions. Discover new and creative establishments as well as Montréal classics & hidden places.</h2>
+            <h2 class="subheading">From passionate locals, foodies, chefs, critics fashionistas & travelers, all those experts have experiences to share.</h2>
           </div>
           <div class="col-xs-12 value-prop-ctn-mobile">
             <p>Memorable gathers and analyses opinions about food, lifestyle and travel. </p>

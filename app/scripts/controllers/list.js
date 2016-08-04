@@ -8,30 +8,97 @@
 * Controller of the memorableAppApp
 */
 angular.module('memorableAppApp')
-.controller('ListCtrl', function ($scope, $http, srvShareData,$rootScope,$filter,$timeout,$cookieStore) {
+.controller('ListCtrl', function ($scope, $http, srvShareData,$rootScope,$filter,$timeout,$cookieStore,$sce) {
 
-  // $cookieStore.put('lastTime',new Date('2016-06-26'));
-  // $cookieStore.remove('lastTime');
+  var old = $cookieStore.get('lastTime');
+  var check = $cookieStore.get('updateCheck');
+  console.log("old cookie : " + old + " : " + check);
+
+
+  // if(!old || old === "undefined"){
+  //   $cookieStore.remove('lastTime');
+  //   $cookieStore.put('lastTime',new Date('2016-07-26'));
+  // }
+  // $cookieStore.remove('updateCheck')
+
+
+  if($cookieStore.get('updateCheck')){
+    $('#notif').hide();
+    $('#notifmobile').hide();
+  }
+
+  $cookieStore.put('lastTime',new Date('2016-07-26'));
+
+  $http.get('Row1data.json').success (function(data){
+    var newlist = data;
+    $scope.newListDate = [];
+    // var oldCookieDate = new Date($cookieStore.get('lastTime'));
+    var oldCookieDate = new Date('2016-07-26');
+    console.log(oldCookieDate);
+    var newListDate = [];
+    var dateUpdate;
+    // var cpt = 0 ;
+    for(var i = 0 ; i < newlist.length; i++){
+      dateUpdate = new Date(newlist[i].date)
+      if(dateUpdate > oldCookieDate){ // && cpt < 6
+        $scope.newListDate.push(newlist[i]);
+      }
+    }
+    console.log($scope.newListDate);
+
+    if($scope.newListDate.length == 0){
+      $('#notif').hide();
+      $('#notifmobile').hide();
+    }
+  })
+
+  $scope.trusthtml = function(type){
+    return $sce.trustAsHtml(getHtml(type));
+  }
+
+  function getHtml(type) {
+    var types = type.split(',');
+    var html = " ";
+    for(var i = 0 ; i < types.length; i++){
+      switch (types[i]) {
+        case "eat":
+        html = html + '<i class="fa fa-cutlery"></i>&nbsp;&nbsp;| ';
+        break;
+        case "drink":
+        html = html + '<i class="fa fa-gift"></i>&nbsp;&nbsp;| ';
+        break;
+        case "shop":
+        html = html + '<i class="fa fa-gift"></i>&nbsp;&nbsp;| ';
+        break;
+        case "coffee":
+        html = html + '<i class="fa fa-coffee"></i>&nbsp;&nbsp;| ';
+        break;
+      }
+    }
+    return html;
+  }
+
+
 
   $scope.updateNotif = function() {
     console.log("update notif");
     $cookieStore.remove('lastTime');
-    $cookieStore.put('lastTime',new Date());
+    $cookieStore.put('lastTime',new Date('2016-07-26'));
     $('#notif').hide();
+    $('#notifmobile').hide();
+    $cookieStore.remove('updateCheck');
+    $cookieStore.put('updateCheck',true);
+
     if(typeof session[0] !== 'undefined'){
       $scope.newListDate = session[0][10];
     }
     // $cookieStore.put('lastTime',new Date());
     // console.log($cookieStore.get('lastUpdate'));
-
   }
-  // $cookieStore.put('lastTime',new Date('2016-07-26'));
 
 
-  var old = $cookieStore.get('lastTime');
-  if(!old){
-    $cookieStore.put('lastTime',new Date('2016-07-26'));
-  }
+
+
   $scope.newListDate = [];
 
   // $http.get('Row1data.json').success (function(data){
@@ -252,7 +319,7 @@ angular.module('memorableAppApp')
   // ------------- end ----------------
 
 
-// ------------- MAIN FILTER SELECTED COLOR ----------------
+  // ------------- MAIN FILTER SELECTED COLOR ----------------
   function mainFilterSelection(val) {
     switch (val) {
       case "eat":
@@ -541,25 +608,32 @@ angular.module('memorableAppApp')
 
 
       // start notif
-      var newlist = data;
-      $scope.newListDate = [];
-      var oldCookieDate = new Date($cookieStore.get('lastTime'));
-      console.log(oldCookieDate);
-      // var oldCookieDate = new Date('2016-07-26')
-      var newListDate = [];
-      // var cpt = 0 ;
-      for(var i = 0 ; i < newlist.length; i++){
-        var dateUpdate = new Date(newlist[i].date)
-        if(dateUpdate > oldCookieDate ){ // && cpt < 6
-          $scope.newListDate.push(newlist[i]);
-          // cpt++;
-        }
-      }
-
-      if($scope.newListDate.length == 0){
-        $('#notif').hide();
-        // TODO: load last 6 recent
-      }
+      // var newlist = data;
+      // $scope.newListDate = [];
+      // var oldCookieDate = new Date($cookieStore.get('lastTime'));
+      // oldCookieDate = new Date('2016-07-26');
+      // console.log(oldCookieDate);
+      // if(!oldCookieDate){
+      //   console.log("no cookie");
+      //   $cookieStore.remove('lastTime');
+      //   $cookieStore.put('lastTime', new Date('2016-07-26'));
+      //   oldCookieDate = new Date('2016-07-26');
+      // }
+      // // var oldCookieDate = new Date('2016-07-26')
+      // var newListDate = [];
+      // // var cpt = 0 ;
+      // for(var i = 0 ; i < newlist.length; i++){
+      //   var dateUpdate = new Date(newlist[i].date)
+      //   if(dateUpdate > oldCookieDate){ // && cpt < 6
+      //     $scope.newListDate.push(newlist[i]);
+      //     // cpt++;
+      //   }
+      // }
+      //
+      // if($scope.newListDate.length == 0){
+      //   $('#notif').hide();
+      //   $('#notifmobile').hide();
+      // }
       // end notif
 
 
@@ -850,8 +924,8 @@ angular.module('memorableAppApp')
           }
         }
 
-         $scope.items = obj;
-         oldItems = obj;
+        $scope.items = obj;
+        oldItems = obj;
 
 
         // // calculate score distance
