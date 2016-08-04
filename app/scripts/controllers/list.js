@@ -58,7 +58,7 @@ angular.module('memorableAppApp')
 
   function getHtml(type) {
     var types = type.split(',');
-    var html = " ";
+    var html = "";
     for(var i = 0 ; i < types.length; i++){
       switch (types[i]) {
         case "eat":
